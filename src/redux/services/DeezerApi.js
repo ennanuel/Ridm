@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const deezerApi = createApi({
     reducerPath: "deezerApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://api.deezer.com',
+        baseUrl: 'http://localhost/3000',
     }),
     endpoints: (builder) => ({
         getTopGenres: builder.query({query: () => "/editorial"}),

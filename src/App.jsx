@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
@@ -6,6 +7,17 @@ import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, To
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
+
+  useEffect( () => {
+    const fetchData = async () => { 
+      const res = await fetch('https://api.deezer.com/editorial', {
+        mode: 'no-cors'
+      })
+      const data = await res.json()
+      console.log(data)
+    }
+    fetchData()
+  }, [])
 
   return (
     <div className="relative flex">
