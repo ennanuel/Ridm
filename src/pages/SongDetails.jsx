@@ -10,7 +10,7 @@ const SongDetails = () => {
     const { activeSong, isPlaying } = useSelector( (state) => state.player )
     const { songid } = useParams()
     const { data, isFetching, error } = useGetSongDetailsQuery( songid )
-    const { data: lyricsData, error: lyricsError } = useGetLyricsQuery( data?.isrc || 0 )
+    const { data: lyricsData } = useGetLyricsQuery( data?.isrc || 0 )
     const { data: relatedSongs } = useGetRelatedSongsQuery( data?.artist?.tracklist.match(/[\d]+/) || 0, 20)
 
     const handlePauseClick = () => {
