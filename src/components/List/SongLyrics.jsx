@@ -1,0 +1,29 @@
+import React from 'react'
+import { LyricLoading, Error } from '../LoadersAndError'
+
+const SongLyrics = ({ lyrics, lyricsData, isFetching, error }) => {
+
+    if(isFetching) return <LyricLoading num={8} />
+
+    if(error) return <Error title="Could not load lyrics." />
+        
+    return (
+        <div className="mt-3 mb-8 px-5">
+            {
+                lyrics ?
+                lyrics.map( line => <p className="text-gray-400 text-md font-bold my-1">{line}</p> ) :
+                "Sorry, no lyrics found!"
+            }
+
+            <p className="text-xs text-gray-500 ">
+                { 
+                    lyricsData?.message?.body?.lyrics?.lyrics_copyright.split(' ').map(
+                        elem => elem == 'www.musixmatch.com.' ? <a href="https://www.musixmatch.com" target="_blank" className="text-gray-400 font-semibold">{'musixmatch. '}</a> : elem + ' '
+                    ) 
+                }
+            </p>
+        </div>
+    )
+}
+
+export default SongLyrics

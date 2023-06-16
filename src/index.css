@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply bg-black;
+  @apply overflow-clip;
+  user-select: none;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.top_overlay {
+  transition: opacity 1s ease;
+  opacity: 1;
+}
+
+.transparent {
+  opacity: 0 !important;
+}
+
+.transparent + form input, .transparent + form button {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.transparent + .search_bar + .music_player {
+  overflow: hidden;
+  border-radius: 10px;
+  backdrop-filter: blur(50px);
+  transform: scale(0.90);
+  background: rgba(13, 13, 13, 0.3)
+}
+
+.normal_gradient {
+  background: linear-gradient(181deg, var(--color), #090909);
+  background-size: 7000%;
+  background-position: 0 0;
+  transition: background-position 1s ease;
+}
+
+.player {
+  background: rgb(10, 10, 10);
+  transition: background-color 1s ease, opacity 0.5s ease;
+}
+
+.search_bar input {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.player .search_bar input {
+  background-color: rgba(20, 20, 20, 0.5);
+}
+
+.changing_bg {
+  background-color: var(--color);
+}
+
+.changing_gradient {
+  background-position: 100% 100% !important;
+}
+
+.album-card {
+  @apply animate-popin;
+  animation-delay: var(--delay);
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.album_overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.album_overlay div {
+  transform: translateY(-30%);
+  transition: transform 0.3s ease;
+}
+
+.album-card:hover .album_overlay div {
+  transform: translateY(0);
+}
+
+.album-card:hover .album_overlay {
+  opacity: 1
+}
+
+.genre-card {
+  @apply animate-slideright;
+  animation-delay: var(--delay);
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.category {
+  @apply animate-slowfade;
+}
+
+.radio-card {
+  @apply animate-slideup;
+  animation-delay: var(--delay);
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.artist-card {
+  @apply animate-slideleft;
+  animation-delay: var(--delay);
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.other_shadow {
+  --color: --color;
+}
+
+.normal_shadow {
+  --color: #050505
+}
+
+.detail_img {
+  box-shadow: 0 30px 60px var(--color);
+}
+
+.detail_overlay {
+  background: linear-gradient(rgba(5, 5, 5, 0.1), var(--color))
+}
+
+.category:hover .cat-text {
+  transform: translateX(-50%)
+}
+
+.category:hover .cat-image {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.play_overlay {
+  opacity: 0;
+}
+
+.song-bar:hover .play_overlay, .active-song .play_overlay {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.play_pause_track {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.album-track:hover .play_pause_track, .active-track {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.album-track:hover .track_no {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* Scroll bar and selection */
+
+::-webkit-scrollbar {
+  width: 6px;
+  right: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-md;
+  @apply bg-white/20;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-white/60
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* The slider itself */
+.seek_slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  @apply rounded-md;
+  @apply bg-gray-400;
+  appearance: none;
+  height: 5px; /* Specified height */
+  outline: none; /* Remove outline */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.seek_slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  @apply bg-white;
+  @apply rounded-full;
+  appearance: none;
+  width: 10px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.seek_slider::-moz-range-thumb {
+  @apply bg-white;
+  @apply rounded-full;
+  width: 10px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  cursor: pointer; /* Cursor on hover */
+}
+
+/* The slider itself */
+.volume_slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  @apply rounded-md;
+  @apply bg-gray-400;
+  appearance: none;
+  height: 5px; /* Specified height */
+  outline: none; /* Remove outline */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.volume_slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  @apply bg-white;
+  @apply rounded-lg;
+  appearance: none;
+  width: 5px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.volume_slider::-moz-range-thumb {
+  @apply bg-white;
+  width: 10px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.loading-animation {
+  background-image: linear-gradient(80deg, transparent 0%, transparent 20%, rgba(255, 255, 255, 0.03) 30%, rgba(255, 255, 255, 0.05) 35%, rgba(255, 255, 255, 0.03) 40%, transparent 50%);
+  background-size: 500% 100%;
+  animation: movebg 1s linear infinite;
+}
+
+@keyframes movebg {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
