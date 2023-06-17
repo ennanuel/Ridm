@@ -11,8 +11,8 @@ const Genres = ({children, genres, isFetching, error, blacklist, favorites, noFi
   }, [blacklist, favorites, genres, noFilter])
 
   return (
-    <>
-      <h2 className="text-white font-bold text-2xl md:mt-[80px] mb-4">{children}</h2>
+    <div className='p-2 md:p-4 md:pt-0 md:mt-[80px]'>
+      <h2 className="text-white font-bold text-2xl mb-4">{children}</h2>
       {
         isFetching ?
         <GenreLoading num={10} /> :
@@ -28,7 +28,7 @@ const Genres = ({children, genres, isFetching, error, blacklist, favorites, noFi
           </div>
         )
       }
-    </>
+    </div>
   )
 }
 
