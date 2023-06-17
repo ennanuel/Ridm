@@ -2,9 +2,11 @@ import { useGetTopChartTracksQuery } from "../../redux/services/DeezerApi"
 
 import { Songs } from "../List"
 import { MoreButton } from "../Buttons"
+import { useSearchParams } from "react-router-dom"
 
 const SongChart = ({ blacklist, favorites }) => {
-  const {data, isFetching, error} = useGetTopChartTracksQuery()
+  const [params, getParams] = useSearchParams()
+  const {data, isFetching, error} = useGetTopChartTracksQuery( params.get('genre') || 0 )
 
   return (
     <>

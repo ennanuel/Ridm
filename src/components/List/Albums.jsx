@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { AlbumCard } from '../Cards'
 import { AlbumLoading, Error } from '../LoadersAndError'
 import Sort from './Sort'
+import SeeMore from './SeeMore'
 
 import { getData } from '../../functions/getData'
 
@@ -15,7 +16,7 @@ const Albums = ({ albums, children, showSort, isFetching, error, favorites, blac
 
   return (
     <div className="mb-8">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-end justify-between mb-4">
         <h3 className="text-white font-bold text-xl">{children}</h3>
         { showmore && <SeeMore link={`/charts?type=albums&genre=${genreid}`} /> }
       </div>

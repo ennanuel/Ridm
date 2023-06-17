@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { ArtistCard } from '../Cards'
 import { ArtistLoading, Error } from '../LoadersAndError'
 import { getData } from '../../functions/getData'
+import SeeMore from './SeeMore'
 
 const Artists = ({artists, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter}) => {
   const [newArtists, setNewArtists] = useState([])
@@ -11,7 +12,7 @@ const Artists = ({artists, children, isFetching, error, blacklist, favorites, sh
   }, [blacklist, favorites, artists, noFilter])
   return (
     <div className="mb-8">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-end justify-between mb-4">
         <h3 className="text-white font-bold text-xl">{children}</h3>
         { showmore && <SeeMore link={`/charts?type=artists&genre=${genreid}`} /> }
       </div>

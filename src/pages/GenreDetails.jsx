@@ -28,10 +28,10 @@ const GenreDetails = () => {
             <GenreDetailsHeader isFetching={isFetching} error={error} genre={data} charts={charts} />
             
             <div className="p-2 md:p-4 mt-4">
-                <Songs blacklist={blacklist} favorites={favorites} isFetching={loading} error={errorLoading} songs={charts?.tracks?.data?.slice(0, 6)}>Songs</Songs>
-                <Albums blacklist={blacklist} favorites={favorites} isFetching={loading} error={errorLoading} albums={charts?.albums?.data?.slice(0, 10)} showSort={true}>Albums</Albums>
-                <Artists blacklist={blacklist} favorites={favorites} isFetching={loading} error={errorLoading} artists={charts?.artists?.data?.slice(0, 10)}>Artists</Artists>
-                <Radios blacklist={blacklist} favorites={favorites} isFetching={loadingRadios} error={errorLoadingRadios} radios={radios?.data}>Radios</Radios>
+                <Songs showmore={true} genreid={id} blacklist={blacklist} favorites={favorites} isFetching={loading} error={errorLoading} songs={charts?.tracks?.data?.slice(0, 6)}>Songs</Songs>
+                <Albums showmore={true} genreid={id} blacklist={blacklist} favorites={favorites} isFetching={loading} error={errorLoading} albums={charts?.albums?.data?.slice(0, 10)} showSort={true}>Albums</Albums>
+                <Artists showmore={true} genreid={id} blacklist={blacklist} favorites={favorites} isFetching={loading} error={errorLoading} artists={charts?.artists?.data?.slice(0, 10)}>Artists</Artists>
+                <Radios showmore={true} genreid={id} blacklist={blacklist} favorites={favorites} isFetching={loadingRadios} error={errorLoadingRadios} radios={radios?.data}>Radios</Radios>
             </div>
         </div>
     )

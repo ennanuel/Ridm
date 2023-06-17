@@ -14,7 +14,7 @@ import NavigationAndSearch from './components/NavigationAndSearch';
 const App = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const [scrolled, setScrolled] = useState(false)
-  const colors = ['#1c1f23', '#241c25', '#211f1b', '#231c1c', '#1b1b23', '#171f1f']
+  const colors = ['#122f55', '#3f2842', '#655638', '#593030', '#2e2e59', '#005151']
   const divRef = useRef()
   const [color, setColor] = useState('#2c3b4d')
   const location = useLocation()
@@ -33,6 +33,8 @@ const App = () => {
   }
 
   useEffect( () => {
+    if(/show/.test(location.search)) return;
+    console.log(/show/.test(location.search))
     divRef.current.scroll(0, 0)
   }, [location])
 

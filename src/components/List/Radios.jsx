@@ -14,10 +14,10 @@ const Radios = ({ radios, children, showmore, isFetching, error, blacklist, favo
 
     return (
         <>
-        <div className="flex flex-row justify-between items-center mb-4">
+        <div className="flex flex-row justify-between items-end mb-4">
             <h3 className="text-white font-bold text-xl">{children}</h3>
             {
-                showmore && <SeeMore link={`/charts?type=radio&genre=${genreid}`} />
+                showmore && <SeeMore link={`/charts?type=radios&genre=${genreid}`} />
             }
         </div>
         {

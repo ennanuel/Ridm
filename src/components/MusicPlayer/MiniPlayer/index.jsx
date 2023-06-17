@@ -24,7 +24,9 @@ const MiniPlayer = ({ dispatch, duration, seekTime, appTime, scrolled, isPlaying
             next={next}
           />
         </div>
-        <ExpandCollapse onClick={handleClick} nowPlaying={nowPlaying} />
+        <div className="lg:flex hidden">
+          <ExpandCollapse onClick={handleClick} nowPlaying={nowPlaying} />
+        </div>
       </div>
     </div>   
   )

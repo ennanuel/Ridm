@@ -20,8 +20,8 @@ const index = ({ category, active, i }) => {
                 <div className="overflow-hidden text-white text-xl font-bold lowercase">
                     <p className={`transition-transform duration-500 ${active ? 'translate-y-0 delay-200 ' : 'translate-y-[100%]'}`}>{category.name}s</p>
                 </div>
-                <Link to="/charts" className="hover:text-white lg:hidden text-gray-400 flex items-center justify-center text-sm">
-                    <MdArrowBackIos size={15} />
+                <Link to="/charts" className="hover:text-white lg:hidden text-gray-400 flex items-center justify-center text-xs">
+                    <MdArrowBackIos size={12} />
                     <span>Back</span>
                 </Link>
             </div>
