@@ -16,8 +16,8 @@ const Discover = () => {
     const { data: recentAlbums, isFetching: isFetchingRecentAlbums, error: errorFetchingRecentAlbums } = useGetRecentReleasesQuery( 0 )
     const { data, isFetching: isFetchingTopCharts, error: errorFetchingTopCharts } = useGetTopChartQuery( 0 )
 
-    const topPlays = data?.tracks?.data?.slice(0, 9)
-    const topArtists = data?.artists?.data?.slice(0, 10)
+    const topPlays = data?.tracks?.data?.slice(0, 2)
+    const topArtists = data?.artists?.data?.slice(0, 2)
 
 
 
@@ -26,7 +26,7 @@ const Discover = () => {
             <Albums 
                 isFetching={isFetchingRecentAlbums} 
                 error={errorFetchingRecentAlbums} 
-                albums={recentAlbums?.data?.slice(0, 5)}
+                albums={recentAlbums?.data?.slice(0, 2)}
                 showSort={true}
                 favorites={favorites}
                 blacklist={blacklist}
@@ -57,7 +57,7 @@ const Discover = () => {
             <Radios 
                 isFetching={isFetching} 
                 error={error} 
-                radios={radios?.data?.slice(0, 5)}
+                radios={radios?.data?.slice(0, 2)}
                 favorites={favorites}
                 blacklist={blacklist}
             >

@@ -49,7 +49,7 @@ const AlbumDetails = () => {
     <div className="flex flex-col">
         <DetailsHeader isFetching={isFetching} error={error} albumData={data} />
 
-        <div className="relative">
+        <div className="relative mb-4">
           <div className=" flex flex-col lg:flex-row flex-wrap justify-between items-start lg:items-center gap-3 p-4">
             <div className="flex-1 flex flex-row items-center justify-start gap-4">
               <PlayButton album={data} tracks={albumTracks} song={albumTracks ? albumTracks[0] : {}} i={0} />
@@ -82,7 +82,7 @@ const AlbumDetails = () => {
             blacklist={blacklist}
           />
         </div>
-
+      <div className="p-2 md:p-4">
         <Albums
           favorites={favorites}
           blacklist={blacklist}
@@ -97,6 +97,7 @@ const AlbumDetails = () => {
         <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>
         <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>
         
+      </div>
     </div>
   )
 }

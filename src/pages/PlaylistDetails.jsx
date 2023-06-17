@@ -97,9 +97,10 @@ const PlaylistDetails = () => {
       />
     {
       playlists.filter( playlist => playlist.id !== playlistid ).length > 0 &&
-      <>
+      <div className="p-2 md:p-4">
+        <h3 className="text-white font-bold text-xl py-4">More Playlist</h3>
         <Playlists playlists={playlists} playlistid={playlistid}>More Playlists</Playlists>
-      </>
+      </div>
     }
     </div>
   )

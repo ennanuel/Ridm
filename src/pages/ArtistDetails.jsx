@@ -21,7 +21,7 @@ const ArtistDetails = () => {
     const { data: artist, isFetching, error } = useGetArtistDetailsQuery( artistid )
     const { data: tracks, isFetching: isFetchingSongs, error: errorFetchingSongs } = useGetSongsQuery( artist?.tracklist.match(/[\d]+/)[0] || 0, 50)
     const { data: albums, isFetching: isFetchingAlbums, error: errorFetchingAlbums } = useGetArtistAlbumQuery( artistid )
-    const { data: artists, isFetching: isFetchingArtists, error: errorFetchingArtists } = useGetArtistsQuery( artist?.id )
+    const { data: artists, isFetching: isFetchingArtists, error: errorFetchingArtists } = useGetArtistsQuery( artistid )
 
     useEffect(() => {
         setData(getSingleData({type: 'artists', data: artist, favorites, blacklist}))
@@ -47,36 +47,38 @@ const ArtistDetails = () => {
             <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>
             <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>
 
-            <Albums 
-                blacklist={blacklist} 
-                favorites={favorites} 
-                isFetching={isFetchingAlbums} 
-                error={errorFetchingAlbums} 
-                albums={albums?.data} 
-                showSort={true}
-            >
-                Popular {data?.name} albums
-            </Albums>
-            <Songs 
-                blacklist={blacklist}
-                favorites={favorites}
-                isFetching={isFetchingSongs}
-                error={errorFetchingSongs}
-                songs={tracks?.data} 
-                artist={data} 
-                artistId={artistid}
-            > 
-                Songs By {data?.name}
-            </Songs>
-            <Artists 
-                blacklist={blacklist}
-                favorites={favorites}
-                isFetching={isFetchingArtists}
-                error={errorFetchingArtists}
-                artists={artists?.data}
-            >
-                Similar Artists
-            </Artists>
+            <div className="p-2 md:p-4">
+                <Albums 
+                    blacklist={blacklist} 
+                    favorites={favorites} 
+                    isFetching={isFetchingAlbums} 
+                    error={errorFetchingAlbums} 
+                    albums={albums?.data} 
+                    showSort={true}
+                >
+                    Popular {data?.name} albums
+                </Albums>
+                <Songs 
+                    blacklist={blacklist}
+                    favorites={favorites}
+                    isFetching={isFetchingSongs}
+                    error={errorFetchingSongs}
+                    songs={tracks?.data} 
+                    artist={data} 
+                    artistId={artistid}
+                > 
+                    Songs By {data?.name}
+                </Songs>
+                <Artists 
+                    blacklist={blacklist}
+                    favorites={favorites}
+                    isFetching={isFetchingArtists}
+                    error={errorFetchingArtists}
+                    artists={artists?.data}
+                >
+                    Similar Artists
+                </Artists>
+            </div>
         </div>
     )
 };

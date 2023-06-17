@@ -69,17 +69,19 @@ const SongDetails = () => {
                 </div>
             </div>
             
-            <SongLyrics isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
-            <Songs 
-                blacklist={blacklist} 
-                favorites={favorites}
-                isFetching={isFetchingRelated} 
-                error={errorFetchingRelated} 
-                songData={data} 
-                songs={relatedSongs?.data?.slice(0, 6)}
-            >
-                Similar Song
-            </Songs>
+            <div className="p-2 md:p-4">
+                <SongLyrics isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
+                <Songs 
+                    blacklist={blacklist} 
+                    favorites={favorites}
+                    isFetching={isFetchingRelated} 
+                    error={errorFetchingRelated} 
+                    songData={data} 
+                    songs={relatedSongs?.data?.slice(0, 6)}
+                >
+                    Similar Song
+                </Songs>
+            </div>
         </div>
     )
 };

@@ -18,14 +18,13 @@ const GenreDetailsHeader = ({ genre, charts, isFetching, error }) => {
             <HeaderLoading /> :
             error ?
             <Error title="Could not load genre details" /> :
-            <div className="relative w-full flex items-end justify-end h-full p-4">
-                <div className="w-full flex justify-between flex-wrap items-center gap-2">
+                <div className="relative h-full w-full flex justify-between flex-wrap items-end gap-2 p-2 md:px-4 md:py-8">
                     <div className="flex-1">
-                        <p className="text-gray-300 text-sm font-bold md:mb-2">{genre?.type}</p>
-                        <h2 className="text-white font-bold text-3xl md:text-[5em]">{genre?.name}</h2>
+                        <p className="text-gray-300 text-sm font-bold">{genre?.type}</p>
+                        <h2 className="text-white font-bold text-3xl md:text-[5em] mt-2">{genre?.name}</h2>
                     </div>
             
-                    <div className="flex flex-row justify-end items-center gap-4 md:my-4">
+                    <div className="flex flex-row justify-end items-center gap-4 relative md:top-4">
                         <FavoriteButton data={genre} type="genres" />
                         <Options 
                             type="genre" 
@@ -38,7 +37,6 @@ const GenreDetailsHeader = ({ genre, charts, isFetching, error }) => {
                         />
                     </div>
                 </div>
-            </div>
         }
     </div>
   )
