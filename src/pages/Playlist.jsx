@@ -22,7 +22,7 @@ const Playlist = () => {
 
   const { data: genres, isFetching, error } = useGetTopGenresQuery()
 
-  const { playlists } = useSelector( (state) => state.library )
+  const { playlists, favorites, blacklist } = useSelector( (state) => state.library )
 
   const [genreNum, setGenreNum] = useState(5);
   const [playlistInfo, setPlaylistInfo] = useState({name: '', img: '', genres: [], tracks: []})
@@ -48,7 +48,7 @@ const Playlist = () => {
   }
 
   const suggestSongs = (genreid) => {
-    fetchSuggestedSongs(genreid, setSuggestedSongs)
+    fetchSuggestedSongs(genreid, setSuggestedSongs, blacklist, favorites)
   }
 
   const removeSuggestedSongs = (genreid) => {
@@ -104,7 +104,7 @@ const Playlist = () => {
           <Playlists handlePlaylist={handlePlaylist} checkedBoxes={checkedBoxes} showEdit={true} playlists={playlists} />
         }
       </div>
-      <CreatePlaylist 
+      <CreatePlaylist
         handleSubmit={handleSubmit}
         params={params}
         playlistInfo={playlistInfo}

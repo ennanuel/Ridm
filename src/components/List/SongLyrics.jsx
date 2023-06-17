@@ -8,14 +8,14 @@ const SongLyrics = ({ lyrics, lyricsData, isFetching, error }) => {
     if(error) return <Error title="Could not load lyrics." />
         
     return (
-        <div className="mt-3 mb-8 px-5">
+        <div className="mt-3 mb-8 px-3">
             {
                 lyrics ?
                 lyrics.map( line => <p className="text-gray-400 text-md font-bold my-1">{line}</p> ) :
-                "Sorry, no lyrics found!"
+                <p className="text-gray-400 text-md font-bold">"Sorry, no lyrics found!"</p>
             }
 
-            <p className="text-xs text-gray-500 ">
+            <p className="text-xs text-gray-500">
                 { 
                     lyricsData?.message?.body?.lyrics?.lyrics_copyright.split(' ').map(
                         elem => elem == 'www.musixmatch.com.' ? <a href="https://www.musixmatch.com" target="_blank" className="text-gray-400 font-semibold">{'musixmatch. '}</a> : elem + ' '

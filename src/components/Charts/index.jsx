@@ -6,8 +6,10 @@ import RadioChart from "./RadioChart"
 import { Link } from "react-router-dom"
 
 import { MdArrowBackIos } from "react-icons/md"
+import { useSelector } from "react-redux"
 
 const index = ({ category, active, i }) => {
+    const { blacklist, favorites } = useSelector( state => state.library )
     const origin = i === 0 ? 'origin-top-left' : i === 1 ? 'origin-top-right' : i === 2 ? 'origin-bottom-left' : i === 3 ? 'origin-bottom-right' : ''
     
     return (
@@ -28,13 +30,13 @@ const index = ({ category, active, i }) => {
                 <div className="relative z-[1]">
                     {
                         category.name === 'artist' ?
-                        <ArtistChart /> :
+                        <ArtistChart blacklist={blacklist} favorites={favorites} /> :
                         category.name === 'song' ?
-                        <SongChart /> :
+                        <SongChart blacklist={blacklist} favorites={favorites} /> :
                         category.name === 'album' ?
-                        <AlbumChart /> :
+                        <AlbumChart blacklist={blacklist} favorites={favorites} /> :
                         category.name === 'radio' ?
-                        <RadioChart /> :
+                        <RadioChart blacklist={blacklist} favorites={favorites} /> :
                         null
                     }
                 </div>

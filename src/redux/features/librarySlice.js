@@ -24,6 +24,9 @@ const librarySlice = createSlice({
   reducers: {
     addToFavorites: (state, action) => {
       const favoritesType = state.favorites[action.payload.type]
+
+      if(!favoritesType) return;
+
       if(!favoritesType.map(elem => elem.id).includes(action.payload.value.id)) {
         favoritesType.push(action.payload.value)
         state.favorites[action.payload.type] = favoritesType
@@ -38,9 +41,15 @@ const librarySlice = createSlice({
 
     addToBlacklist: (state, action) => {
       const blacklistType = state.blacklist[action.payload.type]
+      const favoritesType = state.favorites[action.payload.type]
+      
+      if(!blacklistType) return;
+
       if(!blacklistType.map(elem => elem.id).includes(action.payload.value.id)) {
         blacklistType.push(action.payload.value)
         state.blacklist[action.payload.type] = blacklistType
+
+        state.favorites[action.payload.type] = favoritesType.filter( elem => elem.id !== action.payload.value.id )
       }
     },
 

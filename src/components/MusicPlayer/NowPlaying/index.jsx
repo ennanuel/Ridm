@@ -40,7 +40,7 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
     }
 
     return (
-        <div className={`fixed overflow-clip lg:absolute origin-bottom lg:origin-top-right top-0 right-0 z-[9999] w-full h-[100vh] flex flex-row gap-6 items-center justify-center bg-black/70 backdrop-blur-lg p-[30px] transition-[opacity,transform] ${nowPlaying ? 'scale-100 opacity-100' : 'pointer-events-none opacity-0 scale-50'}`}>
+        <div className={`fixed overflow-clip lg:absolute origin-bottom lg:origin-top-right top-0 right-0 z-[9999] w-full h-[100vh] flex flex-row gap-6 items-center justify-center bg-black/70 backdrop-blur-lg p-[30px] transition-[opacity,transform] ${nowPlaying ? 'scale-100 opacity-100 translate-y-0' : 'pointer-events-none opacity-0 lg:scale-50 lg:translate-y-0 translate-y-[100%]'}`}>
             <Buttons 
                 handleClick={handleClick} 
                 nowPlaying={nowPlaying} 

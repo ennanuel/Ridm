@@ -10,7 +10,7 @@ const GenresAndLink = ({ albumData, artistId }) => {
             <p className="flex flex-row items-center gap-1">
             {
                 albumData &&
-                albumData.genres.data.map( (genre, i, genres) => <span className="text-gray-400 text-xs w-fit font-normal">
+                albumData?.genres?.data?.map( (genre, i, genres) => <span className="text-gray-400 text-xs w-fit font-normal">
                 <Link to={`/genres/${genre.id}`}>
                     {genre.name}{i !== genres.length ? ',' : ''}
                 </Link>

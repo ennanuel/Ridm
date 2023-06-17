@@ -26,8 +26,8 @@ const GenreDetailsHeader = ({ genre, charts, isFetching, error }) => {
                     </div>
             
                     <div className="flex flex-row justify-end items-center gap-4 md:my-4">
-                        <FavoriteButton data={genre} type="genres" favorite={genre?.favorite} />
-                        <Options type="genre" genre={genre} tracks={charts?.tracks?.data} song={charts && charts.tracks.data[0]} i={0} />
+                        <FavoriteButton data={genre} type="genres" />
+                        <Options type="genre" favorite={genre?.favorite} genre={genre} tracks={charts?.tracks?.data} song={charts && charts.tracks.data[0]} i={0} />
                     </div>
                 </div>
             </div>

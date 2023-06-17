@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 
 import { Albums, Tracks } from '../components/List'
@@ -10,19 +11,22 @@ import { Options } from "../components/Options";
 import { FavoriteButton, ShuffleButton, PlayButton } from "../components/Buttons";
 import { pause, playSongs } from "../functions/player";
 
-import { useGetAlbumDetailsQuery, useGetAlbumsQuery, useGetAlbumTracksQuery } from "../redux/services/DeezerApi";
+import { useGetAlbumDetailsQuery, useGetAlbumsQuery } from "../redux/services/DeezerApi";
+import { getSingleData } from "../functions/getData";
 
 const AlbumDetails = () => {
   const dispatch = useDispatch()
-
-  const { favorites: {albums, tracks: favSongs, ...others} } = useSelector( (state) => state.library )
+  const [data, setData] = useState([])
+  
   const { activeSong, isPlaying } = useSelector( (state) => state.player )
+  const { favorites, blacklist } = useSelector( state => state.library )
 
   const { id: albumid } = useParams()
 
-  const { data, isFetching, error } = useGetAlbumDetailsQuery( albumid )
-  const { data: relatedAlbums, isFetching: isFetchingRelatedAlbums, error: errorFetchingRelatedAlbums } = useGetAlbumsQuery( data?.genre_id )
-  const albumTracks = data?.tracks?.data
+  const { data: album, isFetching, error } = useGetAlbumDetailsQuery( albumid )
+  const { data: relatedAlbums, isFetching: isFetchingRelatedAlbums, error: errorFetchingRelatedAlbums } = useGetAlbumsQuery( album?.genre_id )
+
+  const [albumTracks, setAlbumTracks] = useState([])
 
   const handlePause = () => {
     pause(dispatch)
@@ -33,9 +37,13 @@ const AlbumDetails = () => {
     playSongs({dispatch, tracks: albumTracks, song, i, album})
   }
 
-  if( isFetching ) return <Loader title="Loading album details" />
+  useEffect(() => {
+    setAlbumTracks(album?.tracks?.data)
+  }, [album])
 
-  if( error ) return <Error />
+  useEffect(() => {
+    setData(getSingleData({data: album, type: 'albums', favorites}))
+  }, [album])
 
   return (
     <div className="flex flex-col">
@@ -49,10 +57,10 @@ const AlbumDetails = () => {
             </div>
             
             <div className="flex-1 flex flex-row justify-end items-center gap-4 overflow-x-clip">
-              <FavoriteButton data={data} type={'albums'} favorite={data.favorite} />
+              <FavoriteButton data={data} type={'albums'} />
               <Options 
                 type="album" 
-                favorite={albums.map(album => album.id).includes(data?.id)} 
+                favorite={data?.favorite} 
                 album={data} 
                 tracks={albumTracks} 
                 song={albumTracks ? albumTracks[0] : []} 
@@ -67,13 +75,16 @@ const AlbumDetails = () => {
             album={data} 
             activeSong={activeSong} 
             isPlaying={isPlaying} 
-            favSongs={favSongs} 
             handlePause={handlePause} 
             handlePlay={handlePlay} 
+            favorites={favorites}
+            blacklist={blacklist}
           />
         </div>
 
         <Albums
+          favorites={favorites}
+          blacklist={blacklist}
           isFetching={isFetchingRelatedAlbums}
           error={errorFetchingRelatedAlbums}
           albums={relatedAlbums?.data || []}

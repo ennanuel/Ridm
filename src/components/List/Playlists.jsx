@@ -5,7 +5,7 @@ const Playlists = ({ handlePlaylist, checkBoxes, playlistid, playlists }) => {
   const [params, setParams] = useSearchParams()
 
   return (
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-6 md:gap-4 gap-2 pb-10">
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-6 md:gap-4 gap-2">
       {
         playlists
           .filter( playlist => playlist.id !== playlistid )

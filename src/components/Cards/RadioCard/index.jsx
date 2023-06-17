@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
 
-import { useSelector } from "react-redux"
-
 import Card from "./Card"
 import RadioBox from "./RadioBox"
 import { useSearchParams } from "react-router-dom"
@@ -9,8 +7,6 @@ import { useSearchParams } from "react-router-dom"
 const RadioCard = ({ radio, i }) => {
   const [params, setParams] = useSearchParams()
   const [show, setShow] = useState(false)
-
-  const { favorites: {radios, ...others} } = useSelector( state => state.library )
 
   const handleClick = () => {
     setParams({type: 'radios'})

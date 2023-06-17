@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { Library } from '../components/List'
 
 const Favorites = () => {
-  const {favorites} = useSelector( state => state.library )
+  const { favorites, blacklist } = useSelector( state => state.library )
   const navigate = useNavigate()
 
   return (
@@ -15,7 +15,7 @@ const Favorites = () => {
       </div>
       {
         Object.entries(favorites).some( ([entry, value], i) => value.length > 0 ) ?
-        <Library library={favorites} /> :
+        <Library library={favorites} favorites={favorites} blacklist={blacklist} /> :
         <div className="p-4 pt-10 flex-1 flex flex-col items-center justify-center gap-4">
           <h3 className="text-gray-400 font-bold text-xl">You haven't liked anything yet.</h3>
           <button 

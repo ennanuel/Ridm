@@ -1,5 +1,6 @@
 import { playSongs, pause } from './player.js'
 import { APIURL } from '../assets/data/constants.js'
+import { getData } from './getData.js'
 
 export const fetchSongs = async (dispatch, album) => {
     pause(dispatch)
@@ -21,7 +22,7 @@ export const fetchSongs = async (dispatch, album) => {
     }
 }
 
-export const fetchSuggestedSongs = async (genreid, setSuggestedSongs) => {
+export const fetchSuggestedSongs = async (genreid, setSuggestedSongs, blacklist, favorites) => {
     try {
         const response = await fetch(`${APIURL}/deezer/chart/${ genreid }/tracks?limit=5`)
 
@@ -29,7 +30,9 @@ export const fetchSuggestedSongs = async (genreid, setSuggestedSongs) => {
 
         const result = await response.json()
 
-        setSuggestedSongs(prev => [...prev, ...result.data])
+        const data = getData({type: 'tracks', data: result.data, blacklist, favorites})
+
+        setSuggestedSongs(prev => [...prev, ...data])
     } catch (error) {
         setSuggestedSongs([])
         console.log(error)

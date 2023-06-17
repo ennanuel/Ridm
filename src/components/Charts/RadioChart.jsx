@@ -1,12 +1,16 @@
 import { useGetTopRadiosQuery } from "../../redux/services/DeezerApi"
 
 import { Radios } from "../List"
+import { MoreButton } from "../Buttons"
 
-const RadioChart = () => {
+const RadioChart = ({ blacklist, favorites }) => {
   const {data, isFetching, error} = useGetTopRadiosQuery(50)
 
   return (
-    <Radios radios={data?.data || []} isFetching={isFetching} error={error} />
+    <>
+    <Radios blacklist={blacklist} favorites={favorites} radios={data?.data} isFetching={isFetching} error={error} />
+    <MoreButton />
+    </>
   )
 }
 

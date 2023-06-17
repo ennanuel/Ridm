@@ -1,7 +1,4 @@
-import { Link } from "react-router-dom"
-
 import { Albums, Artists, Songs, Radios } from "../components/List"
-import { Error, Loader } from "../components/LoadersAndError";
 
 import { useGetRecentReleasesQuery, useGetTopRadiosQuery, useGetTopChartQuery } from "../redux/services/DeezerApi";
 
@@ -10,23 +7,29 @@ import { FreeMode } from 'swiper'
 
 import 'swiper/css'
 import 'swiper/css/free-mode'
+import { useSelector } from "react-redux";
 
 const Discover = () => {
+    const { blacklist, favorites } = useSelector( state => state.library )
+
     const { data: radios, isFetching, error } = useGetTopRadiosQuery()
     const { data: recentAlbums, isFetching: isFetchingRecentAlbums, error: errorFetchingRecentAlbums } = useGetRecentReleasesQuery( 0 )
     const { data, isFetching: isFetchingTopCharts, error: errorFetchingTopCharts } = useGetTopChartQuery( 0 )
+
     const topPlays = data?.tracks?.data?.slice(0, 9)
     const topArtists = data?.artists?.data?.slice(0, 10)
 
 
 
     return (
-        <div className="lg:mt-[70px] mt-4 flex flex-col px-4">
+        <div className="lg:mt-[70px] mt-4 flex flex-col px-2 md:px-4">
             <Albums 
                 isFetching={isFetchingRecentAlbums} 
                 error={errorFetchingRecentAlbums} 
                 albums={recentAlbums?.data?.slice(0, 5)}
                 showSort={true}
+                favorites={favorites}
+                blacklist={blacklist}
             >
                 Popular Albums
             </Albums>
@@ -35,6 +38,8 @@ const Discover = () => {
                 isFetching={isFetchingTopCharts} 
                 error={errorFetchingTopCharts} 
                 songs={topPlays}
+                favorites={favorites}
+                blacklist={blacklist}
             >
                 Popular Songs
             </Songs>
@@ -43,6 +48,8 @@ const Discover = () => {
                 artists={topArtists}
                 isFetching={isFetchingTopCharts}
                 error={errorFetchingTopCharts}
+                favorites={favorites}
+                blacklist={blacklist}
             >
                 Popular Artists
             </Artists>
@@ -51,6 +58,8 @@ const Discover = () => {
                 isFetching={isFetching} 
                 error={error} 
                 radios={radios?.data?.slice(0, 5)}
+                favorites={favorites}
+                blacklist={blacklist}
             >
                 Popular Radios
             </Radios>

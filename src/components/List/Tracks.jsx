@@ -4,14 +4,17 @@ import { useSearchParams } from 'react-router-dom'
 import { BiTime } from 'react-icons/bi'
 
 import Track from './Track'
+import { Loader } from '../LoadersAndError'
 
-const AllTracks = ({ tracks,  activeSong, isPlaying, isFetching, error, songsToBeDeleted, handleTrack, editDataTracks, playlists, playlist }) => {
+import { getData } from '../../functions/getData'
+
+const AllTracks = ({ tracks,  activeSong, isPlaying, isFetching, error, songsToBeDeleted, handleTrack, editDataTracks, playlists, playlist, blacklist, favorites }) => {
   const [params, setParams] = useSearchParams()
   const [allTracks, setAllTracks] = useState([])
 
   useEffect(() => {
-    setAllTracks(() => params.get('edit') === 'true' ? editDataTracks || [] : tracks || [])
-  }, [params, playlist])
+    setAllTracks(getData({ type: 'tracks', data: params.get('edit') === 'true' ? editDataTracks : tracks, blacklist, favorites }))
+  }, [params, playlist, favorites, blacklist, editDataTracks, tracks])
 
   return (
     <table className="w-full overflow-x-clip">
@@ -25,7 +28,10 @@ const AllTracks = ({ tracks,  activeSong, isPlaying, isFetching, error, songsToB
         </tr>
       </thead>
       
-      {
+      { isFetching ?
+        <Loader title="Fetching album tracks..." /> :
+        error ?
+        <Error title="Could not fetch album details." /> :
           allTracks.map( (song, i, songs) => (
           <Track 
             i={i}

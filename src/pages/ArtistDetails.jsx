@@ -8,27 +8,34 @@ import { Options } from "../components/Options";
 import { Albums, Artists, Songs } from "../components/List"
 
 import { useGetArtistAlbumQuery, useGetArtistDetailsQuery, useGetArtistsQuery, useGetSongsQuery } from "../redux/services/DeezerApi";
+import { useEffect, useState } from "react";
+import { getSingleData } from "../functions/getData";
 
 const ArtistDetails = () => {
-    const { favorites: {artists: favoriteArtists, ...others} } = useSelector( (state) => state.library )
+    const { favorites, blacklist } = useSelector( (state) => state.library )
+
+    const [data, setData] = useState({})
 
     const { id: artistid } = useParams()
 
-    const { data, isFetching, error } = useGetArtistDetailsQuery( artistid )
-    const { data: tracks } = useGetSongsQuery( data?.tracklist.match(/[\d]+/)[0] || 0, 50)
-    const { data: albums } = useGetArtistAlbumQuery( artistid )
-    const { data: artists } = useGetArtistsQuery( data?.id )
+    const { data: artist, isFetching, error } = useGetArtistDetailsQuery( artistid )
+    const { data: tracks, isFetching: isFetchingSongs, error: errorFetchingSongs } = useGetSongsQuery( artist?.tracklist.match(/[\d]+/)[0] || 0, 50)
+    const { data: albums, isFetching: isFetchingAlbums, error: errorFetchingAlbums } = useGetArtistAlbumQuery( artistid )
+    const { data: artists, isFetching: isFetchingArtists, error: errorFetchingArtists } = useGetArtistsQuery( artist?.id )
+
+    useEffect(() => {
+        setData(getSingleData({type: 'artists', data: artist, favorites}))
+    }, [artist, favorites])
 
     return (
         <div className="flex flex-col">
             <DetailsHeader isFetching={isFetching} error={error} artistId={artistid} artistData={data} />
             
             <div className="flex-1 flex flex-row justify-start overflow-x-clip items-center gap-4 m-4 mb-0">
-                <FavoriteButton data={data} type="artists" favorite={data?.favorite} />
+                <FavoriteButton data={data} type="artists" />
                 <Options 
                     type="artist" 
                     artist={data} 
-                    favorite={data?.favorite} 
                     tracks={tracks?.data} 
                     song={tracks?.data && tracks.data[0]} 
                     i={0} 
@@ -38,13 +45,34 @@ const ArtistDetails = () => {
             <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>
             <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>
 
-            <Albums albums={albums?.data} showSort={true}>
+            <Albums 
+                blacklist={blacklist} 
+                favorites={favorites} 
+                isFetching={isFetchingAlbums} 
+                error={errorFetchingAlbums} 
+                albums={albums?.data} 
+                showSort={true}
+            >
                 Popular {data?.name} albums
             </Albums>
-            <Songs songs={tracks?.data} artist={data} artistId={artistid}> 
+            <Songs 
+                blacklist={blacklist}
+                favorites={favorites}
+                isFetching={isFetchingSongs}
+                error={errorFetchingSongs}
+                songs={tracks?.data} 
+                artist={data} 
+                artistId={artistid}
+            > 
                 Songs By {data?.name}
             </Songs>
-            <Artists artists={artists?.data}>
+            <Artists 
+                blacklist={blacklist}
+                favorites={favorites}
+                isFetching={isFetchingArtists}
+                error={errorFetchingArtists}
+                artists={artists?.data}
+            >
                 Similar Artists
             </Artists>
         </div>

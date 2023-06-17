@@ -45,7 +45,7 @@ const App = () => {
       style={{
         '--color': color
       }} 
-      className={`relative max-h-[100vh] h-[100vh] flex flex-row w-full max-w-[100vw] normal_gradient ${isPlaying && 'changing_gradient'}`}
+      className={`relative h-[100vh] flex flex-row w-[100vw] normal_gradient ${isPlaying && 'changing_gradient'}`}
     >
       <Sidebar />
       <section 
@@ -54,12 +54,12 @@ const App = () => {
         <MessageBox />
         <AddToPlaylist />
         <Prompt />
-        <div ref={divRef} className="relative z-20 flex flex-col max-h-[100vh]">
+        <div className="relative z-20 flex flex-col max-h-[100vh]">
           <div style={{backgroundColor: isPlaying && scrolled ?  'var(--color)' : ''}} className={`hidden lg:flex flex-row items-center justify-between gap-5 z-10 top-0 right-0 w-full absolute transition-[background-color] ${scrolled ? 'bg-black' : 'bg-transparent'}`}>
             <NavigationAndSearch goFront={goFront} goBack={goBack} scrolled={scrolled} />
             { activeSong?.id && <MusicPlayer scrolled={scrolled} /> }
           </div>
-          <div onScroll={handleScroll} className={`min-h-[100vh] overflow-y-scroll ${activeSong?.id ? "pb-[100px]" : "pb-[70px]"} lg:pb-0`}>
+          <div ref={divRef} onScroll={handleScroll} className={`min-h-[100vh] overflow-y-scroll ${activeSong?.id ? "pb-[100px]" : "pb-[70px]"} lg:pb-0`}>
             <Routes>
               <Route path="/welcome" element={<Welcome />} />
               <Route path="/charts" element={<TopCharts divRef={divRef} />} />

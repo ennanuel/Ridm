@@ -15,7 +15,7 @@ const DetailsHeader = ({ isFetching, error, artistId, artistData, songData, albu
   
   const contributors = !artistId && songData ? songData.contributors : albumData ? albumData.contributors : artistData && artistData.contributors
   const style = {
-    background: `center / cover url(${artistId ? artistData?.picture_xl : albumData ? albumData?.cover_xl : songData?.album.cover_xl})`,
+    background: `center / cover url(${artistId ? artistData?.picture_xl : albumData ? albumData?.cover_xl : songData?.album?.cover_xl})`,
     backgroundAttachment: 'fixed'
   }
 

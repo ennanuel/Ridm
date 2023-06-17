@@ -27,11 +27,11 @@ const Track = ({ i, tracks, song, activeSong, handleTrack, songsToBeDeleted, isP
             edit ?
             <input type="checkbox" className="w-[15px] h-[15px]" checked={songsToBeDeleted.includes(song.id)} /> :                        
             <Options 
-              playlists={playlists} 
-              favorite={song.favorite} 
+              playlists={playlists}
               type="track" 
               small={true} 
-              song={song} playlist={playlist} 
+              song={song} 
+              playlist={playlist} 
               tracks={tracks} 
               i={i} 
             />

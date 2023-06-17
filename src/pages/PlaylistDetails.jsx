@@ -15,7 +15,7 @@ const PlaylistDetails = () => {
 
   const { id: playlistid } = useParams()
 
-  const { playlists, favorites: {tracks, ...others} } = useSelector( state => state.library )
+  const { playlists, favorites, blacklist } = useSelector( state => state.library )
   const { activeSong, isPlaying} = useSelector( state => state.player )
 
   const [playlist, setPlaylist] = useState(() => playlists[playlists.findIndex( playlist => playlistid == playlist.id )])
@@ -91,8 +91,9 @@ const PlaylistDetails = () => {
         editDataTracks={editData.tracks} 
         playlist={playlist} 
         playlists={playlists}
-        favSongs={tracks}
         params={params}
+        favorites={favorites}
+        blacklist={blacklist}
       />
     {
       playlists.filter( playlist => playlist.id !== playlistid ).length > 0 &&

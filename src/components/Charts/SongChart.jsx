@@ -1,12 +1,16 @@
 import { useGetTopChartTracksQuery } from "../../redux/services/DeezerApi"
 
 import { Songs } from "../List"
+import { MoreButton } from "../Buttons"
 
-const SongChart = () => {
+const SongChart = ({ blacklist, favorites }) => {
   const {data, isFetching, error} = useGetTopChartTracksQuery()
 
   return (
-    <Songs isFetching={isFetching} error={error} songs={data?.data || []} />
+    <>
+    <Songs blacklist={blacklist} favorites={favorites} isFetching={isFetching} error={error} songs={data?.data} />
+    <MoreButton />
+    </>
   )
 }
 
