@@ -27,7 +27,7 @@ export const genreOptions = [
         action: ({dispatch, genre}) => addToBlacklist(dispatch, {...genre, type: 'genres'})
     },
     {
-        name: "Remove from favorites",
+        name: "Remove from blacklist",
         action: ({dispatch, genre}) => removeBlacklist(dispatch, 'genres',  genre.id)
     }
 ]

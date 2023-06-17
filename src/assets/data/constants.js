@@ -33,9 +33,12 @@ export const promptFunctions = {
     deletePlaylists(dispatch, [data])
     displayMessage(dispatch, 'Playlist deleted.')
   },
-  'addToBlacklist': ({dispatch, data}) => {
+  'addToBlacklist': ({dispatch, navigate, data}) => {
     addBlacklist(dispatch, data.type, data)
     displayMessage(dispatch, 'Added to Blacklist!')
+    if(!navigate(-1)) {
+      navigate('/')
+    }
   },
   'removeSongFromPlaylist': ({dispatch, data}) => {
     removeFromPlaylist(dispatch, data)
