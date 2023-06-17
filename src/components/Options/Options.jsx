@@ -9,7 +9,7 @@ import { loadOptions } from "../../functions/option"
 
 import Option from './Option'
 
-const Options = ({type, small, song, artist, genre, album, radio, playlist, tracks, i, favorite, playlists, blacklist, noBg }) => {
+const Options = ({type, small, song, artist, genre, album, radio, playlist, tracks, i, favorite, playlists, blacklist }) => {
     const filteredOptions = loadOptions({options, type, playlists, favorite, blacklist, small})
 
     const [show, setShow] = useState(false)

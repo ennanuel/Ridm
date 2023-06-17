@@ -32,7 +32,7 @@ const SongBar = ({ tracks, song, i, artistId }) => {
           <SongInfo artistId={artistId} song={song} />
         </div>
 
-        <Options type="track" favorite={song.favorite} small={true} song={song} album={song.album} artist={song.artist} tracks={tracks} i={i} />
+        <Options type="track" favorite={song.favorite} blacklist={song.blacklist} small={true} song={song} album={song.album} artist={song.artist} tracks={tracks} i={i} />
       </div>
   );
 }

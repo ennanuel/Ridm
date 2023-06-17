@@ -26,7 +26,6 @@ const Playlist = () => {
 
   const [genreNum, setGenreNum] = useState(5);
   const [playlistInfo, setPlaylistInfo] = useState({name: '', img: '', genres: [], tracks: []})
-  const [checkedBoxes, setCheckedBoxes] = useState([])
   const [suggestedSongs, setSuggestedSongs] = useState([])
 
   const handleChange = (e) => {
@@ -73,11 +72,6 @@ const Playlist = () => {
     })
   }
 
-  const handlePlaylist = (id, e) => {
-    e.preventDefault()
-    setCheckedBoxes( (prev) => prev.includes(id) ? [...prev].filter( playlistid => playlistid !== id ) : [...prev, id] )
-  }
-
   const addSong = (song) => {
     setPlaylistInfo( prev => ({...prev, tracks: [song, ...prev.tracks]}) )
   }
@@ -89,9 +83,9 @@ const Playlist = () => {
   }
 
   return (
-    <div className={`p-6 lg:pt-[60px] relative overflow-x-clip ${!params.get('add') === 'true' ? 'overflow-y-hidden' : ''} h-[100vh]`}>
+    <div className={`p-6 lg:pt-[80px] relative overflow-x-clip ${!params.get('add') === 'true' ? 'overflow-y-hidden' : ''} h-[100vh]`}>
       <div className={`w-full h-full transition-transform ${params.get('add') === 'true' && 'translate-x-[-110%]'}`}>
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full flex justify-between items-center mb-4">
           <h3 className="font-bold text-white text-xl">Playlists</h3>
           <Options type="playlists" navigate={navigate} small={true} />
         </div>
@@ -101,7 +95,7 @@ const Playlist = () => {
               <h3 className="text-gray-400 font-bold text-xl">You don't have any saved playlists</h3>
               <Link to="/playlists?add=true" className="font-bold text-sm text-gray-400 border-2 border-gray-400 px-2 py-1 rounded-md hover:text-black hover:bg-gray-400 transition-[background-color]">Create New</Link>
             </div> :
-          <Playlists handlePlaylist={handlePlaylist} checkedBoxes={checkedBoxes} showEdit={true} playlists={playlists} />
+          <Playlists playlists={playlists} />
         }
       </div>
       <CreatePlaylist

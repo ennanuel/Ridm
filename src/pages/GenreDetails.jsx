@@ -20,8 +20,8 @@ const GenreDetails = () => {
     const { data: radios, isFetching: loadingRadios, error: errorLoadingRadios } = useGetGenreRadiosQuery(id)
 
     useEffect(() => {
-        setData(getSingleData({type: 'genres', data: genre, favorites}))
-    }, [genre])
+        setData(getSingleData({type: 'genres', data: genre, favorites, blacklist}))
+    }, [genre, favorites, blacklist])
 
     return (
         <div className="">

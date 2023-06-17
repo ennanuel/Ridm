@@ -3,12 +3,12 @@ import { ArtistCard } from '../Cards'
 import { ArtistLoading, Error } from '../LoadersAndError'
 import { getData } from '../../functions/getData'
 
-const Artists = ({artists, children, isFetching, error, blacklist, favorites, showmore, genreid}) => {
+const Artists = ({artists, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter}) => {
   const [newArtists, setNewArtists] = useState([])
 
   useEffect(() => {
-    setNewArtists(getData({type: 'artists', data: artists, blacklist, favorites}))
-  }, [blacklist, favorites, artists])
+    setNewArtists(getData({type: 'artists', data: artists, blacklist, favorites, noFilter}))
+  }, [blacklist, favorites, artists, noFilter])
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between mb-4">

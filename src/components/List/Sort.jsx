@@ -8,7 +8,7 @@ const Sort = () => {
   const hide = () => setShowTypes(false)
 
   return (
-    <div className="flex flex-row justify-start items-start gap-4 mb-4 relative z-[2]">
+    <div className="flex flex-row justify-start items-start gap-2 mb-4 relative z-[2]">
         <button className="px-4 h-[36px] rounded-lg flex flex-row items-center justify-center bg-white/5 shadow-sm shadow-black/50 text-gray-300 font-bold text-sm hover:bg-white/10">Latest</button>
         <button className="px-4 h-[36px] rounded-lg flex flex-row items-center justify-center bg-white/5 shadow-sm shadow-black/50 text-gray-300 font-bold text-sm hover:bg-white/10">Popularity</button>
         <div onMouseOver={show} onMouseOut={hide} className="px-4 h-[36px] text-gray-300 font-bold text-sm bg-[#151515] rounded-lg hover:[#202020] relative">

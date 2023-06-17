@@ -9,15 +9,21 @@ import SongInfo from './SongInfo'
 import Header from './Header'
 import GenresAndLink from './GenresAndLink'
 import { HeaderLoading, Error } from '../../LoadersAndError'
+import { useEffect, useState } from 'react'
 
 const DetailsHeader = ({ isFetching, error, artistId, artistData, songData, albumData }) => {
   const { isPlaying } = useSelector( (state) => state.player )
+  const [url, setUrl] = useState('')
   
   const contributors = !artistId && songData ? songData.contributors : albumData ? albumData.contributors : artistData && artistData.contributors
   const style = {
-    background: `center / cover url(${artistId ? artistData?.picture_xl : albumData ? albumData?.cover_xl : songData?.album?.cover_xl})`,
+    background: `center / cover url(${url})`,
     backgroundAttachment: 'fixed'
   }
+
+  useEffect(() => {
+    setUrl(isFetching ? '' : artistId ? (artistData?.picture_xl) : albumData ? (albumData?.cover_xl) : (songData?.album?.cover_xl))
+  }, [isFetching, artistData, songData, albumData])
 
   return (
     <div

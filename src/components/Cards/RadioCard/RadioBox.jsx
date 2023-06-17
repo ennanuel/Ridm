@@ -6,7 +6,7 @@ import { useGetRadioTracksQuery } from '../../../redux/services/DeezerApi'
 import { Songs } from '../../List'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getData } from '../../../functions/getData'
+import { getData, getSingleData } from '../../../functions/getData'
 
 const RadioBox = ({ radio, show, handleClick }) => {
     const { favorites, blacklist } = useSelector(state => state.library)
@@ -39,7 +39,7 @@ const RadioBox = ({ radio, show, handleClick }) => {
             </div>
             <div className="flex flex-row items-center gap-4 my-4">
                 <FavoriteButton type="radios" data={radio} />
-                <Options type="radio" radio={radio} tracks={radioTracks} />
+                <Options type="radio" radio={radio} tracks={radioTracks} blacklist={radio.blacklist} favorite={radio.favorite} />
             </div>
             <div className="rounded-md bg-black/50 max-h-[50vh] overflow-y-scroll overflow-x-clip">
                 <Songs blacklist={blacklist} favorites={favorites} isFetching={isFetching} error={error} songs={radioTracks} />

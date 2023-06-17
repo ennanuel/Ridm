@@ -42,8 +42,8 @@ const AlbumDetails = () => {
   }, [album])
 
   useEffect(() => {
-    setData(getSingleData({data: album, type: 'albums', favorites}))
-  }, [album])
+    setData(getSingleData({data: album, type: 'albums', favorites, blacklist}))
+  }, [album, favorites, blacklist])
 
   return (
     <div className="flex flex-col">
@@ -57,10 +57,11 @@ const AlbumDetails = () => {
             </div>
             
             <div className="flex-1 flex flex-row justify-end items-center gap-4 overflow-x-clip">
-              <FavoriteButton data={data} type={'albums'} />
+              <FavoriteButton data={data} type="albums" />
               <Options 
                 type="album" 
                 favorite={data?.favorite} 
+                blacklist={data?.blacklist}
                 album={data} 
                 tracks={albumTracks} 
                 song={albumTracks ? albumTracks[0] : []} 

@@ -33,6 +33,7 @@ const Track = ({ i, tracks, song, activeSong, handleTrack, songsToBeDeleted, isP
               song={song} 
               playlist={playlist} 
               tracks={tracks} 
+              favorite={song.favorite}
               i={i} 
             />
         }

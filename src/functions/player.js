@@ -19,9 +19,8 @@ export const prev = (dispatch, i) => {
     dispatch(prevSong(i))
 }
 
-export const onShuffle = ({dispatch, tracks, song, i}) => {
-    dispatch(setActiveSong({tracks, song, i}))
-    dispatch(shuffleOn())
+export const onShuffle = (dispatch, useCurrent) => {
+    dispatch(shuffleOn(useCurrent))
 }
 
 export const offShuffle = (dispatch) => {

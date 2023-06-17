@@ -6,12 +6,12 @@ import SeeMore from "./SeeMore"
 
 import { getData } from "../../functions/getData";
 
-const Songs = ({ songs, children, isFetching, error, blacklist, favorites, showmore, genreid }) => {
+const Songs = ({ songs, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter }) => {
   const [tracks, setTracks] = useState([])
 
   useEffect(() => {
-    setTracks(getData({type: 'tracks', data: songs, favorites, blacklist}))
-  }, [favorites, blacklist, songs])
+    setTracks(getData({type: 'tracks', data: songs, favorites, blacklist, noFilter}))
+  }, [favorites, blacklist, songs, noFilter])
 
   return (
     <div className="flex flex-col mb-8">

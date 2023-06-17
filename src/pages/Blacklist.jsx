@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Library } from '../components/List'
 
 const Blacklist = () => {
-  const {blacklist} = useSelector( state => state.library )
+  const { blacklist, favorites } = useSelector( state => state.library )
 
   return (
     <div className="h-[100vh] bg-gradient-to-b from-[#64000020] to-black/50">
@@ -14,7 +14,7 @@ const Blacklist = () => {
         </section>
       {
         Object.entries(blacklist).some( ([entry, value], i) => value.length > 0 ) ?
-        <Library library={blacklist} blacklist={{}} favorites={{}} /> : 
+        <Library noFilter={true} library={blacklist} blacklist={blacklist} favorites={favorites} /> : 
         <div className="p-4 pt-10 h-[70%] flex flex-col items-center justify-center gap-4">
           <h3 className="text-gray-400 font-bold text-xl">There is Nothing here.</h3>
           <Link to='/'>

@@ -43,7 +43,7 @@ export const promptFunctions = {
   },
   'editPlaylist': ({dispatch, data, navigate}) => {
     editCurrentPlaylist(dispatch, data)
-    displayMessage('Playlist edited!')
+    displayMessage(dispatch, 'Playlist edited!')
     navigate(`/playlists/${data.id}`)
   }
 }

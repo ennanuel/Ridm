@@ -12,6 +12,7 @@ import { FavoriteButton, PauseButton, PlayButton, PlayNextButton } from "../comp
 import { useGetLyricsQuery } from "../redux/services/MusixMatchApi";
 import { useGetSongDetailsQuery, useGetSongsQuery } from "../redux/services/DeezerApi";
 import { getSingleData } from "../functions/getData";
+import { addBlacklist } from "../functions/library";
 
 
 const SongDetails = () => {
@@ -29,7 +30,7 @@ const SongDetails = () => {
 
     useEffect(() => {
         setData(getSingleData({type: 'tracks', data: song, favorites, blacklist}))
-    }, [song])
+    }, [song, favorites, blacklist])
 
     useEffect(() => {
         setLyrics(
@@ -55,7 +56,16 @@ const SongDetails = () => {
                 
                 <div className="relative flex flex-row items-center gap-4 my-4">
                     <FavoriteButton data={data} type={"tracks"} />
-                    <Options type="track" song={data} i={0} favorite={data?.favorite} tracks={[data]} artist={data?.artist} album={data?.album} />
+                    <Options 
+                        type="track" 
+                        song={data} 
+                        i={0} 
+                        favorite={data?.favorite}
+                        tracks={[data]} 
+                        artist={data?.artist} 
+                        album={data?.album}
+                        blacklist={data?.blacklist} 
+                    />
                 </div>
             </div>
             

@@ -6,15 +6,12 @@ import Sort from './Sort'
 
 import { getData } from '../../functions/getData'
 
-const Albums = ({ albums, children, showSort, isFetching, error, favorites, blacklist, showmore, genreid }) => {
+const Albums = ({ albums, children, showSort, isFetching, error, favorites, blacklist, showmore, genreid, noFilter }) => {
   const [newAlbums, setNewAlbums] = useState([])
-  const [i, setI] = useState(0)
 
   useEffect(() => {
-    setNewAlbums(() => getData({type: 'albums', data: albums, blacklist, favorites}))
-    setI(prev => prev + 1)
-    console.log(i)
-  }, [blacklist, favorites, albums])
+    setNewAlbums(() => getData({type: 'albums', data: albums, blacklist, favorites, noFilter}))
+  }, [blacklist, favorites, albums, noFilter])
 
   return (
     <div className="mb-8">

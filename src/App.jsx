@@ -57,7 +57,7 @@ const App = () => {
         <div className="relative z-20 flex flex-col max-h-[100vh]">
           <div style={{backgroundColor: isPlaying && scrolled ?  'var(--color)' : ''}} className={`hidden lg:flex flex-row items-center justify-between gap-5 z-10 top-0 right-0 w-full absolute transition-[background-color] ${scrolled ? 'bg-black' : 'bg-transparent'}`}>
             <NavigationAndSearch goFront={goFront} goBack={goBack} scrolled={scrolled} />
-            { activeSong?.id && <MusicPlayer scrolled={scrolled} /> }
+            { (activeSong?.id && window.innerWidth >= 1024) && <MusicPlayer scrolled={scrolled} /> }
           </div>
           <div ref={divRef} onScroll={handleScroll} className={`min-h-[100vh] overflow-y-scroll ${activeSong?.id ? "pb-[100px]" : "pb-[70px]"} lg:pb-0`}>
             <Routes>

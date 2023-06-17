@@ -3,12 +3,12 @@ import { GenreCard } from '../Cards'
 import { GenreLoading, Error } from '../LoadersAndError'
 import { getData } from '../../functions/getData'
 
-const Genres = ({children, genres, isFetching, error, blacklist, favorites}) => {
+const Genres = ({children, genres, isFetching, error, blacklist, favorites, noFilter}) => {
   const [newGenres, setNewGenres] = useState([])
 
   useEffect(() => {
-    setNewGenres(getData({type: 'genres', data: genres, blacklist, favorites}))
-  }, [blacklist, favorites, genres])
+    setNewGenres(getData({type: 'genres', data: genres, blacklist, favorites, noFilter}))
+  }, [blacklist, favorites, genres, noFilter])
 
   return (
     <>

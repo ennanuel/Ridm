@@ -1,4 +1,4 @@
-import { deletePlaylist, removeSongsFromPlaylist, addToFavorites, deleteFromFavorites, addToBlacklist, deleteFromBlacklist, createPlaylist } from "../redux/features/librarySlice"
+import { deletePlaylist, removeSongsFromPlaylist, addToFavorites, deleteFromFavorites, addToBlacklist, deleteFromBlacklist, createPlaylist, editPlaylist } from "../redux/features/librarySlice"
 import { hidePrompt } from "../redux/features/promptSlice"
 import { displayMessage } from "./prompt"
 

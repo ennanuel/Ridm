@@ -5,12 +5,12 @@ import { getData } from '../../functions/getData'
 
 import SeeMore from './SeeMore'
 
-const Radios = ({ radios, children, showmore, isFetching, error, blacklist, favorites, genreid }) => {
+const Radios = ({ radios, children, showmore, isFetching, error, blacklist, favorites, genreid, noFilter }) => {
     const [newRadios, setNewRadios] = useState([])
 
     useEffect(() => {
-        setNewRadios(getData( {type: 'radios', data: radios, blacklist, favorites}) )
-    }, [favorites, blacklist, radios])
+        setNewRadios(getData( {type: 'radios', data: radios, blacklist, favorites, noFilter}) )
+    }, [favorites, blacklist, radios, noFilter])
 
     return (
         <>

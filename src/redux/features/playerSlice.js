@@ -77,7 +77,8 @@ const playerSlice = createSlice({
     },
     
     shuffleOn: (state, action) => {
-      const shuffledSongs = shuffle(action.payload.tracks, action.payload.song || state.activeSong)
+      const currentSongs = [...state.currentSongs]
+      const shuffledSongs = shuffle(currentSongs, action.payload && state.activeSong)
       state.shuffle = true
       state.currentSongs = shuffledSongs.tracks
       state.currentIndex = shuffledSongs.i
@@ -87,7 +88,7 @@ const playerSlice = createSlice({
     shuffleOff: (state) => {
       state.shuffle = false
       state.currentSongs = state.unshuffledSongs
-      state.currentIndex = state.unshuffledSongs.findIndex( song => song.id === state.currentSongs.id )
+      state.currentIndex = state.unshuffledSongs.findIndex( song => song.id === state.activeSong.id )
     },
 
     setRepeat: (state) => {
@@ -102,7 +103,7 @@ const playerSlice = createSlice({
     setAlbum: (state, action) => {
       let songs = [...state.currentSongs]
       songs = songs.map( song => song.album ? song : {...song, album: action.payload} )
-      state.currentSongs = songs
+      state.currentSongs = state.unshuffledSongs = songs
     },
 
     setSongIsrc: (state, action) => {

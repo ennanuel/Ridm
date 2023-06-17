@@ -23,6 +23,7 @@ const librarySlice = createSlice({
   initialState,
   reducers: {
     addToFavorites: (state, action) => {
+      const blacklistType = state.blacklist[action.payload.type]
       const favoritesType = state.favorites[action.payload.type]
 
       if(!favoritesType) return;
@@ -30,6 +31,8 @@ const librarySlice = createSlice({
       if(!favoritesType.map(elem => elem.id).includes(action.payload.value.id)) {
         favoritesType.push(action.payload.value)
         state.favorites[action.payload.type] = favoritesType
+
+        state.blacklist[action.payload.type] = blacklistType.filter( elem => elem.id !== action.payload.value.id )
       }
     },
 

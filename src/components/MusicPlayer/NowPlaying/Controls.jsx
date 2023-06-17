@@ -24,7 +24,7 @@ const Controls = ({ dispatch, isPlaying , repeat, prev, next, pause, play, onRep
 
         <button className="text-gray-200 transition-transform active:scale-90" onClick={() => next(dispatch, currentIndex + 1)}><BsSkipEndFill size={35} /></button>
 
-        <button className={`text-gray-400 relative ${shuffle ? 'text-white' : 'text-gray-400'}`} onClick={() => shuffle ? onShuffle(dispatch) : offShuffle(dispatch)}>
+        <button className={`text-gray-400 relative ${shuffle ? 'text-white' : 'text-gray-400'}`} onClick={() => shuffle ? offShuffle(dispatch) : onShuffle(dispatch, true)}>
             <MdShuffle size={25} />
             {
                 shuffle &&

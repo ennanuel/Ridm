@@ -24,8 +24,8 @@ const ArtistDetails = () => {
     const { data: artists, isFetching: isFetchingArtists, error: errorFetchingArtists } = useGetArtistsQuery( artist?.id )
 
     useEffect(() => {
-        setData(getSingleData({type: 'artists', data: artist, favorites}))
-    }, [artist, favorites])
+        setData(getSingleData({type: 'artists', data: artist, favorites, blacklist}))
+    }, [artist, favorites, blacklist])
 
     return (
         <div className="flex flex-col">
@@ -38,6 +38,8 @@ const ArtistDetails = () => {
                     artist={data} 
                     tracks={tracks?.data} 
                     song={tracks?.data && tracks.data[0]} 
+                    favorite={data?.favorite}
+                    blacklist={data?.blacklist}
                     i={0} 
                 />
             </div>
