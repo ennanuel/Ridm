@@ -40,12 +40,14 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
     }
 
     return (
-        <div style={{backgroundColor: 'var(--color)'}} className={`fixed overflow-clip lg:absolute origin-bottom lg:origin-top-right bottom-0 right-0 z-[9999] w-full h-[98vh] flex flex-row gap-6 items-center justify-center bg-black/70 backdrop-blur-lg p-[30px] transition-[opacity,transform] ${nowPlaying ? 'scale-100 opacity-100 translate-y-0' : 'pointer-events-none opacity-0 lg:scale-50 lg:translate-y-0 translate-y-[100%]'} rounded-tl-xl rounded-tr-xl lg:rounded-none`}>
+        <div style={{backgroundColor: window.innerWidth < 1024 ? 'var(--color)' : ''}} className={`fixed overflow-clip lg:absolute origin-bottom lg:origin-top-right bottom-0 lg:top-0 right-0 z-[9999] w-full h-[98%] lg:h-[100vh] flex flex-row gap-6 items-center justify-center bg-black/70 backdrop-blur-lg p-[30px] transition-[opacity,transform] ${nowPlaying ? 'scale-100 opacity-100 translate-y-0' : 'pointer-events-none opacity-0 lg:scale-50 lg:translate-y-0 translate-y-[100%]'} rounded-tl-xl rounded-tr-xl lg:rounded-none`}>
             <Buttons 
                 setMove={setMove} 
                 move={move} 
+                handleClick={handleClick}
+                nowPlaying={nowPlaying}
             />
-            <button onMouseOver={handleClick} className="absolute z-[4] top-2 left-[50%] translate-x-[-50%] h-[5px] w-[120px] rounded-lg bg-white/50"></button>
+            <button onMouseOver={handleClick} className="absolute lg:hidden z-[4] top-2 left-[50%] translate-x-[-50%] h-[5px] w-[120px] rounded-lg bg-white/50"></button>
 
             <div className={`player-controls absolute h-full w-full lg:w-fit top-0 left-0 lg:relative flex-1 flex flex-col items-center justify-center gap-4 md:gap-3 transition-[opacity,transform] ${move && 'translate-x-[-100%] opacity-0 lg:translate-x-0 lg:opacity-0'}`}>
                 <Track 

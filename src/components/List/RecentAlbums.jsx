@@ -7,7 +7,7 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 import SeeMore from "./SeeMore"
 
-const RecentAlbums = ({ albums }) => {
+const RecentAlbums = ({ albums, isFetching, error }) => {
   return (
     <>
     <div className="flex items-end justify-between">
@@ -24,7 +24,19 @@ const RecentAlbums = ({ albums }) => {
         className="mt-4 p-[20px] max-w-[95vw] lg:max-w-[calc(100vw-300px)]"
         >
         {
-            albums?.slice(0, 10)?.map( (album, i) => (
+          isFetching ?
+          [1, 1, 1, 1, 1, 1, 1].map( (elem, i) =>
+            <SwiperSlide
+                key={i}
+                style={{width: '200px', height: 'auto'}}
+            >
+              <div className="h-[120px] rounded-lg bg-white/5 loading-animation flex flex-col justify-center p-2 gap-2">
+                <div className="h-4 bg-black/50 rounded-md w-[80%]"></div>
+                <div className="h-3 bg-black/50 rounded-md w-[50%]"></div>
+              </div>
+            </SwiperSlide>
+          ) :
+          albums?.slice(0, 10)?.map( (album, i) => (
             <SwiperSlide
                 key={album?.id}
                 style={{width: '200px', height: 'auto'}}
@@ -32,7 +44,7 @@ const RecentAlbums = ({ albums }) => {
             >
                 <RecentAlbumCard i={i} album={album} />
             </SwiperSlide>
-            ) )
+          ))
         }
     </Swiper>
     </>

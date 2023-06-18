@@ -6,8 +6,8 @@ const ArtistCard = ({ artist, i }) => {
   return (
     <div style={{'--delay': i/20 + 's'}} className="artist-card flex flex-col p-2 rounded-sm cursor-pointer transition-[background-color] hover:bg-white/5" onClick={() => { navigate(`/artists/${artist.id}`) }}>
       <img alt="artist" src={artist?.picture_medium} className="w-full aspect-square rounded-lg shadow-md shadow-black/50" />
-      <p className="mt-3 font-bold text-xs text-gray-400 text-left truncate">{artist.type}</p>
-      <p className="font-semibold text-md text-white text-left truncate">{artist.name}</p>
+      <p className="mt-3 font-bold text-[0.7em] text-gray-400 text-left truncate">{artist.type}</p>
+      <p className="font-semibold text-sm text-white text-left truncate">{artist.name}</p>
     </div>
   )
 };

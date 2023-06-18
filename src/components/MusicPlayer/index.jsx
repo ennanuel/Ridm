@@ -18,7 +18,8 @@ const MusicPlayer = ({ scrolled }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(setNowPlaying(!nowPlaying))
+    const arg = !(nowPlaying)
+    dispatch(setNowPlaying(arg))
   }
 
   return (

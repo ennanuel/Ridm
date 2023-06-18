@@ -12,6 +12,9 @@ const Buttons = ({handleClick, nowPlaying, setMove, move}) => {
               <BiChevronRight size={30} />
             }
         </button>
+        <div className="lg:block hidden">
+          <ExpandCollapse handleClick={handleClick} nowPlaying={nowPlaying} />
+        </div>
     </div>
   )
 }

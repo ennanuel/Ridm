@@ -9,7 +9,7 @@ import 'swiper/css/free-mode'
 import { ArtistCard } from '../Cards'
 import SeeMore from './SeeMore'
 
-const RecentArtists = ({ artists }) => {
+const RecentArtists = ({ artists, isFetching }) => {
     return (
         <>
         <div className="mt-8 flex justify-between items-end">
@@ -26,6 +26,15 @@ const RecentArtists = ({ artists }) => {
             className="mt-3 mb-5 p-[20px] max-w-[95vw] lg:max-w-[calc(100vw-300px)]"
         >
             {
+                isFetching ?
+                [1, 1, 1, 1, 1, 1, 1, 1].map( (elem, i) => 
+                    <SwiperSlide key={i} style={{width: '150px', height: 'auto'}}>
+                        <div className="rounded-lg bg-white/5 loading-animation p-2">
+                            <div className="rounded-md mb-2 aspect-square bg-black/50"></div>
+                            <div className="h-3 w-[60%] bg-black/50 rounded-md"></div>
+                        </div>
+                    </SwiperSlide> 
+                ) :
                 artists?.map( (artist, i) => (
                 <SwiperSlide
                     key={artist?.id}
