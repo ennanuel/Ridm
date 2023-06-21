@@ -88,10 +88,20 @@ const librarySlice = createSlice({
       const playlists = state.playlists
       const newPlaylists = playlists.filter( elem => elem.id !== action.payload )
       state.playlists = newPlaylists
+    },
+
+    setLibraryStorage: (state) => {
+      localStorage.setItem('library', JSON.stringify({...state}))
+    },
+
+    setLibrary: (state, action) => {
+      for(let [entry, value] of Object.entries(action.payload)) {
+        state[entry] = value
+      }
     }
   },
 });
 
-export const { addToFavorites, deleteFromFavorites, addToBlacklist, deleteFromBlacklist, createPlaylist, editPlaylist, removeSongsFromPlaylist, deletePlaylist } = librarySlice.actions;
+export const { addToFavorites, deleteFromFavorites, addToBlacklist, deleteFromBlacklist, createPlaylist, editPlaylist, removeSongsFromPlaylist, deletePlaylist, setLibraryStorage, setLibrary } = librarySlice.actions;
 
 export default librarySlice.reducer;

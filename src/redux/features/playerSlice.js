@@ -10,7 +10,6 @@ const initialState = {
   activeSong: {},
   shuffle: false,
   repeat: false,
-  songIsrc: '',
   nowPlaying: false,
 };
 
@@ -112,10 +111,20 @@ const playerSlice = createSlice({
 
     setNowPlaying: (state, action) => {
       state.nowPlaying = action.payload
+    },
+
+    setPlayerStorage: (state) => {
+      localStorage.setItem('player', JSON.stringify({...state}))
+    },
+
+    setPlayer: (state, action) => {
+      for(let [entry, value] of Object.entries(action.payload)) {
+        state[entry] = value
+      }
     }
   },
 });
 
-export const { setActiveSong, addToUpNext, nextSong, prevSong, stop, shuffleOn, shuffleOff, setRepeat, playPause, selectGenreListId, setAlbum, setNowPlaying } = playerSlice.actions;
+export const { setActiveSong, addToUpNext, nextSong, prevSong, stop, shuffleOn, shuffleOff, setRepeat, playPause, selectGenreListId, setAlbum, setNowPlaying, setPlayerStorage, setPlayer } = playerSlice.actions;
 
 export default playerSlice.reducer;

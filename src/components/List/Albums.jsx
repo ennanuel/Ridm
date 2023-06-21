@@ -31,7 +31,7 @@ const Albums = ({ albums, children, showSort, isFetching, error, favorites, blac
         <div className="text-white grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {   
               newAlbums &&
-              newAlbums.slice(0, 5).map( (album, i) => (
+              newAlbums.map( (album, i) => (
                 <AlbumCard key={i} i={i} isRelated={true} album={album} />
               ))
           }

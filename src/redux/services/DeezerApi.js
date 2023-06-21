@@ -29,7 +29,7 @@ export const deezerApi = createApi({
         getAlbumTracks: builder.query({query: ( album ) => `/album/${album}/tracks?limit=100`}),
         getRecentReleases: builder.query({query: (genreid) => `/editorial/${genreid}/releases`}),
         getTopRadios: builder.query({query: (limit) => `/radio/top?limit=${limit}`}),
-        getRadioTracks: builder.query({query: (id) => `/radio/${id}/tracks`})
+        getRadioTracks: builder.query({query: (id) => `/radio/${id}/tracks`}),
     })
 })
 
@@ -56,5 +56,5 @@ export const {
     useGetAlbumTracksQuery,
     useGetRecentReleasesQuery,
     useGetTopRadiosQuery,
-    useGetRadioTracksQuery
+    useGetRadioTracksQuery,
 } = deezerApi

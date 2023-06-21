@@ -27,22 +27,30 @@ const ArtistDetails = () => {
         setData(getSingleData({type: 'artists', data: artist, favorites, blacklist}))
     }, [artist, favorites, blacklist])
 
+    useEffect(() => {
+        const text = `Ridm Artist - ${isFetching ? 'Loading...' : error ? 'Something went wrong.' : artist?.name}`
+        document.getElementById('site_title').innerText = text
+    }, [artist])
+
     return (
         <div className="flex flex-col">
             <DetailsHeader isFetching={isFetching} error={error} artistId={artistid} artistData={data} />
             
-            <div className="flex-1 flex flex-row justify-start overflow-x-clip items-center gap-4 m-4 mb-0">
-                <FavoriteButton data={data} type="artists" />
-                <Options 
-                    type="artist" 
-                    artist={data} 
-                    tracks={tracks?.data} 
-                    song={tracks?.data && tracks.data[0]} 
-                    favorite={data?.favorite}
-                    blacklist={data?.blacklist}
-                    i={0} 
-                />
-            </div>
+            {
+                artist && 
+                <div className="flex-1 flex flex-row justify-start overflow-x-clip items-center gap-4 m-4 mb-0">
+                    <FavoriteButton data={data} type="artists" />
+                    <Options 
+                        type="artist" 
+                        artist={data} 
+                        tracks={tracks?.data} 
+                        song={tracks?.data && tracks.data[0]} 
+                        favorite={data?.favorite}
+                        blacklist={data?.blacklist}
+                        i={0} 
+                    />
+                </div>
+            }
 
             <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>
             <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>

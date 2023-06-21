@@ -53,6 +53,11 @@ const Playlist = () => {
 
   }, [newPlaylist.genreAction])
 
+  useEffect(() => {
+    const text = `Ridm - ${params.get('add') == 'true' ? 'Create New Playlist' : 'Playlists'}`
+    document.getElementById('site_title').innerText = text
+  }, [params])
+
   return (
     <div className={`p-2 mg:p-4 pt-[80px] relative overflow-x-clip ${!params.get('add') === 'true' ? 'overflow-y-hidden' : ''} h-[100vh]`}>
       <div className={`w-full h-full transition-transform ${params.get('add') === 'true' && 'translate-x-[-110%]'}`}>

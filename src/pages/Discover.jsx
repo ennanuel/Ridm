@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import RecentAlbums from "../components/List/RecentAlbums";
 import Suggestion from "../components/List/Suggestion";
 import RecentArtists from "../components/List/RecentArtists";
-import Logo from '../components/Sidebar/Logo'
 
 import { getData } from "../functions/getData";
 
@@ -29,6 +28,10 @@ const Discover = () => {
         setTopPlays(getData({type: 'tracks', data: data?.tracks?.data?.slice(0, 10), blacklist, favorites}))
         setTopArtists(getData({type: 'artists', data: data?.artists?.data?.slice(0, 10), blacklist, favorites}))
     }, [data, favorites, blacklist])
+
+    useEffect(() => {   
+        document.getElementById('site_title').innerText = 'Ridm - Web Player: Rhythm for everyone.'
+    }, [])
 
     return (
         <div className="pt-[70px] flex flex-col px-2 md:px-4">

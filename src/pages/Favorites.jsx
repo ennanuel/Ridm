@@ -3,9 +3,14 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { Library } from '../components/List'
+import { useEffect } from 'react'
 
 const Favorites = () => {
   const { favorites, blacklist } = useSelector( state => state.library )
+
+  useEffect(() => {
+    document.getElementById('site_title').innerText = 'Ridm - Favorites'
+  }, [])
 
   return (
     <div className="p-4 flex flex-col h-[100vh]">

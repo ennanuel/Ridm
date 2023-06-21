@@ -2,10 +2,9 @@ import { useSelector } from "react-redux";
 
 import { useParams, useSearchParams } from "react-router-dom";
 
-import { Loader, Error } from "../components/LoadersAndError";
-
 import { useGetSearchArtistsQuery, useGetSearchAlbumsQuery, useGetSearchSongsQuery } from "../redux/services/DeezerApi";
 import { Artists, Songs, Albums } from "../components/List";
+import { useEffect } from "react";
 
 const Search = () => {
     const categories = ['All', 'Song', 'Artist', 'Album']
@@ -17,6 +16,11 @@ const Search = () => {
     const { data: songSearch, isFetching: isFetchingSong, error: errorFetchingSong } = useGetSearchSongsQuery( searchTerm )
     const { data: albumSearch, isFetching: isFetchingAlbum, error: errorFetchingAlbum } = useGetSearchAlbumsQuery( searchTerm )
     const { data: artistSearch, isFetching: isFetchingArtist, error: errorFetchingArtist } = useGetSearchArtistsQuery( searchTerm )
+
+    useEffect(() => {
+        const text = `Search results for - ${searchTerm}`
+        document.getElementById('site_title').innerText = text
+    }, [searchTerm])
 
     return (
         <div className="flex flex-col p-2 md:p-4 mt-[60px]">

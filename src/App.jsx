@@ -1,22 +1,28 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useLayoutEffect } from 'react'
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { ArtistDetails, Discover, Search, SongDetails, TopCharts, AlbumDetails, Welcome, Genres, Playlist, GenreDetails, PlaylistDetails, Favorites, Blacklist } from './pages';
 
+import { setPlayer } from './redux/features/playerSlice';
+import { setLibrary } from './redux/features/librarySlice';
+
 import { MessageBox, AddToPlaylist, Prompt } from './components/Prompts'
 import Sidebar from './components/Sidebar'
-import MusicPlayer from './components/MusicPlayer'
 import NavigationAndSearch from './components/NavigationAndSearch';
 
 const App = () => {
+  const colors = ['#122f55', '#3f2842', '#655638', '#593030', '#2e2e59', '#005151']
+
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const [{scrollY, scrolled, scrolledUp}, setScroll] = useState({})
-  const colors = ['#122f55', '#3f2842', '#655638', '#593030', '#2e2e59', '#005151']
-  const divRef = useRef()
   const [color, setColor] = useState('#2c3b4d')
+
+  const divRef = useRef()
+
+  const dispatch = useDispatch()
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -37,6 +43,14 @@ const App = () => {
       }
     ))
   }
+
+  useLayoutEffect(() => {
+    const playerStorage = localStorage.getItem('player')
+    const libraryStorage = localStorage.getItem('library')
+
+    if(playerStorage) {dispatch(setPlayer(JSON.parse(playerStorage))); console.log(playerStorage)}
+    if(libraryStorage) {dispatch(setLibrary(JSON.parse(libraryStorage))); console.log(libraryStorage)}
+  }, [])
 
   useEffect( () => {
     if(/show/.test(location.search)) return;

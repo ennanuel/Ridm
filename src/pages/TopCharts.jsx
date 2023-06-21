@@ -16,7 +16,11 @@ const TopCharts = () => {
     }
 
     useEffect(() => {
-        setShowingType(categories.some( (cat, i) => cat.to == params.get('type') ))
+        const type = params.get('type');
+        const text = `Ridm - Top ${categories.some( (cat, i) => cat.to == type ) ? type : 'Charts'}`
+
+        setShowingType(categories.some( (cat, i) => cat.to == type ))
+        document.getElementById('site_title').innerText = text
     }, [params])
 
     return (

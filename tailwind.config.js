@@ -18,7 +18,10 @@ module.exports = {
         slowfade: 'slowfade 0.5s ease-in-out',
         popin: 'popin 0.5s ease-in-out',
         slideup: 'slideup 0.5s ease-in-out',
-        showmessage: 'showmessage 1s ease'
+        showmessage: 'showmessage 1s ease',
+        sliderightfull: 'sliderightfull 1s ease',
+        slideleftfull: 'slideleftfull 1s ease',
+        popinslideright: 'popinslideright 1s ease'
       },
       keyframes: {
         slowfade: {
@@ -45,6 +48,11 @@ module.exports = {
           from: { opacity: 0, transform: 'translateX(20px)' },
           to: { opacity: 1, transform: 'translateX(0)' },
         },
+        popinslideright: {
+          '0%': { opacity: 0, transform: 'scale(0.5) translateX(75%)' },
+          '50%': { opacity: 1, transform: 'scale(1) translateX(75%)'},
+          '100%': { opacity: 1, transform: 'scale(1) translateX(0%)'}
+        },
         wave: {
           '0%': { transform: 'scale(0)' },
           '50%': { transform: 'scale(1)' },
@@ -55,6 +63,14 @@ module.exports = {
           '20%': { transform: 'translateY(0)', opacity: 1},
           '80%': { transform: 'translateY(0)', opacity: 1},
           '100%': { transform: 'translateY(calc(100% + 20px))', opacity: 0 }
+        },
+        sliderightfull: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' }
+        },
+        slideleftfull: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' }
         }
       },
     },

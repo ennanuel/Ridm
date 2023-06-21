@@ -33,6 +33,11 @@ const SongDetails = () => {
     }, [song, favorites, blacklist])
 
     useEffect(() => {
+        const text = `Ridm Song - ${isFetching ? 'Loading...' : error ? 'Could not load data' : song?.title}`
+        document.getElementById('site_title').innerText = text
+    }, [song])
+
+    useEffect(() => {
         setLyrics(
             lyricsData?.message?.body?.lyrics?.lyrics_body
             .replace(/(\*{7}[a-z|\s]+\*{7}|\(\d+\))/ig, '')

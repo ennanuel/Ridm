@@ -59,7 +59,10 @@ const PlaylistDetails = () => {
   useEffect( () => {
     if(!playlist || playlists.length < 1) {
       navigate('/playlists')
-    };
+    } else {
+      const text = `Playlists - ${playlist.name}`
+      document.getElementById('site_title').innerText = text
+    }
   }, [playlistid, playlist])
 
   if(!playlist || playlists.length < 1) {

@@ -23,6 +23,11 @@ const GenreDetails = () => {
         setData(getSingleData({type: 'genres', data: genre, favorites, blacklist}))
     }, [genre, favorites, blacklist])
 
+    useEffect(() => {
+        const text = `Ridm Genre - ${isFetching ? 'Loading...' : error ? 'Could not fetch details' : genre?.name}`
+        document.getElementById('site_title').innerText = text
+    }, [genre])
+
     return (
         <div className="">
             <GenreDetailsHeader isFetching={isFetching} error={error} genre={data} charts={charts} />

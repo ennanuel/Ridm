@@ -26,7 +26,7 @@ const Artists = ({artists, children, isFetching, error, blacklist, favorites, sh
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 w-full gap-2 md:gap-4">
             {
                 newArtists &&
-                newArtists.slice(0, 5).map( (artist, i) => <ArtistCard key={i} i={i} artist={artist} /> )
+                newArtists.map( (artist, i) => <ArtistCard key={i} i={i} artist={artist} /> )
             }
           </div>
         )

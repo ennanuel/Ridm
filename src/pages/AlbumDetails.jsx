@@ -38,7 +38,9 @@ const AlbumDetails = () => {
   }
 
   useEffect(() => {
+    const text = `Ridm Album - ${isFetching ? 'Loading...' : error ? 'Something went wrong' : album?.title}`
     setAlbumTracks(album?.tracks?.data)
+    document.getElementById('site_title').innerText = text
   }, [album])
 
   useEffect(() => {
