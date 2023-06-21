@@ -2,7 +2,6 @@ import { AiOutlineHome, AiFillHome, AiFillHeart, AiOutlineHeart } from 'react-ic
 import { BsBarChartLine, BsFillBarChartLineFill } from 'react-icons/bs'
 import { MdLibraryMusic, MdOutlineLibraryMusic } from 'react-icons/md';
 import { RiPlayListFill, RiPlayListLine } from "react-icons/ri";
-import { albumImg, artistImg, radioImg, songImg } from '../images';
 
 import { displayMessage } from "../../functions/prompt"
 import { addBlacklist, deletePlaylists, editCurrentPlaylist, removeFromPlaylist } from "../../functions/library"
@@ -22,10 +21,10 @@ export const secondLinks = [
 ]
 
 export const categories = [
-  { name: 'album', to: 'albums', image: albumImg },
-  { name: 'artist', to: 'artists', image: artistImg },
-  { name: 'song', to: 'songs', image: songImg },
-  { name: 'radio', to: 'radios', image: radioImg },
+  { name: 'album', to: 'albums', image: null },
+  { name: 'artist', to: 'artists', image: null },
+  { name: 'song', to: 'songs', image: null },
+  { name: 'radio', to: 'radios', image: null },
 ]
 
 export const promptFunctions = {
