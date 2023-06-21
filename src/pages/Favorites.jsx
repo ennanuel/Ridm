@@ -10,13 +10,13 @@ const Favorites = () => {
 
   return (
     <div className="p-4 flex flex-col h-[100vh]">
-      <div className="flex justify-between items-center mb-6 lg:mt-[60px]">
+      <div className="flex justify-between items-center mb-3 mt-[60px]">
         <h3 className=" text-white font-bold text-xl">Favorites</h3>
       </div>
       {
         Object.entries(favorites).some( ([entry, value], i) => value.length > 0 ) ?
         <Library library={favorites} favorites={favorites} blacklist={blacklist} /> :
-        <div className="p-4 pt-10 flex-1 flex flex-col items-center justify-center gap-4">
+        <div className="p-4 flex-1 flex flex-col items-center justify-center gap-4">
           <h3 className="text-gray-400 font-bold text-xl">You haven't liked anything yet.</h3>
           <button 
             onClick={() => navigate('/')}
