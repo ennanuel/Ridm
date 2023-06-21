@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import RecentAlbums from "../components/List/RecentAlbums";
 import Suggestion from "../components/List/Suggestion";
 import RecentArtists from "../components/List/RecentArtists";
+import Logo from '../components/Sidebar/Logo'
+
 import { getData } from "../functions/getData";
 
 const Discover = () => {
@@ -16,6 +18,7 @@ const Discover = () => {
     const [topArtists, setTopArtists] = useState([])
 
     const dispatch = useDispatch()
+    // feels like you fell right on my head, gave you a way to the wind, I hope it was worth it anyway, us against the world... if I keep you here I'd only be doing it for myself
 
     const { data: radios, isFetching, error } = useGetTopRadiosQuery()
     const { data: recentAlbums, isFetching: isFetchingRecentAlbums, error: errorFetchingRecentAlbums } = useGetRecentReleasesQuery( 0 )
@@ -28,7 +31,7 @@ const Discover = () => {
     }, [data, favorites, blacklist])
 
     return (
-        <div className="lg:mt-[70px] mt-4 flex flex-col px-2 md:px-4">
+        <div className="pt-[70px] flex flex-col px-2 md:px-4">
             <RecentAlbums isFetching={isFetchingRecentAlbums} error={errorFetchingRecentAlbums} albums={recentAlbums?.data} />
             <Suggestion isFetching={fetchingRadioTracks} error={errorFetchingRadioTracks} radioTracks={radio?.data} radio={radios?.data ? radios?.data[0] : {}} dispatch={dispatch} songs={topPlays} />
             <RecentArtists isFetching={isFetchingTopCharts} error={errorFetchingTopCharts} artists={topArtists} />
