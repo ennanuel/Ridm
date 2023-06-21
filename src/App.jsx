@@ -13,7 +13,7 @@ import NavigationAndSearch from './components/NavigationAndSearch';
 
 const App = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const [scrolled, setScrolled] = useState(false)
+  const [{scrollY, scrolled, scrolledUp}, setScroll] = useState({})
   const colors = ['#122f55', '#3f2842', '#655638', '#593030', '#2e2e59', '#005151']
   const divRef = useRef()
   const [color, setColor] = useState('#2c3b4d')
@@ -29,12 +29,17 @@ const App = () => {
   }
 
   const handleScroll = e => {
-    setScrolled(e.target.scrollTop > 50)
+    setScroll( prev => (
+      {
+        scrollY: e.target.scrollTop, 
+        scrolled: e.target.scrollTop > 50, 
+        scrolledUp: scrollY < e.target.scrollTop
+      }
+    ))
   }
 
   useEffect( () => {
     if(/show/.test(location.search)) return;
-    console.log(/show/.test(location.search))
     divRef.current.scroll(0, 0)
   }, [location])
 
@@ -56,14 +61,11 @@ const App = () => {
         <MessageBox />
         <AddToPlaylist />
         <Prompt />
-        <div className="relative z-20 flex flex-col h-full">
-          <div style={{backgroundColor: isPlaying && scrolled ?  'var(--color)' : ''}} className={`hidden lg:flex flex-row items-center justify-between gap-5 z-10 top-0 right-0 w-full absolute transition-[background-color] ${scrolled ? 'bg-black' : 'bg-transparent'}`}>
-            <NavigationAndSearch goFront={goFront} goBack={goBack} scrolled={scrolled} />
-            { (activeSong?.id && window.innerWidth >= 1024) && <MusicPlayer scrolled={scrolled} /> }
-          </div>
+        <Welcome />
+        <div className="relative flex flex-col h-full">
+          <NavigationAndSearch isPlaying={isPlaying} activeSong={activeSong} scrolled={scrolled} scrolledUp={scrolledUp} goBack={goBack} goFront={goFront} />
           <div ref={divRef} onScroll={handleScroll} className={`h-[100vh] overflow-y-scroll ${activeSong?.id ? "pb-[100px]" : "pb-[70px]"} lg:pb-0`}>
             <Routes>
-              <Route path="/welcome" element={<Welcome />} />
               <Route path="/charts" element={<TopCharts divRef={divRef} />} />
               <Route path="/*" element={<Discover />} />
                 <Route path="/artists/:id" element={<ArtistDetails />} />
