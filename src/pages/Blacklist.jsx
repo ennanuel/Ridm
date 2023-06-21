@@ -14,15 +14,13 @@ const Blacklist = () => {
         </section>
       {
         Object.entries(blacklist).some( ([entry, value], i) => value.length > 0 ) ?
-        <Library noFilter={true} library={blacklist} blacklist={blacklist} favorites={favorites} /> : 
+        <div className="p-2 md:p-4">
+          <Library noFilter={true} library={blacklist} blacklist={blacklist} favorites={favorites} /> 
+        </div> : 
         <div className="p-4 pt-10 h-[70%] flex flex-col items-center justify-center gap-4">
           <h3 className="text-gray-400 font-bold text-xl">There is Nothing here.</h3>
-          <Link to='/'>
-              <p
-              className="px-4 py-2 rounded-md border-2 border-gray-400 text-gray-400 text-sm font-bold transition-[background-color] hover:bg-gray-400 hover:text-black"
-              >
-              Go Home
-              </p>
+          <Link to='/' className="px-4 py-2 rounded-md border-2 border-gray-400 text-gray-400 text-sm font-bold transition-[background-color] hover:bg-gray-400 hover:text-black">
+            Go Home
           </Link>
         </div>
       }
