@@ -1,13 +1,21 @@
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
+import Logo from '../Sidebar/Logo'
 import Searchbar from './Searchbar'
+import Navigations from './Navigations'
 
-const NavigationAndSearch = ({ goFront, goBack, scrolled }) => {
+const NavigationAndSearch = ({ goFront, goBack, scrolled, scrolledUp, isPlaying, activeSong }) => {
+  const style = {'--color': (isPlaying && scrolled) ?  'var(--color)' : ''}
+
   return (
-    <div className="relative flex items-center gap-2 mx-4">
-      <button onClick={goBack} className={`h-[30px] aspect-square flex items-center justify-center rounded-md text-gray-200 transition-transform active:scale-90 opacity-80 hover:opacity-100 ${scrolled ? 'bg-white/5' : 'bg-black/80'}`}><BsChevronLeft size={20} /></button>
-      <button onClick={goFront} className={`h-[30px] aspect-square flex items-center justify-center rounded-md text-gray-200 transition-transform active:scale-90 opacity-80 hover:opacity-100 ${scrolled ? 'bg-white/5' : 'bg-black/80'}`}><BsChevronRight size={20} /></button>
+  <div style={style} className={`flex flex-row items-center justify-between gap-5 z-10 top-0 right-0 w-full absolute transition-[background-color,transform] ${scrolled ? 'lg:bg-black backdrop-blur-lg' : 'bg-transparent'} ${scrollY.scrolled} ${scrolledUp && 'translate-y-[-100%] lg:translate-y-[0]'}`}>
+    <div className="relative flex flex-1 items-center justify-between lg:justify-start gap-2 mx-2 md:mx-4">
+      <div className="lg:hidden">
+          <Logo />
+      </div>
+      <Navigations scrolled={scrolled} goBack={goBack} goFront={goFront} />
       <Searchbar />
     </div>
+    { (activeSong?.id && window.innerWidth >= 1024) && <MusicPlayer scrolled={scrolled} /> }
+  </div>
   )
 }
 
