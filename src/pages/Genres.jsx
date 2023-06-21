@@ -9,7 +9,9 @@ const GenresPage = () => {
   const { data, isFetching, error } = useGetTopGenresQuery()
 
   return (
-    <Genres blacklist={blacklist} favorites={favorites} genres={data?.data} isFetching={isFetching} error={error}>Genres</Genres>
+    <div className="mt-[60px] p-2 md:p-4">
+      <Genres blacklist={blacklist} favorites={favorites} genres={data?.data} isFetching={isFetching} error={error}>Genres</Genres>
+    </div>
   )
 }
 
