@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Recommended = ({ suggestedSongs, removeSong, addSong, tracks }) => {
+const Recommended = ({ suggestedSongs, setNewPlaylist, tracks }) => {
   return (
     <div className="animate-popin flex-1 rounded-md h-full py-2 pb-4">
       <h2 className="text-gray-200 text-lg font-bold">Recommended Songs</h2>
@@ -9,7 +9,7 @@ const Recommended = ({ suggestedSongs, removeSong, addSong, tracks }) => {
           suggestedSongs?.map( (track, i) => 
           <li 
             key={i} 
-            onClick={() => tracks.map(elem => elem.id).includes(track.id) ? removeSong(track.id) : addSong(track)} 
+            onClick={() => setNewPlaylist({payload: track, type: tracks.map(elem => elem.id).includes(track.id) ? 'REMOVESONG' : 'ADDSONG'})} 
             className={`flex flex-row gap-2 items-center p-2 hover:bg-white/5 ${tracks.map(elem => elem.id).includes(track.id) && 'bg-white/10'}`}
           >
               <img src={track.album.cover_small} className="min-w-[50px] aspect-square rounded-md" />

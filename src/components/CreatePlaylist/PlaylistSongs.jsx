@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PlaylistSongs = ({ tracks, removeSong }) => {
+const PlaylistSongs = ({ tracks, setNewPlaylist }) => {
   return (
     <div className="animate-popin flex-1 rounded-md h-full py-2 pb-4">
       <h2 className="text-gray-200 text-lg font-bold">Playlist Songs ({tracks.length})</h2>
@@ -13,7 +13,7 @@ const PlaylistSongs = ({ tracks, removeSong }) => {
                 <p className="text-white text-sm truncate">{song.title}</p>
                 <p className="text-gray-400 text-xs">{song.artist.name}</p>
               </div>
-              <button type="button" onClick={() => removeSong(song.id)} className="absolute left-[100%] top-0 h-full w-[100px] transition-transform hover:lg:translate-x-[-95px] bg-red-600 text-white">Remove</button>
+              <button type="button" onClick={() => setNewPlaylist({type: 'REMOVESONG', payload: song})} className="absolute left-[100%] top-0 h-full w-[100px] transition-transform hover:lg:translate-x-[-95px] bg-red-600 text-white">Remove</button>
             </li>
           )
         }
