@@ -20,7 +20,7 @@ const TopCharts = () => {
     }, [params])
 
     return (
-        <div className="relative h-[100vh] grid grid-cols-2 grid-rows-2 gap-5 p-4 pb-[80px] lg:pb-4 lg:pt-[80px]">
+        <div className="relative h-[100vh] grid grid-cols-2 grid-rows-2 gap-5 p-4 lg:pb-4 pb-[80px] pt-[70px]">
             {
                 categories.map(
                     (category, i) => {
