@@ -65,6 +65,8 @@ html {
 }
 
 .album_overlay {
+  @apply hidden;
+  @apply lg:flex;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
