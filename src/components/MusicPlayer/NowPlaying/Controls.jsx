@@ -12,9 +12,9 @@ const Controls = ({ dispatch, isPlaying , repeat, prev, next, pause, play, onRep
             }
         </button>
 
-        <button className="text-gray-200 transition-transform active:scale-90" onClick={() => prev(dispatch, currentIndex - 1)}><BsSkipStartFill size={35} /></button>
+        <button className="text-gray-200 transition-transform active:scale-90" onClick={() => prev(dispatch, currentIndex - 1)}><BsSkipStartFill size={30} /></button>
 
-        <button onClick={() => isPlaying ? pause(dispatch) : play(dispatch)} className="flex items-center justify-center bg-white text-black p-3 rounded-lg transition-transform active:scale-90">
+        <button onClick={() => isPlaying ? pause(dispatch) : play(dispatch)} className="flex items-center justify-center bg-white/40 text-white w-[50px] h-[50px] rounded-full transition-transform active:scale-90">
             {
                 isPlaying ?
                 <BsPauseFill size={30} /> :
@@ -22,7 +22,7 @@ const Controls = ({ dispatch, isPlaying , repeat, prev, next, pause, play, onRep
             }
         </button>
 
-        <button className="text-gray-200 transition-transform active:scale-90" onClick={() => next(dispatch, currentIndex + 1)}><BsSkipEndFill size={35} /></button>
+        <button className="text-gray-200 transition-transform active:scale-90" onClick={() => next(dispatch, currentIndex + 1)}><BsSkipEndFill size={30} /></button>
 
         <button className={`text-gray-400 relative ${shuffle ? 'text-white' : 'text-gray-400'}`} onClick={() => shuffle ? offShuffle(dispatch) : onShuffle(dispatch, true)}>
             <MdShuffle size={25} />

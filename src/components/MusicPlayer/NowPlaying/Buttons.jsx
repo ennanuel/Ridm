@@ -13,7 +13,7 @@ const Buttons = ({handleClick, nowPlaying, setMove, move}) => {
             }
         </button>
         <div className="lg:block hidden">
-          <ExpandCollapse handleClick={handleClick} nowPlaying={nowPlaying} />
+          <ExpandCollapse onClick={handleClick} nowPlaying={nowPlaying} />
         </div>
     </div>
   )

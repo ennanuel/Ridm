@@ -1,4 +1,3 @@
-import { CgArrowsExpandDownLeft, CgArrowsExpandUpRight } from 'react-icons/cg'
 import { BiCollapseAlt, BiExpand } from 'react-icons/bi'
 
 const ExpandCollapse = ({nowPlaying, onClick}) => {
