@@ -14,7 +14,7 @@ const index = ({ category, active, i }) => {
     
     return (
         <div 
-            className={`absolute z-[1] top-0 lg:top-[60px] left-0 w-full h-full p-4 duration-300 transition-[opacity,transform] ${active ? '' : 'scale-50 opacity-0 pointer-events-none max-h-0'} ${origin}`}
+            className={`absolute z-[1] top-[60px] left-0 w-full h-full p-4 duration-300 transition-[opacity,transform] ${active ? '' : 'scale-50 opacity-0 pointer-events-none max-h-0'} ${origin}`}
         >
             <div className="flex flex-row justify-between items-center mb-4">
                 <div className="overflow-hidden text-white text-xl font-bold lowercase">
