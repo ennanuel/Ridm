@@ -22,17 +22,18 @@ export const fetchSongs = async (dispatch, album) => {
     }
 }
 
-export const fetchSuggestedSongs = async (genreid, setSuggestedSongs, blacklist, favorites) => {
+export const fetchSuggestedSongs = async ({id, setNewPlaylist, suggestedSongs, blacklist, favorites}) => {
     try {
-        const response = await fetch(`${APIURL}/deezer/chart/${ genreid }/tracks?limit=5`)
+        const response = await fetch(`${APIURL}/deezer/chart/${ id }/tracks?limit=5`)
 
         if(response.status !== 200) throw 'error occured'
 
         const result = await response.json()
 
-        const data = getData({type: 'tracks', data: result.data, blacklist, favorites})
+        const res = getData({type: 'tracks', data: result.data, blacklist, favorites})
+        const data = res.filter( song => !suggestedSongs.map( song => song.id).includes(song.id) )
 
-        setSuggestedSongs(prev => [...prev, ...data])
+        setNewPlaylist({type: 'ADDSUGGESTEDSONG', payload: data})
     } catch (error) {
         setSuggestedSongs([])
         console.log(error)
