@@ -9,7 +9,7 @@ const MobileNavLinks = ({ activeSong, links, secondLinks }) => {
     return (
         <div className="fixed lg:hidden z-[9999] bottom-0 left-0 w-full flex flex-col gap-1">
         {
-            activeSong?.title && <MusicPlayer />
+            (activeSong?.title && window.innerWidth < 1024) && <MusicPlayer />
         }
         <nav style={{background: 'var(--color)'}} className="relative z-[10] rounded-tl-2xl rounded-tr-2xl bottom-0 left-0 w-full p-2">
             <ul className="w-full flex flex-row items-center sm:justify-between md:justify-center gap-3 text-xs">
