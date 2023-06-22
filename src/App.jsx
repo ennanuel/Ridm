@@ -66,40 +66,35 @@ const App = () => {
       style={{
         '--color': color
       }} 
-      className={`relative h-full flex flex-row w-[100vw] normal_gradient ${isPlaying && 'changing_gradient'}`}
+      className={`relative max-h-full min-h-[100vh] flex flex-col-reverse justify-between lg:justify-start lg:flex-row w-full normal_gradient ${isPlaying && 'changing_gradient'}`}
     >
       <Sidebar />
-      <section 
-        className="relative flex-1 flex flex-col"
-      >
+      <div ref={divRef} onScroll={handleScroll} className={`relative h-full lg:flex-1`}>
+        <NavigationAndSearch isPlaying={isPlaying} activeSong={activeSong} scrolled={scrolled} scrolledUp={scrolledUp} goBack={goBack} goFront={goFront} />
         <MessageBox />
         <AddToPlaylist />
         <Prompt />
         <Welcome />
-        <div className="relative flex flex-col h-full">
-          <NavigationAndSearch isPlaying={isPlaying} activeSong={activeSong} scrolled={scrolled} scrolledUp={scrolledUp} goBack={goBack} goFront={goFront} />
-          <div ref={divRef} onScroll={handleScroll} className={`h-[100vh] overflow-y-scroll ${activeSong?.id ? "pb-[100px]" : "pb-[70px]"} lg:pb-0`}>
-            <Routes>
-              <Route path="/charts" element={<TopCharts divRef={divRef} />} />
-              <Route path="/*" element={<Discover />} />
-                <Route path="/artists/:id" element={<ArtistDetails />} />
-                <Route path="/albums/:id" element={<AlbumDetails />} />
-                <Route path="/songs/:songid" element={<SongDetails />} />
-                <Route path="/search/:searchTerm" element={<Search />} />
+        <div className={`w-full ${activeSong?.id ? 'h-[calc(100vh-140px)]' : 'h-[calc(100vh-90px)]'} lg:h-[100vh] overflow-y-scroll overflow-x-clip`}>
+          <Routes>
+            <Route path="/charts" element={<TopCharts divRef={divRef} />} />
+            <Route path="/*" element={<Discover />} />
+            <Route path="/artists/:id" element={<ArtistDetails />} />
+            <Route path="/albums/:id" element={<AlbumDetails />} />
+            <Route path="/songs/:songid" element={<SongDetails />} />
+            <Route path="/search/:searchTerm" element={<Search />} />
 
-                <Route path="/genres/" element={<Genres />} />
-                <Route path="/genres/:id" element={<GenreDetails />} />
-                
-                <Route path="/playlists/" element={<Playlist />} />
-                <Route path="/playlists/:id" element={<PlaylistDetails />} />
+            <Route path="/genres/" element={<Genres />} />
+            <Route path="/genres/:id" element={<GenreDetails />} />
+                  
+            <Route path="/playlists/" element={<Playlist />} />
+            <Route path="/playlists/:id" element={<PlaylistDetails />} />
 
-              <Route path="/favorites" element={<Favorites />} />
-              <Route path="/blacklist" element={<Blacklist />} />
-            </Routes>
-          </div>
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/blacklist" element={<Blacklist />} />
+          </Routes>
         </div>
-
-      </section>
+      </div>
     </div>
   );
 };
