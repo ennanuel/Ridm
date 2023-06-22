@@ -52,9 +52,6 @@ const ArtistDetails = () => {
                 </div>
             }
 
-            <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>
-            <p className="text-gray-400 mx-4 mt-2 mb-5 text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nulla quaerat, a atque, repellendus quam explicabo ipsa qui in id ducimus earum architecto numquam vero rem at doloremque sapiente? Mollitia.</p>
-
             <div className="p-2 md:p-4">
                 <Albums 
                     blacklist={blacklist} 

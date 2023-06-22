@@ -25,7 +25,7 @@ const Albums = ({ albums, children, showSort, isFetching, error, favorites, blac
       }
       {
         isFetching ?
-        <AlbumLoading num={4} /> :
+        <AlbumLoading num={5} /> :
         error ?
         <Error title="Could not load albums" /> :
         <div className="text-white grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">

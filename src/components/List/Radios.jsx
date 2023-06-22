@@ -22,7 +22,7 @@ const Radios = ({ radios, children, showmore, isFetching, error, blacklist, favo
         </div>
         {
             isFetching ?
-            <RadioLoading num={4} /> :
+            <RadioLoading num={5} /> :
             error ?
             <Error title="Could not load radios." /> :
             !isFetching && !error && newRadios.length < 1 ?

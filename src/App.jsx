@@ -48,8 +48,8 @@ const App = () => {
     const playerStorage = localStorage.getItem('player')
     const libraryStorage = localStorage.getItem('library')
 
-    if(playerStorage) {dispatch(setPlayer(JSON.parse(playerStorage))); console.log(playerStorage)}
-    if(libraryStorage) {dispatch(setLibrary(JSON.parse(libraryStorage))); console.log(libraryStorage)}
+    if(playerStorage) dispatch(setPlayer(JSON.parse(playerStorage)))
+    if(libraryStorage) dispatch(setLibrary(JSON.parse(libraryStorage)))
   }, [])
 
   useEffect( () => {

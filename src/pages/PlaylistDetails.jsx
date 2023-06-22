@@ -54,7 +54,7 @@ const PlaylistDetails = () => {
 
   useEffect( () => {
     setPlaylist(() => playlists[playlists.findIndex( playlist => playlistid == playlist.id )])
-  }, [playlists])
+  }, [playlists, playlistid])
 
   useEffect( () => {
     if(!playlist || playlists.length < 1) {

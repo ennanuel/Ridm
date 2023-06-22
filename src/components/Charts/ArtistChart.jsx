@@ -9,7 +9,6 @@ const ArtistChart = ({ blacklist, favorites }) => {
   const [params, getParams] = useSearchParams()
   const [limit, setLimit] = useState(true)
   const {data, isFetching, error} = useGetTopChartArtistsQuery( params.get('genre') || 0 )
-  console.log(data)
 
   return (
     <>

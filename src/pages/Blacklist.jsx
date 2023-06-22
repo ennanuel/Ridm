@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 
 const Blacklist = () => {
   const { blacklist, favorites } = useSelector( state => state.library )
+  console.log(blacklist)
 
   useEffect(() => {
     document.getElementById('site_title').innerText = 'Ridm - Blacklist'
