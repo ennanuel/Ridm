@@ -6,7 +6,7 @@ const MiniPlayer = ({ dispatch, duration, appTime, scrolled, isPlaying, currentS
   const style = {backgroundColor: (scrolled ? 'transparent' : 'var(--color)')}
 
   return (
-    <div style={style} className={`${nowPlaying && 'translate-y-[100%] lg:translate-y-0 opacity-0'} relative w-full mb-[-15px] pb-4 lg:m-0 lg:p-0 lg:w-fit md:min-w-[300px] animate-slideup lg:animate-popin music_player transition-[transform,opacity] rounded-tr-xl rounded-tl-xl lg:rounded-none`}>
+    <div style={style} className={`${nowPlaying && 'translate-y-[100%] lg:translate-y-0 opacity-0'} relative w-full mb-[-15px] pb-4 lg:m-0 lg:p-0 lg:w-fit md:min-w-[300px] animate-slideup lg:animate-popin music_player transition-[transform,opacity] rounded-tr-xl rounded-tl-xl lg:rounded-none lg:rounded-tl-xl lg:rounded-bl-xl`}>
       <div className="absolute z-[1] w-full h-full lg:hidden lg:pointer-events-none" onClick={window.innerWidth < 1024 && handleClick} />
       <div className="absolute z-[0] lg:hidden bg-gray-600 w-full h-[2px] bottom-5 left-0">
         <div style={{width: Math.round((appTime/duration) * 100) + '%'}} className="w-[0] h-full bg-white"></div>
