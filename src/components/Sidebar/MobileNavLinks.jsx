@@ -7,7 +7,7 @@ import SecondLinks from "./SecondLinks"
 const MobileNavLinks = ({ activeSong, links, secondLinks }) => {
     const location = useLocation()
     return (
-        <div className="fixed lg:hidden z-[9999] bottom-0 left-0 w-full flex flex-col gap-1">
+    <div className="lg:hidden flex flex-col gap-1">
         {
             (activeSong?.title && window.innerWidth < 1024) && <MusicPlayer />
         }
