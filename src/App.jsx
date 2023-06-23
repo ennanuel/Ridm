@@ -69,13 +69,13 @@ const App = () => {
       className={`relative h-[100vh] flex flex-col-reverse justify-between lg:justify-start lg:flex-row w-full normal_gradient ${isPlaying && 'changing_gradient'}`}
     >
       <Sidebar />
-      <div ref={divRef} onScroll={handleScroll} className={`relative h-full lg:flex-1`}>
+      <div className={`relative flex-1 ${activeSong?.id ? 'h-[calc(100%-140px)]' : 'h-[calc(100%-90px)]'} lg:h-full`}>
         <NavigationAndSearch isPlaying={isPlaying} activeSong={activeSong} scrolled={scrolled} scrolledUp={scrolledUp} goBack={goBack} goFront={goFront} />
         <MessageBox />
         <AddToPlaylist />
         <Prompt />
         <Welcome />
-        <div className={`w-full ${activeSong?.id ? 'h-[calc(100%-140px)]' : 'h-[calc(100%-90px)]'} lg:h-[100%] overflow-y-scroll overflow-x-clip`}>
+        <div ref={divRef} onScroll={handleScroll} className={`w-full h-full overflow-y-scroll overflow-x-clip`}>
           <Routes>
             <Route path="/charts" element={<TopCharts divRef={divRef} />} />
             <Route path="/*" element={<Discover />} />
