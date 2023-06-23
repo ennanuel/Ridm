@@ -49,7 +49,7 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
             />
             <button onMouseOver={handleClick} className="absolute lg:hidden z-[4] top-2 left-[50%] translate-x-[-50%] h-[5px] w-[120px] rounded-lg bg-white/50"></button>
 
-            <div className={`player-controls absolute h-full w-full lg:w-fit top-0 left-0 lg:relative flex-1 flex flex-col items-center justify-center gap-4 md:gap-3 transition-[opacity,transform] ${move && 'translate-x-[-100%] opacity-0 lg:translate-x-0 lg:opacity-0'}`}>
+            <div className={`player-controls absolute h-full w-full lg:max-w-auto lg:w-fit top-0 left-0 lg:relative flex-1 flex flex-col items-center justify-center gap-4 md:gap-3 transition-[opacity,transform] ${move && 'translate-x-[-100%] opacity-0 lg:translate-x-0 lg:opacity-0'}`}>
                 <Track 
                     activeSong={activeSong} 
                     handleClick={handleClick} 
