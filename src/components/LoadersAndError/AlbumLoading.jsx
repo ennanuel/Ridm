@@ -24,7 +24,7 @@ const AlbumLoading = ({ num }) => {
     )
 
     return (
-        <div className='grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 lg:gap-6 md:gap-4 gap-2'>
+        <div className='grid grid-cols-2 lg:grid-cols-5 md:grid-cols-4 lg:gap-6 md:gap-4 gap-2'>
             {
                 albums.map( album => <Album key={album} /> )
             }
