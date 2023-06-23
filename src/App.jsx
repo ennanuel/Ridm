@@ -66,7 +66,7 @@ const App = () => {
       style={{
         '--color': color
       }} 
-      className={`relative max-h-full min-h-[100vh] flex flex-col-reverse justify-between lg:justify-start lg:flex-row w-full normal_gradient ${isPlaying && 'changing_gradient'}`}
+      className={`relative h-[100vh] flex flex-col-reverse justify-between lg:justify-start lg:flex-row w-full normal_gradient ${isPlaying && 'changing_gradient'}`}
     >
       <Sidebar />
       <div ref={divRef} onScroll={handleScroll} className={`relative h-full lg:flex-1`}>
@@ -75,7 +75,7 @@ const App = () => {
         <AddToPlaylist />
         <Prompt />
         <Welcome />
-        <div className={`w-full ${activeSong?.id ? 'h-[calc(100vh-140px)]' : 'h-[calc(100vh-90px)]'} lg:h-[100vh] overflow-y-scroll overflow-x-clip`}>
+        <div className={`w-full ${activeSong?.id ? 'h-[calc(100%-140px)]' : 'h-[calc(100%-90px)]'} lg:h-[100%] overflow-y-scroll overflow-x-clip`}>
           <Routes>
             <Route path="/charts" element={<TopCharts divRef={divRef} />} />
             <Route path="/*" element={<Discover />} />
