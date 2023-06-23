@@ -1,7 +1,8 @@
 import React from 'react';
 
 const Track = ({ isPlaying, isActive, activeSong }) => (
-  <div className="flex-1 flex items-center justify-start">
+  <div className="flex-1 flex items-center justify-start relative">
+    <div className="absolute top-0 left-0 w-full h-full"></div>
     <div className={`${isPlaying && isActive ? 'md:animate-[spin_3s_linear_infinite]' : ''} sm:block h-[35px] w-[35px] md:h-[40px] md:w-[40px] mr-2`}>
       <img src={activeSong?.album?.cover_small} alt="" className="md:rounded-full w-full h-full rounded-md bg-white/5" />
     </div>
