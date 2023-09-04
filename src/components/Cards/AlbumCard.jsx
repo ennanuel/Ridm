@@ -35,7 +35,7 @@ const AlbumCard = ({ album, i, isRelated, isRecent, activeSong, isPlaying }) => 
         >
             <div className="relative">
                 <img className="transition-transform shadow shadow-black w-full aspect-square" alt="song_img" src={album?.cover_medium} />
-                <div className={`album_overlay ${activeSong?.album?.title !== album?.title ? 'show_overlay' : ''} absolute top-0 left-0 w-full h-full bg-black/50 flex items-end justify-end p-2`}>
+                <div className={`album_overlay ${activeSong?.album?.title !== album?.title ? 'show_overlay' : ''} hidden lg:flex absolute top-0 left-0 w-full h-full bg-black/50 items-end justify-end p-2`}>
                     <PlayPause 
                         handlePlay={playSongs} 
                         isCurrent={activeSong?.album?.title === album?.title} 

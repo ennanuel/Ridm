@@ -59,15 +59,15 @@ const Playlist = () => {
   }, [params])
 
   return (
-    <div className={`p-2 mg:p-4 pt-[80px] relative overflow-x-clip ${!params.get('add') === 'true' ? 'overflow-y-hidden' : ''} h-[100vh]`}>
-      <div className={`w-full h-full transition-transform ${params.get('add') === 'true' && 'translate-x-[-110%]'}`}>
+    <div className={`p-2 flex md:p-4 overflow-x-clip ${!params.get('add') === 'true' ? 'overflow-y-hidden' : ''}`}>
+      <div className={`min-w-full transition-transform ${params.get('add') === 'true' && 'translate-x-[-110%]'}`}>
         <div className="w-full flex justify-between items-center mb-4">
           <h3 className="font-bold text-white text-xl">Playlists</h3>
           <Options type="playlists" navigate={navigate} small={true} />
         </div>
         {
           playlists.length < 1 ? 
-            <div className="h-full mt-[-40px] flex flex-col items-center justify-center gap-4">
+            <div className="mt-[-40px] flex flex-col items-center justify-center gap-4 h-[90vh]">
               <h3 className="text-gray-400 font-bold text-xl">You don't have any saved playlists</h3>
               <Link to="/playlists?add=true" className="font-bold text-sm text-gray-400 border-2 border-gray-400 px-2 py-1 rounded-md hover:text-black hover:bg-gray-400 transition-[background-color]">Create New</Link>
             </div> :

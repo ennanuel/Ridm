@@ -1,26 +1,30 @@
+import { useMemo } from "react"
 import { Link } from "react-router-dom"
 
 import { FaDeezer } from "react-icons/fa"
 
-const GenresAndLink = ({ albumData, artistId }) => {
+const GenresAndLink = ({ data, text, bg }) => {
+    const genres = useMemo(() => data?.genres?.data, [data])
+
     return (
-        <div className={`mx-4 flex flex-row text-white justify-between items-start gap-2 flex-wrap relative`}>
-        {
-            (albumData) && 
-            <p className="flex flex-row items-center gap-1">
+        <div className='mx-4 flex flex-row justify-between items-center gap-2 flex-wrap relative'>
             {
-                albumData &&
-                albumData?.genres?.data?.map( (genre, i, genres) => <span className="text-gray-400 text-xs w-fit font-normal">
-                <Link to={`/genres/${genre.id}`}>
-                    {genre.name}{i !== genres.length ? ',' : ''}
-                </Link>
-                </span> )
+                (data.type === 'album') && 
+                <p className="flex flex-row items-center gap-1">
+                {
+                    genres &&
+                    genres?.map(
+                        (genre, i) =>
+                        <Link key={i} to={`/genres/${genre.id}`} style={{ color: text }} className="text-xs w-fit font-bold">
+                            {genre.name}{i !== genres.length ? ',' : ''}
+                        </Link>
+                    )
+                }
+                </p>
             }
-            </p>
-        }
-        <a href="#" className="font-semibold px-2 py-1 rounded-sm bg-white/10 w-fit text-gray-200 flex flex-row gap-1 items-center text-xs opacity-60 backdrop-blur-lg">
-            <span><FaDeezer size={20} /></span><span>{artistId ? 'View artist ' : 'Listen '} on Deezer</span>
-        </a>
+            <a href="#" style={{ backgroundColor: text, color: bg }} className="font-bold px-2 py-1 rounded-sm flex flex-row gap-1 items-center text-xs opacity-60 backdrop-blur-lg">
+                <span><FaDeezer size={20} /></span><span>{data.type == 'artist' ? 'View artist ' : 'Listen '} on Deezer</span>
+            </a>
         </div>
     )
 }

@@ -12,7 +12,7 @@ const Track = ({ i, tracks, song, activeSong, handleTrack, songsToBeDeleted, isP
     <tbody key={i}>
       <tr 
         tabIndex={2} 
-        className={`album-track focus:bg-white/20 ${i%2 === 1 && !active ? 'bg-white/5 hover:bg-white/10' : active ? 'bg-white/20 hover:bg-white/20' : 'bg-black/20 hover:bg-white/10'} h-[42px]`}
+        className={`album-track focus:bg-white/20 ${i%2 === 1 && !active ? 'bg-white/5 hover:bg-white/10' : active ? 'bg-white/20 hover:bg-white/20' : 'bg-black/50 hover:bg-white/10'} h-[42px]`}
         onClick={handleClick}
       >
         <TrackImage 

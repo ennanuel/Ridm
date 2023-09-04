@@ -6,7 +6,7 @@ import SeeMore from "./SeeMore"
 
 import { getData } from "../../functions/getData";
 
-const Songs = ({ songs, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter }) => {
+const Songs = ({ songs, suggestion, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter, full, bg }) => {
   const [tracks, setTracks] = useState([])
 
   useEffect(() => {
@@ -14,9 +14,9 @@ const Songs = ({ songs, children, isFetching, error, blacklist, favorites, showm
   }, [favorites, blacklist, songs, noFilter])
 
   return (
-    <div className="flex flex-col mb-8">
-      <div className="flex flex-row justify-between items-end mb-4">
-          <h3 className="text-white font-bold text-xl">{children}</h3>
+    <div style={{ backgroundColor: full && bg ? bg.substring(0, bg.length - 2) + ',0.5)' : '' }} className={`flex flex-col mb-8 ${(full && !suggestion) && 'p-3 rounded-md overflow-clip'}`}>
+      <div className={`relative z-1 flex flex-row justify-between items-end mb-4 ${suggestion ? 'lg:hidden' : ''}`}>
+          <h3 className="text-white/80 font-bold text-xl">{children}</h3>
           {
             showmore && <SeeMore link={`/charts?type=songs&genre=${genreid}`} />
           }
@@ -24,11 +24,11 @@ const Songs = ({ songs, children, isFetching, error, blacklist, favorites, showm
 
       {
         isFetching ?
-        <SongLoading num={4} /> :
+        <SongLoading num={4} full={full} /> :
         (
           error ?
           <Error title="Could not Fetch songs" /> :
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className={`relative z-1 w-full grid grid-cols-1 ${!full && 'md:grid-cols-2'} gap-2`}>
             {
               tracks?.map( (song, i, tracks) =>
                 <SongBar 

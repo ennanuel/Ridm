@@ -25,8 +25,8 @@ const AllTracks = ({ tracks,  activeSong, isPlaying, isFetching, error, songsToB
       <thead className="bg-white/10">
         <tr className="px-4 py-4 h-[50px]">
           <th className="w-[7%]"></th>
-          <th className="w-[66%] text-left text-gray-200 font-bold text-xl">Tracks</th>
-          <th className="w-[10%] text-gray-400"><BiTime size={30} /></th>
+          <th className="w-[66%] text-left text-white font-bold text-xl">Tracks</th>
+          <th className="w-[10%] text-white"><BiTime size={30} /></th>
           <th className="w-[10%]"></th>
           <th className="w-[7%]"></th>
         </tr>

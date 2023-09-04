@@ -1,25 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { useParams } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-import { DetailsHeader} from "../components/Headers";
-import { Options } from "../components/Options";
 import { Songs, SongLyrics } from "../components/List";
-import { FavoriteButton, PauseButton, PlayButton, PlayNextButton } from "../components/Buttons";
 
 import { useGetLyricsQuery } from "../redux/services/MusixMatchApi";
 import { useGetSongDetailsQuery, useGetSongsQuery } from "../redux/services/DeezerApi";
 import { getSingleData } from "../functions/getData";
-import { addBlacklist } from "../functions/library";
+import { DetailsContext } from "../components/Details";
 
 
 const SongDetails = () => {
-    const { activeSong, isPlaying, } = useSelector( (state) => state.player )
     const { blacklist, favorites } = useSelector( state => state.library )
 
-    const [data, setData] = useState({})
+    const { data, updateData, colors, ...others } = useContext(DetailsContext)
     const [lyrics, setLyrics] = useState([])
 
     const { songid } = useParams()
@@ -29,7 +25,8 @@ const SongDetails = () => {
     const { data: relatedSongs, isFetching: isFetchingRelated, error: errorFetchingRelated } = useGetSongsQuery( data?.artist?.tracklist.match(/[\d]+/) || 0, 20)
 
     useEffect(() => {
-        setData(getSingleData({type: 'tracks', data: song, favorites, blacklist}))
+        const refinedData = getSingleData({ type: 'tracks', data: song, favorites, blacklist })
+        updateData({ ...others, colors, isFetching, error, data: {...refinedData, song: refinedData, tracks: [refinedData]} })
     }, [song, favorites, blacklist])
 
     useEffect(() => {
@@ -46,46 +43,25 @@ const SongDetails = () => {
     }, [lyricsData])
 
     return (
-        <div className="">
-            <DetailsHeader isFetching={isFetching} error={error} songData={data} />
-
-            <div className="flex flex-col lg:flex-row flex-wrap justify-between items-start lg:items-center px-6 mt-4 lg:mt-1">
-                <div className="flex-1 flex flex-row items-center justify-start gap-2 xl:gap-4">
-                    {
-                        isPlaying && activeSong.id === data?.id ?  
-                        <PauseButton />:
-                        <PlayButton song={data} tracks={[data]} i={0} />
-                    }
-                    <PlayNextButton tracks={[data]} />
+        <div className="relative z-1">
+            <div className="p-2 md:p-4 flex flex-col md:flex-row items-stretch md:items-start justify-stretch">
+                <div className="flex-1">
+                    <SongLyrics isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
                 </div>
-                
-                <div className="relative flex flex-row items-center gap-4 my-4">
-                    <FavoriteButton data={data} type={"tracks"} />
-                    <Options 
-                        type="track" 
-                        song={data} 
-                        i={0} 
-                        favorite={data?.favorite}
-                        tracks={[data]} 
-                        artist={data?.artist} 
-                        album={data?.album}
-                        blacklist={data?.blacklist} 
-                    />
+                <div className="flex-1">
+                    <Songs 
+                        full={true}
+                        bg={colors.length > 0 && colors[1]}
+                        blacklist={blacklist} 
+                        favorites={favorites}
+                        isFetching={isFetchingRelated} 
+                        error={errorFetchingRelated} 
+                        songData={data} 
+                        songs={relatedSongs?.data?.slice(0, 6)}
+                    >
+                        Similar Song
+                    </Songs>
                 </div>
-            </div>
-            
-            <div className="p-2 md:p-4">
-                <SongLyrics isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
-                <Songs 
-                    blacklist={blacklist} 
-                    favorites={favorites}
-                    isFetching={isFetchingRelated} 
-                    error={errorFetchingRelated} 
-                    songData={data} 
-                    songs={relatedSongs?.data?.slice(0, 6)}
-                >
-                    Similar Song
-                </Songs>
             </div>
         </div>
     )

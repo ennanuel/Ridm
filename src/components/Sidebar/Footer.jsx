@@ -20,9 +20,8 @@ const Footer = () => {
         </button>
         <p className="font-semibold text-gray-200 text-sm mb-4">Powered By</p>
         <ul className="grid grid-cols-2 text-[0.7em] text-gray-500 gap-2">
-            <li className="hover:text-white hover:underline"><a href="https://developer.deezer.com" target="_blank">Deezer API</a></li>
-            <li className="hover:text-white hover:underline"><a href="https://developer.musixmatch.com" target="_blank">MusixMatch API</a></li>
-            <li className="hover:text-white hover:underline">Wiki API</li>
+            <li className="hover:text-white hover:underline"><a href="https://developer.deezer.com" target="_blank">Deezer</a></li>
+            <li className="hover:text-white hover:underline"><a href="https://developer.musixmatch.com" target="_blank">MusixMatch</a></li>
         </ul>
     </footer>
   )

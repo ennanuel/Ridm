@@ -29,9 +29,13 @@ export const getSingleData = ({type, data, favorites, blacklist}) => {
             blacklist: blacklist[type].map( elem => elem?.id ).includes(data.id)
         }
 
+        if(newData.tracks) {
+            newData.tracks = getData({type: 'tracks', data: data.tracks.data, blacklist, favorites})
+        }
+
         return newData
     } catch (error) {
         console.error(error)
-        return []
+        return {}
     }
 }

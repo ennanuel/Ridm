@@ -26,7 +26,7 @@ const Welcome = () => {
 
     return (
         <div 
-            style={{background: 'linear-gradient(135deg, var(--color), rgba(15, 15, 15, 0.6))', ...styles?.main}} 
+            style={{backgroundColor: 'rgba(0, 0, 0, 0.6)', ...styles?.main}} 
             className={`fixed top-0 left-0 z-[999999] w-full h-full flex flex-col items-center justify-center gap-2 backdrop-blur-md pointer-events-none`}
         >
             <div className="flex relative justify-center items-center gap-1">

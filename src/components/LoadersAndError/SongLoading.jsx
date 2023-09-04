@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const SongLoading = ({ num }) => {
+const SongLoading = ({ num, full }) => {
     const [songs, setSongs] = useState([])
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const SongLoading = ({ num }) => {
     )
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:gap-6 md:gap-4 gap-2'>
+        <div className={`grid grid-cols-1 ${!full && 'md:grid-cols-2'} lg:gap-6 md:gap-4 gap-2`}>
             {
                 songs.map( song => <Song key={song} /> )
             }

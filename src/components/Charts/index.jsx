@@ -14,9 +14,9 @@ const index = ({ category, active, i }) => {
     
     return (
         <div 
-            className={`absolute z-[1] top-[60px] left-0 w-full h-full p-4 duration-300 transition-[opacity,transform] ${active ? '' : 'scale-50 opacity-0 pointer-events-none max-h-0'} ${origin}`}
+            className={`w-full h-full duration-300 transition-[opacity,transform] ${active ? '' : 'scale-50 opacity-0 pointer-events-none h-0'} ${origin}`}
         >
-            <div className="flex flex-row justify-between items-center mb-4">
+            <div className="flex flex-row justify-between items-center mb-2">
                 <div className="overflow-hidden text-white text-xl font-bold lowercase">
                     <p className={`transition-transform duration-500 ${active ? 'translate-y-0 delay-200 ' : 'translate-y-[100%]'}`}>{category.name}s</p>
                 </div>
@@ -27,8 +27,7 @@ const index = ({ category, active, i }) => {
             </div>
             {
                 active && 
-                <div className="relative z-[1]">
-                    {
+                    (
                         category.name === 'artist' ?
                         <ArtistChart blacklist={blacklist} favorites={favorites} /> :
                         category.name === 'song' ?
@@ -38,8 +37,7 @@ const index = ({ category, active, i }) => {
                         category.name === 'radio' ?
                         <RadioChart blacklist={blacklist} favorites={favorites} /> :
                         null
-                    }
-                </div>
+                    )
             }
         </div>
     )

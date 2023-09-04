@@ -2,9 +2,9 @@ import React from 'react'
 
 const PlaylistSongs = ({ tracks, setNewPlaylist }) => {
   return (
-    <div className="animate-popin flex-1 rounded-md h-full py-2 pb-4">
-      <h2 className="text-gray-200 text-lg font-bold">Playlist Songs ({tracks.length})</h2>
-      <ul className="h-[40vh] flex flex-col bg-black/50 rounded-md mt-3 overflow-y-scroll overflow-x-clip">
+    <div className="animate-popin flex-1 flex flex-col gap-2 p-2 rounded-md bg-black/50 h-full">
+      <h2 className="text-gray-200 font-bold p-1">Playlist Songs ({tracks.length})</h2>
+      <ul className="h-[300px] flex flex-col overflow-y-scroll overflow-x-clip">
         {
           tracks.map( (song, i) => 
             <li key={i} className="relative flex flex-row gap-2 items-center p-2  transition-transform lg:hover:translate-x-[-5px] hover:translate-x-[-100px] hover:bg-white/5">

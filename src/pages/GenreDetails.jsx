@@ -12,6 +12,7 @@ import { getSingleData } from '../functions/getData'
 const GenreDetails = () => {
     const { id } = useParams()
     const [data, setData] = useState({})
+    const [[bg, text], setColors] = useState(['', ''])
 
     const { blacklist, favorites } = useSelector(state => state.library)
 
@@ -29,10 +30,10 @@ const GenreDetails = () => {
     }, [genre])
 
     return (
-        <div className="">
-            <GenreDetailsHeader isFetching={isFetching} error={error} genre={data} charts={charts} />
+        <div style={{ background: `linear-gradient(${bg}, transparent 1000px)`}} className="flex flex-col">
+            <GenreDetailsHeader isFetching={isFetching} error={error} genre={data} charts={charts} setColors={setColors} bg={bg} text={text} />
             
-            <div className="p-2 md:p-4 mt-4">
+            <div className="p-2 md:p-4 pt-8 backdrop-blur-xl">
                 <Songs showmore={true} genreid={id} blacklist={blacklist} favorites={favorites} isFetching={loading} error={errorLoading} songs={charts?.tracks?.data?.slice(0, 6)}>Songs</Songs>
                 <Albums showmore={true} genreid={id} blacklist={blacklist} favorites={favorites} isFetching={loading} error={errorLoading} albums={charts?.albums?.data?.slice(0, 10)} showSort={true}>Albums</Albums>
                 <Artists showmore={true} genreid={id} blacklist={blacklist} favorites={favorites} isFetching={loading} error={errorLoading} artists={charts?.artists?.data?.slice(0, 10)}>Artists</Artists>

@@ -40,7 +40,7 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
     }
 
     return (
-        <div style={{backgroundColor: window.innerWidth < 1024 ? 'var(--color)' : ''}} className={`shadow-xl shadow-black/50 fixed overflow-clip lg:absolute origin-bottom lg:origin-top-right bottom-0 lg:top-0 right-0 z-[9999] w-full h-[98%] lg:h-[100vh] flex flex-row gap-6 items-center justify-center bg-black/70 backdrop-blur-lg p-[30px] transition-[opacity,transform] ${nowPlaying ? 'scale-100 opacity-100 translate-y-0' : 'pointer-events-none opacity-0 lg:scale-50 lg:translate-y-0 translate-y-[100%]'} rounded-tl-xl rounded-tr-xl lg:rounded-none`}>
+        <div style={{backgroundColor: window.innerWidth < 1024 ? 'var(--color)' : ''}} className={`shadow-xl shadow-black/50 fixed overflow-clip lg:absolute origin-bottom lg:origin-top-right bottom-0 lg:top-0 right-0 z-[9999] w-full h-[98%] lg:h-[100vh] flex flex-row-reverse gap-6 items-center justify-center bg-black/70 backdrop-blur-lg p-[30px] transition-[opacity,transform] ${nowPlaying ? 'scale-100 opacity-100 translate-y-0' : 'pointer-events-none opacity-0 lg:scale-50 lg:translate-y-0 translate-y-[100%]'} rounded-tl-xl rounded-tr-xl lg:rounded-none`}>
             <Buttons 
                 setMove={setMove} 
                 move={move} 

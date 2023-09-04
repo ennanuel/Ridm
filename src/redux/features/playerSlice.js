@@ -119,7 +119,7 @@ const playerSlice = createSlice({
 
     setPlayer: (state, action) => {
       for(let [entry, value] of Object.entries(action.payload)) {
-        if(entry == 'isPlaying' || entry == 'nowPlaying') {
+        if(entry == 'isPlaying' || entry == 'nowPlaying' || entry == 'isActive') {
           state[entry] = false
         } else {
           state[entry] = value

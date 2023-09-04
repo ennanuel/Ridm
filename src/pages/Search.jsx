@@ -23,7 +23,7 @@ const Search = () => {
     }, [searchTerm])
 
     return (
-        <div className="flex flex-col p-2 md:p-4 mt-[60px]">
+        <div className="flex flex-col p-2 md:p-4 gap-3 mt-2">
             <ul className="flex flex-row items-center justify-center overflow-x-scroll overflow-y-clip gap-2 text-gray-300 font-bold">
                 {
                     categories.map( (category, i) => (

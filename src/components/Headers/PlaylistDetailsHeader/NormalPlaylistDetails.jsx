@@ -2,13 +2,13 @@ import { BsDot } from "react-icons/bs"
 import { Options } from "../../Options"
 import { PlayButton, ShuffleButton } from "../../Buttons"
 
-const NormalPlaylistDetails = ({ playlist }) => {
+const NormalPlaylistDetails = ({ playlist, primary, secondary }) => {
   return (
     <div className="flex-col flex-1">        
-      <h2 className="text-white font-bold uppercase text-2xl">{playlist.name}</h2>
+      <h2 style={{color: primary}} className="text-white font-bold text-2xl">{playlist.name}</h2>
       <div className="flex flex-wrap items-center font-semibold text-xs mb-2 gap-1">
-        <p className="text-gray-400 text-sm">{playlist.tracks.length} songs</p>
-        <ul className="flex flex-wrap items-center text-gray-500">
+        <p style={{ color: primary }} className="text-gray-400 text-sm">{playlist.tracks.length} songs</p>
+        <ul style={{ color: primary }} className="flex flex-wrap items-center text-gray-500">
           {
             playlist.genres.map( (genre, i) =>
               <>

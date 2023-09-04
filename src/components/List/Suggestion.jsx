@@ -3,8 +3,9 @@ import { playNext } from "../../functions/player"
 import SuggestedCard from '../Cards/SuggestedCard'
 import SeeMore from "./SeeMore"
 import { SongLoading, Error } from "../LoadersAndError"
+import Songs from "./Songs"
 
-const Suggestion = ({ radioTracks, radio, dispatch, songs, isFetching, error }) => {
+const Suggestion = ({ radioTracks, radio, dispatch, songs, isFetching, error, blacklist, favorites }) => {
 
     if(error) return <Error title="Something went wrong" />
 
@@ -33,21 +34,7 @@ const Suggestion = ({ radioTracks, radio, dispatch, songs, isFetching, error }) 
                     }
                 </div>
             </div>
-            <div>
-                <div className="flex justify-between items-end mb-4 md:hidden">
-                    <h3 className="text-white text-xl font-bold">Popular songs</h3>
-                    <SeeMore link="/charts?type=songs" />
-                </div>
-                <div className="grid grid-row-5 gap-2">
-                    {
-                        isFetching ?
-                        <SongLoading num={5} /> :
-                        songs?.slice(0, 5)?.map( (song, i, songs) => 
-                            <SongBar key={i} song={song} i={i} tracks={songs} />
-                        )
-                    }
-                </div>
-            </div>
+            <Songs blacklist={blacklist} favorites={favorites} isFetching={isFetching} error={error} songs={songs} full={true} suggestion={true}>Popular Songs</Songs>
         </div>
     </>
   )

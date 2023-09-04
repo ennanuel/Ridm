@@ -70,7 +70,7 @@ const PlaylistDetails = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-[90vh]">
       <PlaylistDetailsHeader 
         playlist={playlist} 
         songsToBeDeleted={songsToBeDeleted} 

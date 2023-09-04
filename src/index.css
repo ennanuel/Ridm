@@ -1,11 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Quicksand:wght@300;400;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
   @apply bg-black;
-  @apply overflow-clip;
   user-select: none;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .top_overlay {
@@ -17,23 +18,17 @@ html {
   opacity: 0 !important;
 }
 
-.transparent + form input, .transparent + form button {
+.transparent+form input,
+.transparent+form button {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.transparent + .search_bar + .music_player {
+.transparent+.search_bar+.music_player {
   overflow: hidden;
   border-radius: 10px;
   backdrop-filter: blur(50px);
   transform: scale(0.90);
   background: rgba(13, 13, 13, 0.3)
-}
-
-.normal_gradient {
-  background: linear-gradient(181deg, var(--color), #090909);
-  background-size: 7000%;
-  background-position: 0 0;
-  transition: background-position 1s ease;
 }
 
 .player {
@@ -49,14 +44,6 @@ html {
   background-color: rgba(20, 20, 20, 0.5);
 }
 
-.changing_bg {
-  background-color: var(--color);
-}
-
-.changing_gradient {
-  background-position: 100% 100% !important;
-}
-
 .album-card {
   @apply animate-popin;
   animation-delay: var(--delay);
@@ -65,8 +52,6 @@ html {
 }
 
 .album_overlay {
-  @apply hidden;
-  @apply lg:flex;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -109,18 +94,6 @@ html {
   opacity: 0;
 }
 
-.other_shadow {
-  --color: --color;
-}
-
-.normal_shadow {
-  --color: #050505
-}
-
-.detail_img {
-  box-shadow: 0 30px 60px var(--color);
-}
-
 .detail_overlay {
   background: linear-gradient(rgba(5, 5, 5, 0.1), var(--color))
 }
@@ -138,7 +111,8 @@ html {
   opacity: 0;
 }
 
-.song-bar:hover .play_overlay, .active-song .play_overlay {
+.song-bar:hover .play_overlay,
+.active-song .play_overlay {
   opacity: 1;
   pointer-events: all;
 }
@@ -148,7 +122,8 @@ html {
   pointer-events: none;
 }
 
-.album-track:hover .play_pause_track, .active-track {
+.album-track:hover .play_pause_track,
+.active-track {
   opacity: 1;
   pointer-events: all;
 }
@@ -176,64 +151,84 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #101010;
 }
 
 /* The slider itself */
 .seek_slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
+  -webkit-appearance: none;
+  /* Override default CSS styles */
   @apply rounded-md;
   @apply bg-gray-400;
   appearance: none;
-  height: 5px; /* Specified height */
-  outline: none; /* Remove outline */
+  height: 5px;
+  /* Specified height */
+  outline: none;
+  /* Remove outline */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .seek_slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
+  -webkit-appearance: none;
+  /* Override default look */
   @apply bg-white;
   @apply rounded-full;
   appearance: none;
-  width: 10px; /* Set a specific slider handle width */
-  height: 10px; /* Slider handle height */
-  cursor: pointer; /* Cursor on hover */
+  width: 10px;
+  /* Set a specific slider handle width */
+  height: 10px;
+  /* Slider handle height */
+  cursor: pointer;
+  /* Cursor on hover */
 }
 
 .seek_slider::-moz-range-thumb {
   @apply bg-white;
   @apply rounded-full;
-  width: 10px; /* Set a specific slider handle width */
-  height: 10px; /* Slider handle height */
-  cursor: pointer; /* Cursor on hover */
+  width: 10px;
+  /* Set a specific slider handle width */
+  height: 10px;
+  /* Slider handle height */
+  cursor: pointer;
+  /* Cursor on hover */
 }
 
 /* The slider itself */
 .volume_slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
+  -webkit-appearance: none;
+  /* Override default CSS styles */
   @apply rounded-md;
   @apply bg-gray-400;
   appearance: none;
-  height: 5px; /* Specified height */
-  outline: none; /* Remove outline */
+  height: 5px;
+  /* Specified height */
+  outline: none;
+  /* Remove outline */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .volume_slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
+  -webkit-appearance: none;
+  /* Override default look */
   @apply bg-white;
   @apply rounded-lg;
   appearance: none;
-  width: 5px; /* Set a specific slider handle width */
-  height: 15px; /* Slider handle height */
-  cursor: pointer; /* Cursor on hover */
+  width: 5px;
+  /* Set a specific slider handle width */
+  height: 15px;
+  /* Slider handle height */
+  cursor: pointer;
+  /* Cursor on hover */
 }
 
 .volume_slider::-moz-range-thumb {
   @apply bg-white;
-  width: 10px; /* Set a specific slider handle width */
-  height: 10px; /* Slider handle height */
-  cursor: pointer; /* Cursor on hover */
+  width: 10px;
+  /* Set a specific slider handle width */
+  height: 10px;
+  /* Slider handle height */
+  cursor: pointer;
+  /* Cursor on hover */
 }
 
 .loading-animation {
@@ -246,6 +241,7 @@ html {
   0% {
     background-position: 100% 0;
   }
+
   100% {
     background-position: 0 0;
   }

@@ -5,23 +5,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { ArtistDetails, Discover, Search, SongDetails, TopCharts, AlbumDetails, Welcome, Genres, Playlist, GenreDetails, PlaylistDetails, Favorites, Blacklist } from './pages';
+import Details from './components/Details';
 
 import { setPlayer } from './redux/features/playerSlice';
 import { setLibrary } from './redux/features/librarySlice';
 
 import { MessageBox, AddToPlaylist, Prompt } from './components/Prompts'
-import Sidebar from './components/Sidebar'
+import MobileNavLinks from './components/Sidebar/MobileNavLinks';
+import NavLinks from './components/Sidebar/NavLinks';
+
+import { links, secondLinks } from './assets/data/constants';
 import NavigationAndSearch from './components/NavigationAndSearch';
 
 const App = () => {
-  const colors = ['#122f55', '#3f2842', '#655638', '#593030', '#2e2e59', '#005151']
-
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const [{scrollY, scrolled, scrolledUp}, setScroll] = useState({})
-  const [color, setColor] = useState('#2c3b4d')
-
-  const divRef = useRef()
-
+  const [{ scrollY, scrolled, scrolledUp }, setScroll] = useState({})
+  
   const dispatch = useDispatch()
   const location = useLocation()
   const navigate = useNavigate()
@@ -34,12 +33,12 @@ const App = () => {
     navigate(-1) || null
   }
 
-  const handleScroll = e => {
+  const handleScroll = () => {
     setScroll( prev => (
       {
-        scrollY: e.target.scrollTop, 
-        scrolled: e.target.scrollTop > 50, 
-        scrolledUp: scrollY < e.target.scrollTop
+        scrollY: window.scrollY, 
+        scrolled: window.scrollY > 50, 
+        scrolledUp: scrollY < window.scrollY
       }
     ))
   }
@@ -51,37 +50,36 @@ const App = () => {
     if(playerStorage) dispatch(setPlayer(JSON.parse(playerStorage)))
     if(libraryStorage) dispatch(setLibrary(JSON.parse(libraryStorage)))
   }, [])
+  
+  useEffect(() => { 
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect( () => {
     if(/show/.test(location.search)) return;
-    divRef.current.scroll(0, 0)
+    window.scroll(0, 0)
   }, [location])
-
-  useEffect( () => {
-    setColor(colors[Math.floor(Math.random() * colors.length)])
-  }, [activeSong])
 
   return (
     <div
-      style={{
-        '--color': color
-      }} 
-      className={`relative h-[100vh] flex flex-col-reverse justify-between lg:justify-start lg:flex-row w-full normal_gradient ${isPlaying && 'changing_gradient'}`}
+      className={`relative w-full grid grid-cols-1 lg:grid-cols-[300px,1fr] lg:grid-rows-[60px,1fr] bg-[#101010] ${isPlaying && ''}`}
     >
-      <Sidebar />
-      <div className={`relative flex-1 ${activeSong?.id ? 'h-[calc(100%-140px)]' : 'h-[calc(100%-90px)]'} lg:h-full`}>
+      <NavLinks links={links} secondLinks={secondLinks} />  
         <NavigationAndSearch isPlaying={isPlaying} activeSong={activeSong} scrolled={scrolled} scrolledUp={scrolledUp} goBack={goBack} goFront={goFront} />
         <MessageBox />
         <AddToPlaylist />
         <Prompt />
         <Welcome />
-        <div ref={divRef} onScroll={handleScroll} className={`w-full h-full overflow-y-scroll overflow-x-clip`}>
+        <div>
           <Routes>
-            <Route path="/charts" element={<TopCharts divRef={divRef} />} />
+            <Route path="/charts" element={<TopCharts />} />
             <Route path="/*" element={<Discover />} />
-            <Route path="/artists/:id" element={<ArtistDetails />} />
-            <Route path="/albums/:id" element={<AlbumDetails />} />
-            <Route path="/songs/:songid" element={<SongDetails />} />
+            <Route element={<Details />}>
+              <Route path="/artists/:id" element={<ArtistDetails />} />
+              <Route path="/albums/:id" element={<AlbumDetails />} />
+              <Route path="/songs/:songid" element={<SongDetails />} />
+            </Route>
             <Route path="/search/:searchTerm" element={<Search />} />
 
             <Route path="/genres/" element={<Genres />} />
@@ -93,8 +91,8 @@ const App = () => {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/blacklist" element={<Blacklist />} />
           </Routes>
-        </div>
       </div>
+      <MobileNavLinks activeSong={activeSong} links={links} secondLinks={secondLinks} />
     </div>
   );
 };

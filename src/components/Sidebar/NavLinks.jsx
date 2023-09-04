@@ -10,7 +10,7 @@ const NavLinks = ({ links, secondLinks, activeLinks }) => {
     const location = useLocation()
 
     return (
-        <nav className="flex-1 top-0 left-0 lg:flex hidden flex-col py-10 px-5 h-[100vh] max-w-[250px] bg-[#050505]">
+        <nav className="row-span-2 sticky top-0 left-0 lg:flex hidden flex-col py-10 px-5 h-[100vh] bg-[#050505]">
             <Logo />
             <div className="flex flex-col justify-between h-full align-start">
                 <ul className="mt-10 flex flex-col gap-4">

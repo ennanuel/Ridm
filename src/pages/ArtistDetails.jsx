@@ -2,19 +2,16 @@ import { useParams } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-import { DetailsHeader } from "../components/Headers";
-import { FavoriteButton } from "../components/Buttons";
-import { Options } from "../components/Options";
 import { Albums, Artists, Songs } from "../components/List"
 
 import { useGetArtistAlbumQuery, useGetArtistDetailsQuery, useGetArtistsQuery, useGetSongsQuery } from "../redux/services/DeezerApi";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getSingleData } from "../functions/getData";
+import { DetailsContext } from "../components/Details";
 
 const ArtistDetails = () => {
-    const { favorites, blacklist } = useSelector( (state) => state.library )
-
-    const [data, setData] = useState({})
+    const { favorites, blacklist } = useSelector((state) => state.library)
+    const { data, updateData, ...others } = useContext(DetailsContext);
 
     const { id: artistid } = useParams()
 
@@ -24,8 +21,9 @@ const ArtistDetails = () => {
     const { data: artists, isFetching: isFetchingArtists, error: errorFetchingArtists } = useGetArtistsQuery( artistid )
 
     useEffect(() => {
-        setData(getSingleData({type: 'artists', data: artist, favorites, blacklist}))
-    }, [artist, favorites, blacklist])
+        const refinedData = getSingleData({ type: 'artists', data: artist, favorites, blacklist })
+        updateData({ ...others, isFetching, error, data: {...refinedData, tracks: tracks?.data, song: tracks?.data && tracks?.data[0]} })
+    }, [artist, tracks, favorites, blacklist])
 
     useEffect(() => {
         const text = `Ridm Artist - ${isFetching ? 'Loading...' : error ? 'Something went wrong.' : artist?.name}`
@@ -33,24 +31,7 @@ const ArtistDetails = () => {
     }, [artist])
 
     return (
-        <div className="flex flex-col">
-            <DetailsHeader isFetching={isFetching} error={error} artistId={artistid} artistData={data} />
-            
-            {
-                artist && 
-                <div className="flex-1 flex flex-row justify-start overflow-x-clip items-center gap-4 m-4 mb-0">
-                    <FavoriteButton data={data} type="artists" />
-                    <Options 
-                        type="artist" 
-                        artist={data} 
-                        tracks={tracks?.data} 
-                        song={tracks?.data && tracks.data[0]} 
-                        favorite={data?.favorite}
-                        blacklist={data?.blacklist}
-                        i={0} 
-                    />
-                </div>
-            }
+        <div className="flex flex-col relative z-1">
 
             <div className="p-2 md:p-4">
                 <Albums 
