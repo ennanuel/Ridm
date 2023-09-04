@@ -52,6 +52,7 @@ const SongDetails = () => {
                     <Songs 
                         full={true}
                         bg={colors.length > 0 && colors[1]}
+                        bg2={colors.length > 0 && colors[0]}
                         blacklist={blacklist} 
                         favorites={favorites}
                         isFetching={isFetchingRelated} 
@@ -59,7 +60,7 @@ const SongDetails = () => {
                         songData={data} 
                         songs={relatedSongs?.data?.slice(0, 6)}
                     >
-                        Similar Song
+                        Similar Songs
                     </Songs>
                 </div>
             </div>

@@ -31,10 +31,10 @@ const DetailsHeader = () => {
 
   return (
     <div
-      className="transition-[box-shadow] relative h-[60vh] w-full flex flex-col justify-end mt-[-60px]"
+      className="transition-[box-shadow] relative md:h-[60vh] w-full aspect-square md:aspect-auto flex flex-col justify-end mt-[-60px] overflow-clip"
     >
       <img crossOrigin='anonymous' ref={imageRef} onLoad={onLoad} src={url} alt="" className="absolute top-0 left-0 w-full h-full object-cover" />
-      {bg && <div style={{ background: `linear-gradient(transparent 30%, ${bg})`}} className="absolute block w-full h-full"></div>}
+      {bg && <div style={{ background: `linear-gradient(transparent 30%, ${bg} 70%)`}} className="absolute bottom-[-50px] left-[-50%] block w-[200%] h-full blur-xl"></div>}
       {
         isFetching ?
         <HeaderLoading /> :

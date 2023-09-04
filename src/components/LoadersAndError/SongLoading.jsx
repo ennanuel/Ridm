@@ -27,7 +27,7 @@ const SongLoading = ({ num, full }) => {
     )
 
     return (
-        <div className={`grid grid-cols-1 ${!full && 'md:grid-cols-2'} lg:gap-6 md:gap-4 gap-2`}>
+        <div className={`grid grid-cols-1 ${!full && 'md:grid-cols-2'} gap-2 gap-x-4`}>
             {
                 songs.map( song => <Song key={song} /> )
             }

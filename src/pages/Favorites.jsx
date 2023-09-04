@@ -13,8 +13,8 @@ const Favorites = () => {
   }, [])
 
   return (
-    <div className="flex flex-col gap-6 bg-gradient-to-b from-slate-600/50 to-[transparent] to-[200px] min-h-[90vh]">
-      <div className="p-4">
+    <div className="flex flex-col gap-6 bg-gradient-to-b from-slate-600/50 to-[transparent] to-[400px] min-h-[90vh] mt-[-60px] pt-[60px]">
+      <div className="p-4 backdrop-blur-xl">
         {
           Object.entries(favorites).some( ([entry, value], i) => value.length > 0 ) ?
           <Library library={favorites} favorites={favorites} blacklist={blacklist} /> :

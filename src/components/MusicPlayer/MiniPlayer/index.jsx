@@ -21,7 +21,7 @@ const MiniPlayer = ({ dispatch, duration, appTime, scrolled, isPlaying, currentS
       <button className="absolute z-[1] w-full h-full lg:hidden lg:pointer-events-none" onClick={window.innerWidth < 1024 && handleClick} />
       <div style={{width: Math.round((appTime/duration) * 100) + '%'}} className="absolute top-0 left-0 lg:hidden bg-white/10 h-full">
       </div>
-      <div className="relative z-1 gap-5 flex items-center justify-end rounded-md p-3">
+      <div className="relative z-1 gap-5 flex h-full items-center justify-end rounded-md p-3">
         <Track scrolled={scrolled} imageRef={imageRef} text={text} onLoad={onLoad}  isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
         <div className="relative z-[1] flex flex-col items-center justify-center">
           <Controls 
