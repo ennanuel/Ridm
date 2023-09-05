@@ -34,7 +34,7 @@ const Discover = () => {
     }, [])
 
     return (
-        <div className="flex flex-col p-2 md:p-4">
+        <div className="flex flex-col p-4 gap-10 lg:gap-1">
             <RecentAlbums isFetching={isFetchingRecentAlbums} error={errorFetchingRecentAlbums} albums={recentAlbums?.data} />
             <Suggestion blacklist={blacklist} favorites={favorites} isFetching={fetchingRadioTracks} error={errorFetchingRadioTracks} radioTracks={radio?.data} radio={radios?.data ? radios?.data[0] : {}} dispatch={dispatch} songs={topPlays} />
             <RecentArtists isFetching={isFetchingTopCharts} error={errorFetchingTopCharts} artists={topArtists} />

@@ -20,7 +20,7 @@ const Searchbar = () => {
           autoComplete="off" 
           placeholder="Search"
           onChange={(e) => {setSearchTerm(e.target.value)}}
-          className="flex-1 border-none outline-none placeholder-gray-300 rounded-md text-white text-sm p-2 backdrop-blur-lg shadow-md shadow-black/30"
+          className="flex-1 border-none outline-none placeholder-gray-300 rounded-md text-white text-xs lg:text-sm p-2 backdrop-blur-lg shadow-md shadow-black/30"
          />
          <button className="flex flex-row justify-center-items-center p-2 bg-white/10 rounded-md opacity-80 transition-opacity hover:opacity-100 crusor-pointer backdrop-blur-lg shadow-md shadow-black/30">
           <FiSearch className="w-5 h-5" />

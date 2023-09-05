@@ -10,9 +10,9 @@ const Suggestion = ({ radioTracks, radio, dispatch, songs, isFetching, error, bl
     if(error) return <Error title="Something went wrong" />
 
     return ( 
-        <>
-        <h3 className="mt-5 text-white text-xl font-bold">Suggestions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+        <div>
+        <h3 className="mt-4 text-white text-xl font-bold">Suggestions</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 lg:gap-6 mt-4">
             <div>
                 <div className="grid gap-2 md:gap-4 grid-cols-5 grid-rows-3">
                     {
@@ -36,7 +36,7 @@ const Suggestion = ({ radioTracks, radio, dispatch, songs, isFetching, error, bl
             </div>
             <Songs blacklist={blacklist} favorites={favorites} isFetching={isFetching} error={error} songs={songs} full={true} suggestion={true}>Popular Songs</Songs>
         </div>
-    </>
+    </div>
   )
 }
 

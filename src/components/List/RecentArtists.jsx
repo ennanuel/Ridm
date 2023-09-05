@@ -12,8 +12,8 @@ import SeeMore from './SeeMore'
 
 const RecentArtists = ({ artists, isFetching, error }) => {
     return (
-        <>
-        <div className="mt-4 flex justify-between items-end">
+        <div>
+        <div className="=mt-4 flex justify-between items-end">
             <h3 className="text-white font-bold text-xl">Popular artists</h3>
             <SeeMore link="/charts?type=artists" />
         </div>
@@ -51,7 +51,7 @@ const RecentArtists = ({ artists, isFetching, error }) => {
                 }
             </Swiper>
         }
-        </>
+        </div>
     )
 }
 

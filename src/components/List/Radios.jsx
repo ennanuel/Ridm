@@ -13,7 +13,7 @@ const Radios = ({ radios, children, showmore, isFetching, error, blacklist, favo
     }, [favorites, blacklist, radios, noFilter])
 
     return (
-        <>
+        <div>
         <div className="flex flex-row justify-between items-end mb-4">
             <h3 className="text-white font-bold text-xl">{children}</h3>
             {
@@ -35,7 +35,7 @@ const Radios = ({ radios, children, showmore, isFetching, error, blacklist, favo
                 }
             </div>
         }
-        </>     
+        </div>     
     )
 }
 

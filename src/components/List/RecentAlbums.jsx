@@ -10,7 +10,7 @@ import SeeMore from "./SeeMore"
 const RecentAlbums = ({ albums, isFetching, error }) => {
 
   return (
-    <>
+    <div className="mt-4">
     <div className="flex items-end justify-between">
       <h3 className="text-white font-bold text-xl">Recent albums</h3>
       <SeeMore link="/charts?type=albums" />
@@ -48,7 +48,7 @@ const RecentAlbums = ({ albums, isFetching, error }) => {
             ))
         }
     </Swiper>
-    </>
+    </div>
   )
 }
 
