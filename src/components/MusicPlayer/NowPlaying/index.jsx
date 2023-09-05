@@ -39,10 +39,10 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
     }
 
     return (
-        <div style={{backgroundColor: window.innerWidth < 1024 ? 'var(--color)' : ''}} className={`shadow-xl shadow-black/50 fixed overflow-clip lg:absolute origin-bottom lg:origin-top-right bottom-0 lg:top-0 right-0 z-[9999] w-full h-[98%] lg:h-[100vh] flex flex-col lg:flex-row-reverse overflow-y-scroll lg:overflow-clip gap-6 items-center justify-center bg-black/70 backdrop-blur-lg p-[30px] transition-[opacity,transform] ${nowPlaying ? 'scale-100 opacity-100 translate-y-0' : 'pointer-events-none opacity-0 lg:scale-50 lg:translate-y-0 translate-y-[100%]'} rounded-tl-xl rounded-tr-xl lg:rounded-none`}>
-            <button onMouseOver={handleClick} className="absolute lg:hidden z-[4] top-2 left-[50%] translate-x-[-50%] h-[5px] w-[120px] rounded-lg bg-white/50"></button>
+        <div className="fixed z-[9999] bottom-0 left-0 h-[97vh] lg:h-[100vh] w-full lg:w-[calc(100vw-300px)] overflow-y-scroll overflow-x-clip rounded-lg bg-gradient-to-b from-orange-800 to-black flex flex-col gap-4">
+            <button onMouseOver={handleClick} className="sticky top-0 lg:hidden z-[4] m-auto h-[10px] w-[120px] rounded-lg bg-white"></button>
 
-            <div className={`player-controls h-[80vh] w-full lg:max-w-auto lg:w-fit top-0 left-0 lg:relative flex-1 flex flex-col items-center justify-center gap-4 md:gap-3 transition-[opacity,transform]`}>
+            <div className="min-h-[85vh] p-4 flex flex-col items-stretch justify-between gap-4">
                 <Track 
                     activeSong={activeSong} 
                     handleClick={handleClick} 
@@ -68,7 +68,8 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
                 <Volume volume={volume} setVolume={setVolume} />
             </div>
 
-            <div className={`flex-1 flex flex-col gap-5 transition-[opacity,transform]`}>
+            <div className="flex flex-col gap-4">
+                <ChangeQueueLyrics setLyricsQueue={setLyricsQueue} lyricsQueue={lyricsQueue} />
                 <QueueAndLyrics 
                     isFetching={isFetching}
                     error={error}
@@ -79,7 +80,6 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
                     handleDragOver={handleDragOver} 
                     handleDragEnd={handleDragEnd}
                 />
-                <ChangeQueueLyrics setLyricsQueue={setLyricsQueue} lyricsQueue={lyricsQueue} />
             </div>
         </div>
     )

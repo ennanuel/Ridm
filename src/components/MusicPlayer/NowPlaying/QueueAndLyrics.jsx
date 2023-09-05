@@ -8,7 +8,7 @@ const QueueAndLyrics = ({ currentSongs, isFetching, lyrics, error, lyricsQueue, 
     .split('\n')
 
     return (
-        <div className="h-[82%] w-[90%] md:w-full overflow-clip overflow-y-scroll flex flex-col lg:bg-black/80 rounded-lg">
+        <div className="flex flex-col p-3 mx-3 mb-3 rounded-lg bg-orange-800 h-[88vh] overflow-y-scroll">
             {
                 lyricsQueue ?
                 currentSongs.map( (song, i) =>

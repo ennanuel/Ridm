@@ -8,14 +8,14 @@ import { getData } from "../../functions/getData";
 
 const Songs = ({ songs, suggestion, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter, full, bg, bg2 }) => {
   const [tracks, setTracks] = useState([])
-  const style = useMemo(() => ({ background: (full && bg) && `linear-gradient(${bg.replace(')', ',0.5)')}, ${bg2})` }), [bg, bg2, full, songs])
+  const style = useMemo(() => ({ background: (full && bg) && `linear-gradient(${bg.replace(')', ',0.5)')}, ${bg2.replace(')', ',0.5)')})` }), [bg, bg2, full, songs])
 
   useEffect(() => {
     setTracks(getData({type: 'tracks', data: songs, favorites, blacklist, noFilter}))
   }, [favorites, blacklist, songs, noFilter])
 
   return (
-    <div style={style} className={`flex flex-col mb-8 ${(full && !suggestion) && 'p-3 rounded-md overflow-clip'}`}>
+    <div style={style} className={`flex flex-col ${(!full && !suggestion) && 'mb-8'} ${(full && !suggestion) && 'p-3 rounded-md overflow-clip'}`}>
       <div className={`relative z-1 flex flex-row justify-between items-end mb-4 ${suggestion ? 'lg:hidden' : ''}`}>
           <h3 className="text-white/80 font-bold text-xl">{children}</h3>
           {
