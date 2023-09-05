@@ -80,7 +80,7 @@ const Options = ({type, small, song, artist, genre, album, radio, playlist, trac
             <button 
                 onClick={open}
                 ref={btnRef} 
-                className={`${small ? "text-gray-200 flex items-center justify-center" : "h-[40px] md:h-[50px] w-[40px] md:w-[50px] rounded-lg flex items-center justify-center bg-[#151515] border border-gray-200/10 text-gray-200 shadow-md shadow-black/50"}`}
+                className={`${small ? "text-gray-200 flex items-center justify-center" : "h-[40px] md:h-[50px] w-[40px] md:w-[50px] rounded-lg flex items-center justify-center bg-[#151515] border border-gray-200/10 text-gray-200 shadow shadow-black/30"}`}
             >
                 <BsThreeDots size={small ? 20 : 30} />
             </button>
