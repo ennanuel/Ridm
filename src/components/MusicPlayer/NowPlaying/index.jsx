@@ -58,7 +58,7 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
                 '--bg1': colors[0],
                 '--bg2': colors[1]
             }}
-            className={`fixed z-[9999] bottom-0 right-0 h-[100vh] w-full lg:w-[calc(100vw-300px)] overflow-y-scroll overflow-x-clip rounded-lg lg:rounded-none grid grid-cols-1 grid-rows-[30px,83vh,60px,90vh] lg:grid-rows-[200px,1fr] gap-2 transition-[transform,opacity] lg:origin-[top,right] ${!nowPlaying && 'translate-y-[105%] lg:translate-y-0 scale-y-50 lg:scale-y-20 lg:scale-x-20 lg:opacity-0 pointer-events-none'} bg-gradient-to-b from-orange-800 to-black `}
+            className={`fixed z-[9999] bottom-0 right-0 h-[100vh] w-full lg:w-[calc(100vw-300px)] overflow-y-scroll overflow-x-clip rounded-lg lg:rounded-none grid grid-cols-1 grid-rows-[30px,83vh,60px,90vh] lg:grid-rows-[200px,1fr] gap-2 transition-[transform,opacity] lg:origin-top-right ${!nowPlaying && 'translate-y-[105%] lg:translate-y-0 scale-y-50 lg:scale-x-50 lg:opacity-0 pointer-events-none'} bg-gradient-to-b from-orange-800 to-black `}
         >
             <div className="lg:block hidden absolute top-0 left-0">
                 <ExpandCollapse onClick={handleClick} nowPlaying={nowPlaying} />
