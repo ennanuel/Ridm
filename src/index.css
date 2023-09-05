@@ -154,12 +154,19 @@ html {
   background: #101010;
 }
 
+@media (max-width: 600px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* The slider itself */
 .seek_slider {
   -webkit-appearance: none;
   /* Override default CSS styles */
   @apply rounded-md;
   @apply bg-gray-400;
+  background-color: var(--bg1);
   appearance: none;
   height: 5px;
   /* Specified height */
@@ -173,6 +180,7 @@ html {
   /* Override default look */
   @apply bg-white;
   @apply rounded-full;
+  background-color: var(--bg2);
   appearance: none;
   width: 10px;
   /* Set a specific slider handle width */
@@ -184,7 +192,9 @@ html {
 
 .seek_slider::-moz-range-thumb {
   @apply bg-white;
-  @apply rounded-full;
+  @apply shadow;
+  @apply shadow-black/50;
+  background-color: var(--bg2);
   width: 10px;
   /* Set a specific slider handle width */
   height: 10px;

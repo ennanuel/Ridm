@@ -3,7 +3,7 @@ import { BsPlayFill, BsPauseFill, BsSkipEndFill, BsSkipStartFill } from 'react-i
 
 const Controls = ({ dispatch, isPlaying , repeat, prev, next, pause, play, onRepeat, offRepeat, onShuffle, offShuffle, shuffle, currentIndex }) => {
   return (
-    <div className="flex flex-row items-center justify-evenly gap-4">
+    <div className="flex flex-row items-center justify-between mx-4 gap-4">
         <button className={`text-gray-400 relative ${repeat ? 'text-white' : 'text-gray-400'}`} onClick={() => repeat ? onRepeat(dispatch) : offRepeat(dispatch)}>
             <MdRepeat size={25} />
             {
