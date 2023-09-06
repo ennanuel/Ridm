@@ -14,7 +14,7 @@ const QueueAndLyrics = ({ currentSongs, isFetching, lyrics, error, lyricsQueue, 
         >
             <div 
                 style={{ background: (window.innerWidth < 1024) && `linear-gradient(${bg2}, ${bg})` }}
-                className={`rounded-md flex-1 invisible_scroll p-3 overflow-y-scroll ${(lyricsQueue && window.innerWidth < 1024) && 'hidden'}`}
+                className={`h-full rounded-md flex-1 invisible_scroll p-3 overflow-y-scroll ${(lyricsQueue && window.innerWidth < 1024) && 'hidden'}`}
             >
                 {
                     (
@@ -26,7 +26,7 @@ const QueueAndLyrics = ({ currentSongs, isFetching, lyrics, error, lyricsQueue, 
                     )
                 }
             </div>
-            <div className={`rounded-md flex-1 lg:p-2 lg:gap-2 invisible_scroll flex flex-col bg-black/50 overflow-y-scroll ${(!lyricsQueue && window.innerWidth < 1024) && 'hidden'}`}>
+            <div className={`h-full rounded-md flex-1 lg:p-2 lg:gap-2 invisible_scroll flex flex-col bg-black/50 overflow-y-scroll ${(!lyricsQueue && window.innerWidth < 1024) && 'hidden'}`}>
                 {
                     currentSongs.map((song, i, tracks) =>
                         <QueueSong

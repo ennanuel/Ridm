@@ -12,7 +12,7 @@ const Actions = () => {
     if (!data?.id) return;
 
     return (
-        <div className="relative z-[0] flex flex-col lg:flex-row flex-wrap justify-between items-start lg:items-center gap-3 p-4">
+        <div className="relative z-[0] flex lg:flex-row justify-between items-start lg:items-center gap-3 p-4">
             <div className="flex-1 flex flex-row items-center justify-start gap-4">
                 {
                     !(isFetching || error) &&

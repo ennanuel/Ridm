@@ -24,7 +24,7 @@ const Details = ({ playlistInfo, handleChange }) => {
         />
         <button className="flex w-fit truncate items-center justify-center gap-[3px] bg-gray-200 text-black text-sm md:text-base border border-gray-200 h-[30px] md:h-[40px] rounded-[25px] px-2 md:px-3 transition-[background-color] hover:bg-transparent hover:text-gray-200">
           <MdPlaylistAdd size={30} />
-          <span className="font-semibold">Create Playlist</span>
+          <span className="font-semibold justify-self-end">Create Playlist</span>
         </button>
       </div>
     </div>

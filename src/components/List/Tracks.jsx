@@ -32,7 +32,7 @@ const AllTracks = ({ tracks,  activeSong, isPlaying, isFetching, error, songsToB
         </tr>
       </thead>
       {
-        allTracks.map( (song, i, songs) => (
+        allTracks?.map( (song, i, songs) => (
           <Track 
             i={i}
             key={i}
