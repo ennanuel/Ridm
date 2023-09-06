@@ -69,7 +69,7 @@ const App = () => {
         <AddToPlaylist />
         <Prompt />
         <Welcome />
-        <div>
+        <div className="min-h-[90vh]">
           <Routes>
             <Route path="/charts" element={<TopCharts />} />
             <Route path="/*" element={<Discover />} />

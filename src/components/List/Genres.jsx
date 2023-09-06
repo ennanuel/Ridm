@@ -21,7 +21,7 @@ const Genres = ({children, genres, isFetching, error, blacklist, favorites, noFi
           <Error title="Could not load genres" /> :
           <div className="grid grid-cols-2 md:grid-cols-4 items-center justify-center gap-6">
             {
-              newGenres.map( (genre, i) => (
+              newGenres?.map( (genre, i) => (
                 <GenreCard key={i} genre={genre} i={i} />
               ))
             }

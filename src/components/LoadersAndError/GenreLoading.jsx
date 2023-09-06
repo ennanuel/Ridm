@@ -16,8 +16,8 @@ const GenreLoading = ({ num }) => {
     }, [])
 
     const Genre = () => (
-        <div className='w-full aspect-square flex flex-col items-end justify-end gap-2 p-4 bg-black/50 loading-animation'>
-            <div className="w-[70%] h-[25px] rounded-sm bg-white/5"></div>
+        <div className='w-full aspect-square flex flex-col items-end justify-end gap-2 p-4 bg-white/5 loading-animation'>
+            <div className="w-[70%] h-[25px] rounded-sm bg-black/50"></div>
         </div>
     )
 

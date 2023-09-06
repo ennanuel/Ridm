@@ -29,7 +29,7 @@ const Search = () => {
                     categories.map( (category, i) => (
                         <li 
                             key={i} 
-                            className={`rounded-[18px] flex items-center justify-center px-2 md:px-3 h-[28px] md:h-[32px] text-xs sm:text-sm hover:text-gray-100 border border-white/10 ${params.get('cat') == category || (!['Song', 'Artist', 'Album'].includes(params.get('cat')) && category == 'All') ? 'bg-white text-black' : 'bg-white/5 hover:bg-white/10'}`}
+                            className={`rounded-[18px] flex items-center justify-center px-2 md:px-3 h-[28px] min-w-[60px] md:h-[32px] text-xs sm:text-sm hover:text-gray-100 border border-white/10 ${params.get('cat') == category || (!['Song', 'Artist', 'Album'].includes(params.get('cat')) && category == 'All') ? 'bg-white text-black' : 'bg-white/5 hover:bg-white/10'}`}
                         >
                             <button onClick={() => setParams({'cat': category})}>{category}</button>
                         </li>
@@ -39,19 +39,19 @@ const Search = () => {
             {
                 (params.get('cat') != 'Artist' && params.get('cat') != 'Album') &&
                 <Songs songs={songSearch?.data || []} isFetchihng={isFetchingSong} error={errorFetchingSong} blacklist={blacklist} favorites={favorites}>
-                    <span className="text-gray-400 text-sm md:text-base">Song results for </span><span className="text-gray-100">{searchTerm}</span>
+                    <span className="text-gray-400 text-sm md:text-base">Song results for </span><span className="text-gray-100 text-sm md:text-base">{searchTerm}</span>
                 </Songs>
             }
             {
                 (params.get('cat') != 'Artist' && params.get('cat') != 'Song') &&
                 <Albums albums={albumSearch?.data || []} isFetching={isFetchingAlbum} error={errorFetchingAlbum} blacklist={blacklist} favorites={favorites}>
-                    <span className="text-gray-400 text-sm md:text-base">Album results for </span><span className="text-gray-100">{searchTerm}</span>
+                    <span className="text-gray-400 text-sm md:text-base">Album results for </span><span className="text-gray-100 text-sm md:text-base">{searchTerm}</span>
                 </Albums>
             }
             {
                 (params.get('cat') != 'Song' && params.get('cat') != 'Album') &&
                 <Artists artists={artistSearch?.data || []} isFetching={isFetchingArtist} error={errorFetchingArtist} blacklist={blacklist} favorites={favorites}>
-                    <span className="text-gray-400 text-sm md:text-base">Artist results for </span><span className="text-gray-100">{searchTerm}</span>
+                    <span className="text-gray-400 text-sm md:text-base">Artist results for </span><span className="text-gray-100 text-sm md:text-base">{searchTerm}</span>
                 </Artists>
             }
         </div>

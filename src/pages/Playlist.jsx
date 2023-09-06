@@ -69,7 +69,7 @@ const Playlist = () => {
           playlists.length < 1 ? 
             <div className="mt-[-40px] flex flex-col items-center justify-center gap-4 h-[90vh]">
               <h3 className="text-gray-400 font-bold text-xl">You don't have any saved playlists</h3>
-              <Link to="/playlists?add=true" className="flex items-center justify-center font-bold text-xs md:text-sm text-gray-300 border border-gray-300 px-2 md:px-3 h-[30px] md:h-[40px] rounded-[25px] hover:text-gray-300 hover:bg-transparent transition-[background-color]">Create New</Link>
+              <Link to="/playlists?add=true" className="flex items-center justify-center font-bold text-xs md:text-sm text-gray-300 border border-gray-300 px-3 h-[30px] md:h-[40px] rounded-[25px] hover:text-gray-300 hover:bg-transparent transition-[background-color]">Create New</Link>
             </div> :
           <Playlists playlists={playlists} />
         }
