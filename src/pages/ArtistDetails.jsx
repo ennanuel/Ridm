@@ -35,7 +35,7 @@ const ArtistDetails = () => {
     }, [artist])
 
     return (
-        <div className="flex flex-col relative z-1 backdrop-blur-xl">
+        <div className="flex flex-col">
 
             <div className="p-2 md:p-4">
                 <Albums 

@@ -47,8 +47,7 @@ const AlbumDetails = () => {
   }, [album, favorites, blacklist])
 
   return (
-    <div className="flex flex-col">
-        <div className="relative mb-4">
+    <div className="flex flex-col gap-4">
           <Tracks 
             isFetching={isFetching}
             tracks={data?.tracks} 
@@ -60,7 +59,6 @@ const AlbumDetails = () => {
             favorites={favorites}
             blacklist={blacklist}
           />
-        </div>
       <div className="p-2 md:p-4">
         <Albums
           favorites={favorites}

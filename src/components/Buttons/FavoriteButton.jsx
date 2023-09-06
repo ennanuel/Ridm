@@ -21,8 +21,8 @@ const FavoriteButton = ({data, type, small, text}) => {
         >
             {
                 data?.favorite ?
-                    <AiFillHeart size={window.innerWidth < 1024 ? 15 : small ? 20 : 40} /> :
-                    <AiOutlineHeart size={window.innerWidth < 1024 ? 15 : small ? 20 : 40} />
+                    <AiFillHeart size={ small ? 20 : 40} /> :
+                    <AiOutlineHeart size={ small ? 20 : 40} />
             } 
         </button>
     )

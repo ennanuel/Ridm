@@ -72,7 +72,7 @@ const Options = ({type, small, song, artist, genre, album, radio, playlist, trac
                 ref={btnRef} 
                 className={`text-white flex items-center justify-center drop-shadow-lg`}
             >
-                <BsThreeDots size={window.innerWidth < 1024 ? 15 : small ? 20 : 30} />
+                <BsThreeDots size={window.innerWidth || small ? 20 : 30} />
             </button>
         </div>
     )

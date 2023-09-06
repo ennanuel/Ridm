@@ -1,8 +1,7 @@
 import { SongBar } from "../Cards"
 import { playNext } from "../../functions/player"
 import SuggestedCard from '../Cards/SuggestedCard'
-import SeeMore from "./SeeMore"
-import { SongLoading, Error } from "../LoadersAndError"
+import { Error } from "../LoadersAndError"
 import Songs from "./Songs"
 
 const Suggestion = ({ radioTracks, radio, dispatch, songs, isFetching, error, blacklist, favorites }) => {

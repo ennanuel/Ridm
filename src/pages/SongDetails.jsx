@@ -47,7 +47,7 @@ const SongDetails = () => {
     }, [lyricsData])
 
     return (
-        <div className="relative z-1">
+        <div className="">
             <div className="p-2 md:p-4 flex flex-col md:flex-row items-stretch md:items-start justify-stretch">
                 <div className="flex-1">
                     <SongLyrics isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />

@@ -21,7 +21,7 @@ const Details = () => {
     return (
         <DetailsContext.Provider value={{...data, updateData}}>
             <DetailsHeader />
-            <section style={{ background: `linear-gradient(${data.colors[0]} 50px, #101010 300px)`}}>
+            <section style={{ background: `linear-gradient(${data.colors[0]} 50px, #101010 300px)`}} className="backdrop-blur-xl">
                 <Actions />
                 <Outlet />
             </section>
