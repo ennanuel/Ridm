@@ -31,7 +31,7 @@ const AlbumCard = ({ album, i, isRelated, isRecent, activeSong, isPlaying }) => 
         <div 
             style={{'--delay': (i/10) + 's'}} 
             onClick={handleClick} 
-            className="album-card p-2 relative flex flex-col flex-1 hover:bg-white/5 transition-[background-color,top] top-0 hover:top-[-10px] cursor-pointer"
+            className="album-card p-2 flex flex-col flex-1 hover:bg-white/5 transition-[background-color] top-0 cursor-pointer"
         >
             <div className="relative">
                 <img className="transition-transform shadow shadow-black w-full aspect-square" alt="song_img" src={album?.cover_medium} />

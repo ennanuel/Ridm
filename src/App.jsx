@@ -34,11 +34,11 @@ const App = () => {
   }
 
   const handleScroll = () => {
-    setScroll({
+    setScroll(prev => ({
       scrollY: window.scrollY, 
       scrolled: window.scrollY > 50, 
-      scrolledUp: scrollY < window.scrollY
-    })
+      scrolledUp: prev.scrollY < window.scrollY
+    }))
   }
 
   useLayoutEffect(() => {
