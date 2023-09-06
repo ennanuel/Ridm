@@ -5,7 +5,7 @@ export const getData = ({ type, data, blacklist, favorites, noFilter, params }) 
         
         if (Boolean(params)) {
             sortType = params.get('sort');
-            filterText = new RegExp(params.get('filter'), 'i')
+            filterText = new RegExp(params.get('filter') || '', 'i')
         } else {
             sortType = ''
             filterText = new RegExp('', 'i')
