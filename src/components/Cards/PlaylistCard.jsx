@@ -16,7 +16,7 @@ const PlaylistCard = ({ i, playlist }) => {
           }
           <div className="relative h-full w-full px-4 py-2 bg-black/70 flex flex-col items-start justify-end">
             <span className="text-gray-400 text-xs font-semibold">playlist</span>
-            <span className="text-white text-md font-semibold truncate w-full block">{playlist.name}</span>
+            <span className="text-white text-base font-semibold truncate w-full block">{playlist.name}</span>
           </div>
         </div>
       </Link>

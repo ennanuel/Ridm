@@ -4,13 +4,13 @@ const EditPlaylistDetails = ({ editData, playlist, handleChange, songsToBeDelete
   return (
   <div className="flex-col flex-1">
     <input 
-      className="px-2 py-1 rounded-md text-white text-md md:text-xl lg:text-2xl bg-white/10 focus:outline-none block w-fit placeholder:text-gray-400" 
+      className="px-2 py-1 rounded-md text-white text-base md:text-xl lg:text-2xl bg-white/10 focus:outline-none block w-fit placeholder:text-gray-400" 
       value={editData.name} 
       placeholder={playlist.name} 
       onChange={handleChange} 
       type="text" 
     />
-    <p className="text-gray-400 text-md my-2">
+    <p className="text-gray-400 text-base my-2">
       {songsToBeDeleted.length} song{songsToBeDeleted.length > 1 ? 's' : ''} selected
     </p>
 

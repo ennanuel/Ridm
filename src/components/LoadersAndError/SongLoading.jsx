@@ -16,7 +16,7 @@ const SongLoading = ({ num, full }) => {
     }, [])
 
     const Song = () => (
-        <div className='flex gap-2 p-2 bg-white/5 loading-animation'>
+        <div className='flex gap-2 p-2 bg-white/5 loading-animation rounded-md'>
             <div className="w-[80px] aspect-square rounded-md bg-black/50"></div>
             <div className="flex flex-1 flex-col justify-center gap-2">
                 <div className="w-[30%] h-[15px] rounded-sm bg-black/50"></div>

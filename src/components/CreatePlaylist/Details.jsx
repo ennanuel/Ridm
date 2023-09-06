@@ -22,7 +22,7 @@ const Details = ({ playlistInfo, handleChange }) => {
             className="md:max-w-[300px] bg-transparent border-b border-gray-400 opacity-80 focus:opacity-100 outline-none text-white placeholder:text-gray-400 text-lg" 
             placeholder="Title" 
         />
-        <button className="flex w-fit truncate items-center justify-center text-gray-400 border-2 border-gray-400 rounded-md px-2 py-1 transition-[background-color] hover:bg-gray-400 hover:text-black">
+        <button className="flex w-fit truncate items-center justify-center gap-[3px] bg-gray-200 text-black text-sm md:text-base border border-gray-200 h-[30px] md:h-[40px] rounded-[25px] px-2 md:px-3 transition-[background-color] hover:bg-transparent hover:text-gray-200">
           <MdPlaylistAdd size={30} />
           <span className="font-semibold">Create Playlist</span>
         </button>

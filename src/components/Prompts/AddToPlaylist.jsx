@@ -25,8 +25,8 @@ const AddToPlaylist = () => {
 
   return (
     <section className={`fixed z-[100] top-0 left-0 w-full h-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-opacity ${!displayPlaylistPrompt && 'pointer-events-none opacity-0'}`}>
-      <div className={`w-full max-w-[250px] overflow-hidden bg-black/90 border border-white/10 rounded-lg transition-transform ${!displayPlaylistPrompt && 'scale-50'}`}>
-        <p className="p-3 font-semibold text-center text-gray-200 text-md">Add to playlist</p>
+      <div className={`w-full max-w-[250px] overflow-hidden bg-black/90 border border-white/10 rounded-sm transition-transform ${!displayPlaylistPrompt && 'scale-50'}`}>
+        <p className="p-3 font-semibold text-center text-gray-200 text-base">Add to playlist</p>
           <ul className="flex flex-col border-t border-white/10 text-sm text-gray-400">
             <li onClick={() => {navigate('/playlists?add=true'); closePrompt()}} className="flex items-center justify-start py-2 px-4 border-b font-bold hover:bg-white/5 hover:text-gray-200 border-white/5">Create new playlist</li>
               {

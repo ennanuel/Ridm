@@ -25,7 +25,7 @@ const Radios = ({ radios, children, showmore, isFetching, error, blacklist, favo
             <RadioLoading num={5} /> :
             error ?
             <Error title="Could not load radios." /> :
-            !isFetching && !error && newRadios.length < 1 ?
+            !isFetching && !error && newRadios?.length < 1 ?
             <Error title="Nothing was found" /> :
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
                 {

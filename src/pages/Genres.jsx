@@ -13,7 +13,7 @@ const GenresPage = () => {
   }, [])
 
   return (
-    <div className="p-2 md:p-4 min-h-[90vh]">
+    <div className="p-2 min-h-[90vh] md:p-4">
       <Genres blacklist={blacklist} favorites={favorites} genres={data?.data} isFetching={isFetching} error={error}>Genres</Genres>
     </div>
   )

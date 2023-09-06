@@ -10,7 +10,7 @@ const Contributors = ({ contributors, text }) => {
           alt="artist" 
           className={`relative shadow-md shadow-black/20 bottom-0 left-5 rounded-full h-full max-h-[30px] w-auto block`}
         />
-        <p style={{ color: text }} className="relative text-md font-bold text-gray-200 ml-6">{contributor.name}</p>
+        <p style={{ color: text }} className="relative text-base font-bold text-gray-200 ml-6">{contributor.name}</p>
         <BsDot size={20} style={{ color: text }} />
       </div>
     </Link>

@@ -51,6 +51,11 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
     }
 
     return (
+        <>
+            {
+                nowPlaying &&
+                <button className="fixed top-0 left-0 w-full h-full hidden lg:block cursor-default" onClick={handleClick}></button>
+            }
         <div
             style={{
                 background: `linear-gradient(${colors[0]}, #151515)`,
@@ -109,7 +114,8 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
                 handleDragOver={handleDragOver} 
                 handleDragEnd={handleDragEnd}
             />
-        </div>
+            </div>
+        </>
     )
 }
 

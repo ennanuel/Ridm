@@ -1,7 +1,7 @@
 export const getData = ({ type, data, blacklist, favorites, noFilter, params }) => {
     let sortType, filterText;
     try {
-        if (!(['tracks', 'artists', 'albums', 'genres', 'radios'].includes(type) && data && blacklist && favorites)) throw "parameter(s) empty or invalid 'type' parameter";
+        if (!(['tracks', 'artists', 'albums', 'genres', 'radios'].includes(type) && data && blacklist && favorites)) return data;
         
         if (Boolean(params)) {
             sortType = params.get('sort');
@@ -14,9 +14,9 @@ export const getData = ({ type, data, blacklist, favorites, noFilter, params }) 
         const newData = data
             .slice()
             .sort(
-                (a, b) => sortType == 'recent' && type != 'artists' ?
-                    (new Date(a.release_date)).getTime() - (new Date(b.release_date)).getTime() :
-                    sortType == 'recent' && type == 'artists' ?
+                (a, b) => sortType == 'popular' && type != 'artists' ?
+                    data?.artist?.fans - data?.artist?.fans :
+                    sortType == 'popular' && type == 'artists' ?
                     (a.fans - b.fans) :
                     1
             )
@@ -38,7 +38,7 @@ export const getData = ({ type, data, blacklist, favorites, noFilter, params }) 
 
 export const getSingleData = ({type, data, favorites, blacklist}) => {
     try {
-        if(!['tracks', 'artists', 'albums', 'genres', 'radios'].includes(type) || !data || !favorites || !blacklist ) throw "parameter(s) empth or invalid 'type' parameter";
+        if(!['tracks', 'artists', 'albums', 'genres', 'radios'].includes(type) || !data || !favorites || !blacklist ) return data;
 
         const newData = {
             ...data, 

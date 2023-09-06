@@ -23,7 +23,7 @@ const Albums = ({ albums, children, showSort, isFetching, error, favorites, blac
         { showmore && <SeeMore link={`/charts?type=albums&genre=${genreid}`} /> }
       </div>
       {
-        showSort && <Sort type="ablum" />
+        showSort && <Sort type="album" />
       }
       {
         isFetching ?

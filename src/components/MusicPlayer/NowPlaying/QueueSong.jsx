@@ -1,14 +1,18 @@
 import { BsDot, BsThreeDots } from 'react-icons/bs'
 import { BiGridHorizontal } from 'react-icons/bi'
+import { playSongs } from '../../../functions/player'
+import { useDispatch } from 'react-redux'
 
-const QueueSong = ({song, currentSong, handleDragOver, handleDragEnd, color, i }) => {
+const QueueSong = ({ song, currentSong, handleDragOver, handleDragEnd, color, i, tracks }) => {
+  const dispatch = useDispatch()
+
   return (
-    <div style={{ backgroundColor: currentSong && color?.replace(')', ', 0.5)') }}
+    <div onClick={() => playSongs({ dispatch, song, i, tracks })} style={{ backgroundColor: currentSong && color?.replace(')', ', 0.5)') }}
       draggable={true} i={i}
       onDragStart={e => e.target.style.opacity = '0.5'}
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
-      className={`queue_song rounded-md flex p-2 flex-row items-center justify-center gap-2 text-gray-400 hover:bg-white/10 ${currentSong && 'bg-white/5'}`}
+      className={`queue_song cursor-pointer rounded-md flex p-2 flex-row items-center justify-center gap-2 text-gray-400 hover:bg-white/10 ${currentSong && 'bg-white/5'}`}
     >
         <BiGridHorizontal size={25} />
         <img src={song?.album?.cover_small} className="rounded-md h-[50px] w-[50px] bg-white/10" />

@@ -19,10 +19,11 @@ const Footer = () => {
             </span>
         </button>
         <p className="font-semibold text-gray-200 text-sm mb-4">Powered By</p>
-        <ul className="grid grid-cols-2 text-[0.7em] text-gray-500 gap-2">
-            <li className="hover:text-white hover:underline"><a href="https://developer.deezer.com" target="_blank">Deezer</a></li>
-            <li className="hover:text-white hover:underline"><a href="https://developer.musixmatch.com" target="_blank">MusixMatch</a></li>
-        </ul>
+      <ul className="grid grid-cols-2 text-[0.7em] text-gray-500 gap-2">
+        <li className="hover:text-white hover:underline"><a href="https://developer.deezer.com" target="_blank">Deezer</a></li>
+        <li className="hover:text-white hover:underline"><a href="https://developer.musixmatch.com" target="_blank">MusixMatch</a></li>
+        <li className="hover:text-white hover:underline"><a href="https://ezema.netlify.app" taget="_blank">Ezema</a></li>
+      </ul>
     </footer>
   )
 }

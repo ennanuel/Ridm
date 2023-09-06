@@ -47,7 +47,7 @@ const TopCharts = () => {
                         const type = params.get('type')
                         const active = category.to == type
                         return (
-                            <section className={`h-full transition-[transform,opacity] ${(!active && showingType) && 'scale-20 opacity-0 pointer-events-none'}`}>
+                            <section className={`h-full transition-[transform,opacity] ${(!active && showingType) && 'scale-20 opacity-0 pointer-events-none m-0 h-0 w-0'}`}>
                                 <Chart category={category} active={active} i={i} />
                             </section>
                         )

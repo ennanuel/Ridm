@@ -22,18 +22,19 @@ const QueueAndLyrics = ({ currentSongs, isFetching, lyrics, error, lyricsQueue, 
                         <LyricLoading num={8} /> : 
                         error ?
                         <Error title="Something went wrong" /> :
-                        <SongLyrics lyrics={songLyrics} isFetching={isFetching} error={error} />
+                        <SongLyrics nowPlaying={true} lyrics={songLyrics} isFetching={isFetching} error={error} />
                     )
                 }
             </div>
             <div className={`rounded-md flex-1 lg:p-2 lg:gap-2 invisible_scroll flex flex-col bg-black/50 overflow-y-scroll ${(!lyricsQueue && window.innerWidth < 1024) && 'hidden'}`}>
                 {
-                    currentSongs.map((song, i) =>
+                    currentSongs.map((song, i, tracks) =>
                         <QueueSong
                             color={bg}
                             handleDragOver={(e) => handleDragOver(e, i)}
                             handleDragEnd={(e) => handleDragEnd(e, song, i)}
                             song={song}
+                            tracks={tracks}
                             key={i}
                             i={i}
                             currentSong={i === currentIndex}
