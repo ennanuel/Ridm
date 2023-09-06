@@ -17,7 +17,7 @@ const GenreDetailsHeader = ({ genre, charts, isFetching, error, setColors, bg, t
 
     return (
         <div style={{ boxShadow: `0 40px 50px ${bg}` }} className="relative w-full h-[50vh] mt-[-60px]">
-            <img onLoad={handleLoad} crossOrigin="anonymous" ref={imgRef} src={genre.picture_xl} className="absolute top-0 left-0 w-full h-full object-cover" />
+            <img onLoad={handleLoad} crossOrigin="anonymous" ref={imgRef} src={genre?.picture_xl} className="absolute top-0 left-0 w-full h-full object-cover" />
             <div style={{ background: `linear-gradient(transparent, ${bg} 80%)`}} className="absolute w-full h-full top-0 left-0" />
             {
                 isFetching ?
