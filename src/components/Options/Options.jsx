@@ -8,6 +8,7 @@ import { options } from "../../assets/data/options"
 import { loadOptions } from "../../functions/option"
 
 import Option from './Option'
+import { BiMenu } from "react-icons/bi"
 
 const Options = ({type, small, song, artist, genre, album, radio, playlist, tracks, i, favorite, playlists, blacklist }) => {
     const filteredOptions = loadOptions({options, type, playlists, favorite, blacklist, small})
@@ -42,7 +43,7 @@ const Options = ({type, small, song, artist, genre, album, radio, playlist, trac
                     <>
                     <div onClick={close} className="fixed z-[99999] top-0 left-0 h-full w-full" />
                     <div
-                        className={`absolute animate-slowfade shadow-lg overflow-hidden shadow-black/60 z-[999999] w-max flex flex-col border text-gray-200 text-sm font-semibold border-white/10 rounded-lg bg-black/80 backdrop-blur-lg ${position.clientY > position.height ? 'bottom-0' : 'top-0'} ${position.clientX > position.width ? 'right-[calc(100%+5px)]' : 'left-[calc(100%+5px)]'}`}
+                        className={`absolute animate-slowfade shadow-lg overflow-hidden shadow-black/60 z-[999999] w-max flex flex-col border text-gray-200 text-sm font-semibold border-white/10 rounded-md bg-black/80 backdrop-blur-lg ${position.clientY > position.height ? 'bottom-0' : 'top-0'} ${position.clientX > position.width ? 'right-[calc(100%+5px)]' : 'left-[calc(100%+5px)]'}`}
                     >
                     {
                         filteredOptions
@@ -72,7 +73,11 @@ const Options = ({type, small, song, artist, genre, album, radio, playlist, trac
                 ref={btnRef} 
                 className={`text-white flex items-center justify-center drop-shadow-lg`}
             >
-                <BsThreeDots size={window.innerWidth || small ? 20 : 30} />
+                {
+                    type == 'playlists' ?
+                        <BiMenu size={ window.innerWidth < 1024 ? 18 : small ? 20 : 30 } /> :
+                        <BsThreeDots size={ window.innerWidth < 1024 ? 18 : small ? 20 : 30 } />
+                }
             </button>
         </div>
     )

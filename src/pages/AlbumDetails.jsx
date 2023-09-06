@@ -34,7 +34,7 @@ const AlbumDetails = () => {
   
   useEffect(() => { 
     updateData({ isFetching: true, error: false, data: {}, colors: [] })
-  }, [])
+  }, [albumid])
 
   useEffect(() => {
     const text = `${isFetching ? 'Loading Album...' : error ? 'Something went wrong' : `Album: ${album?.title} by ${album?.artist?.name}`}`

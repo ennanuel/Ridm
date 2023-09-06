@@ -22,7 +22,7 @@ const ArtistDetails = () => {
     
     useEffect(() => { 
         updateData({ isFetching: true, error: false, data: {}, colors: [] })
-    }, [])
+    }, [artistid])
 
     useEffect(() => {
         const refinedData = getSingleData({ type: 'artists', data: artist, favorites, blacklist })
@@ -46,7 +46,7 @@ const ArtistDetails = () => {
                     albums={albums?.data} 
                     showSort={true}
                 >
-                    Popular {data?.name} albums
+                    {data?.name} releases
                 </Albums>
                 <Songs 
                     blacklist={blacklist}

@@ -10,14 +10,14 @@ export const getData = ({ type, data, blacklist, favorites, noFilter, params }) 
             sortType = ''
             filterText = new RegExp('', 'i')
         }
-
+        
         const newData = data
             .slice()
             .sort(
-                (a, b) => sortType == 'popular' && type != 'artists' ?
-                    data?.artist?.fans - data?.artist?.fans :
-                    sortType == 'popular' && type == 'artists' ?
-                    (a.fans - b.fans) :
+                (a, b) => sortType == 'popular' && type == 'artists' ?
+                    data?.artist?.rank - data?.artist?.rank :
+                    sortType == 'popular' && type != 'artists' ?
+                    ((new Date(a.release_date)).getTime() > (new Date(b.release_date)).getTime() ? -1 : 1) :
                     1
             )
             .map( elem => (

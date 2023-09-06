@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
 const Header = ({ type, title, text }) => {
-    const headerTitle = useMemo(() => title?.length > 20 ? title.substring(0, 25) + '...' : title, [title])
+    const headerTitle = useMemo(() => title?.length > 25 ? title.substring(0, 25) + '...' : title, [title])
 
     return (
         <>

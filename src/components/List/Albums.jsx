@@ -14,7 +14,7 @@ const Albums = ({ albums, children, showSort, isFetching, error, favorites, blac
 
   useEffect(() => {
     setNewAlbums(() => getData({type: 'albums', data: albums, blacklist, favorites, noFilter, params }))
-  }, [blacklist, favorites, albums, noFilter])
+  }, [blacklist, favorites, albums, noFilter, params])
 
   return (
     <div className="mb-8">

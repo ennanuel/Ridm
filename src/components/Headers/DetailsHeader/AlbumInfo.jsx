@@ -18,6 +18,7 @@ const AlbumInfo = ({ data }) => {
             }
             {
                 data?.type != 'artist' &&
+                <>
                 <span>
                     {
                         Math.floor(data.duration/(3600)) ? 
@@ -33,12 +34,13 @@ const AlbumInfo = ({ data }) => {
                     }
                     {data.duration%60 ? data.duration%60 + (data.duration%60 > 1 ? ' secs' : ' sec') : ''}
                 </span>
+                <BsDot size={20} />
+                </>
             }
-            <BsDot size={20} />
             { data?.type == 'artist' && <a href="#albums">{ data?.nb_album} releases </a> }
             {
                 data?.type == 'track' &&
-                <Link to={`/album/${data?.album?.id}`}>
+                <Link to={`/albums/${data?.album?.id}`}>
                         {
                             data?.album?.title.length > 30 ?
                             data?.album?.title.substring(0, 30) + '...' :

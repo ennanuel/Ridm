@@ -26,7 +26,7 @@ const SongDetails = () => {
 
     useEffect(() => { 
         updateData({ isFetching: true, error: false, data: {}, colors: [] })
-    }, [])
+    }, [songid])
     
     useEffect(() => {
         const refinedData = getSingleData({ type: 'tracks', data: song, favorites, blacklist })
@@ -47,7 +47,7 @@ const SongDetails = () => {
     }, [lyricsData])
 
     return (
-        <div className="">
+        <div className="min-h-[100vh]">
             <div className="p-2 md:p-4 flex flex-col md:flex-row items-stretch md:items-start justify-stretch">
                 <div className="flex-1">
                     <SongLyrics isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
@@ -62,7 +62,7 @@ const SongDetails = () => {
                         isFetching={isFetchingRelated} 
                         error={errorFetchingRelated} 
                         songData={data} 
-                        songs={relatedSongs?.data?.slice(0, 6)}
+                        songs={relatedSongs?.data?.filter( song => song.id != songid )?.slice(0, 6)}
                     >
                         Similar Songs
                     </Songs>

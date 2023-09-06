@@ -63,13 +63,13 @@ const Playlist = () => {
       <div className={`min-w-full transition-transform ${params.get('add') === 'true' && 'translate-x-[-110%]'}`}>
         <div className="w-full flex justify-between items-center mb-4">
           <h3 className="font-bold text-white text-xl">Playlists</h3>
-          <Options type="playlists" navigate={navigate} small={true} />
+          <Options type="playlists" navigate={navigate} />
         </div>
         {
           playlists.length < 1 ? 
             <div className="mt-[-40px] flex flex-col items-center justify-center gap-4 h-[90vh]">
               <h3 className="text-gray-400 font-bold text-xl">You don't have any saved playlists</h3>
-              <Link to="/playlists?add=true" className="flex items-center justify-center font-bold text-xs md:text-sm text-gray-300 border border-gray-300 px-3 h-[30px] md:h-[40px] rounded-[25px] hover:text-gray-300 hover:bg-transparent transition-[background-color]">Create New</Link>
+              <Link to="/playlists?add=true" className="flex items-center justify-center font-bold text-xs md:text-sm bg-gray-400 text-black border border-gray-400 px-3 h-[28px] md:h-[36px] rounded-[18px] hover:text-gray-400 hover:bg-transparent transition-[background-color]">Create New</Link>
             </div> :
           <Playlists playlists={playlists} />
         }

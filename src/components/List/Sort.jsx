@@ -18,11 +18,11 @@ const Sort = ({ type = 'track' }) => {
   return (
     <div id="sort" className="flex flex-row justify-start items-start gap-2 mb-4 relative z-[2]">
       <button
-        className={`px-4 h-[36px] rounded-[5px] flex flex-row items-center justify-center shadow-sm shadow-black/50 text-gray-300 font-bold text-sm hover:bg-white/10 ${ params.get('sort') == 'recent' ? 'bg-white/20 text-white' : 'bg-white/5 text-gray-300'}`}
+        className={`px-4 h-[36px] rounded-[5px] flex flex-row items-center justify-center shadow-sm shadow-black/50 text-gray-300 font-bold text-sm hover:bg-white/10 ${ params.get('sort') != 'popular' ? 'bg-white/20 text-white' : 'bg-white/5 text-gray-300'}`}
         onClick={() => handleClick('sort', 'recent')}
       >Latest</button>
       <button
-        className={`px-4 h-[36px] rounded-[5px] flex flex-row items-center justify-center shadow-sm shadow-black/50 text-gray-300 font-bold text-sm hover:bg-white/10 ${ params.get('sort') != 'recent' ? 'bg-white/20 text-white' : 'bg-white/5 text-gray-300'}`}
+        className={`px-4 h-[36px] rounded-[5px] flex flex-row items-center justify-center shadow-sm shadow-black/50 text-gray-300 font-bold text-sm hover:bg-white/10 ${ params.get('sort') == 'popular' ? 'bg-white/20 text-white' : 'bg-white/5 text-gray-300'}`}
         onClick={() => handleClick('sort', 'popular')}
       >Popularity</button>
       {
