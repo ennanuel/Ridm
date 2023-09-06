@@ -33,7 +33,7 @@ const RadioBox = ({ radio, show, handleClick }) => {
                     <span className="text-gray-200 text-sm font-semibold">{radioTracks?.length} Songs</span>
                 </p>
                 {
-                    radioTracks.length > 0 &&
+                    radioTracks?.length > 0 &&
                     <div className="flex-1 flex flex-row justify-start lg:justify-end items-center gap-4 lg:mt-[-20px]">
                     <PlayButton i={0} song={radioTracks[0]} tracks={radioTracks} />
                     <ShuffleButton tracks={radioTracks} />
@@ -42,7 +42,7 @@ const RadioBox = ({ radio, show, handleClick }) => {
             </div>
             <div className="flex flex-row items-center gap-4 my-4">
                 <FavoriteButton type="radios" data={radio} />
-                <Options type="radio" radio={radio} tracks={radioTracks} blacklist={radio.blacklist} favorite={radio.favorite} />
+                <Options type="radio" song={radioTracks && radioTracks[0]} i={0} radio={radio} tracks={radioTracks} blacklist={radio.blacklist} favorite={radio.favorite} />
             </div>
             <div className="rounded-md bg-black/50 max-h-[50vh] overflow-y-scroll overflow-x-clip">
                 <Songs blacklist={blacklist} favorites={favorites} isFetching={isFetching} error={error} songs={radioTracks} />
