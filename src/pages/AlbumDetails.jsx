@@ -31,6 +31,10 @@ const AlbumDetails = () => {
     const {tracks, contributors, genres, artist, ...album} = data;
     playSongs({dispatch, tracks, song, i, album})
   }
+  
+  useEffect(() => { 
+    updateData({ isFetching: true, error: false, data: {}, colors: [] })
+  }, [])
 
   useEffect(() => {
     const text = `${isFetching ? 'Loading Album...' : error ? 'Something went wrong' : `Album: ${album?.title} by ${album?.artist?.name}`}`

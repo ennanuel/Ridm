@@ -11,7 +11,7 @@ const MobileNavLinks = ({ activeSong, links, secondLinks }) => {
         {
             (activeSong?.title && window.innerWidth < 1024) && <MusicPlayer />
         }
-        <nav style={{background: '#202020'}} className="relative z-[10] rounded-t-lg w-full h-[70px] border-t border-gray-500/50">
+        <nav className="relative z-[10]  w-full h-[70px] border-t border-gray-500/50 bg-[#151515]">
             <ul className="w-full h-full flex flex-row items-center justify-evenly md:justify-center gap-3 text-xs">
             {
                 links.map(item => (

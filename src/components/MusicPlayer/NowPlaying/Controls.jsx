@@ -3,13 +3,9 @@ import { BsPlayFill, BsPauseFill, BsSkipEndFill, BsSkipStartFill } from 'react-i
 
 const Controls = ({ dispatch, isPlaying , repeat, prev, next, pause, play, onRepeat, offRepeat, onShuffle, offShuffle, shuffle, currentIndex }) => {
   return (
-    <div className="flex flex-row items-center justify-between mx-4 gap-4">
-        <button className={`text-gray-400 relative ${repeat ? 'text-white' : 'text-gray-400'}`} onClick={() => repeat ? onRepeat(dispatch) : offRepeat(dispatch)}>
+    <div className="flex flex-1 flex-row items-center justify-between mx-4 lg:mx-0 gap-4 lg:col-span-3 lg:row-span-2">
+        <button className={`relative text-white rounded-full h-[40px] aspect-square flex items-center justify-center transition-[background-color,transform] active:scale-90 ${repeat && 'bg-white/10 border border-white/50'}`} onClick={() => repeat ? onRepeat(dispatch) : offRepeat(dispatch)}>
             <MdRepeat size={25} />
-            {
-                repeat &&
-                <span className="absolute left-[50%] bottom-[-10px] translate-x-[-50%] h-[5px] aspect-square rounded-full bg-white shadow-xl shadow-white/50"></span>
-            }
         </button>
           
         <div className="flex items-center justify-center gap-4">
@@ -25,12 +21,8 @@ const Controls = ({ dispatch, isPlaying , repeat, prev, next, pause, play, onRep
 
             <button className="text-gray-200 transition-transform active:scale-90" onClick={() => next(dispatch, currentIndex + 1)}><BsSkipEndFill size={30} /></button>
         </div>
-        <button className={`text-gray-400 relative ${shuffle ? 'text-white' : 'text-gray-400'}`} onClick={() => shuffle ? offShuffle(dispatch) : onShuffle(dispatch, true)}>
+        <button className={`relative text-white rounded-full h-[40px] aspect-square flex items-center justify-center transition-[background-color,transform] active:scale-90 ${shuffle && 'bg-white/10 border border-white/50'}`} onClick={() => shuffle ? offShuffle(dispatch) : onShuffle(dispatch, true)}>
             <MdShuffle size={25} />
-            {
-                shuffle &&
-                <span className="absolute left-[50%] bottom-[-10px] translate-x-[-50%] h-[5px] aspect-square rounded-full bg-white shadow-xl shadow-white/50"></span>
-            }
         </button>
     </div>
   )

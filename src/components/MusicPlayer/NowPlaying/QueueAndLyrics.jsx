@@ -10,30 +10,37 @@ const QueueAndLyrics = ({ currentSongs, isFetching, lyrics, error, lyricsQueue, 
     return (
         <div
             id="queue_lyrics"
-            style={{ background: !lyricsQueue && `linear-gradient(${bg2}, ${bg})` }}
-            className={`flex flex-col mx-3 mb-3 rounded-lg ${ lyricsQueue ? 'bg-black/50' : 'bg-orange-800' } overflow-y-scroll overflow-x-clip shadow-lg shadow-black/50 transition-colors`}
+            className={`lg:flex lg:flex-row gap-6 mx-3 mb-3 rounded-lg lg:shadow-none shadow-lg shadow-black/50 transition-colors`}
         >
-            {
-                lyricsQueue ?
-                currentSongs.map( (song, i) =>
-                    <QueueSong 
-                        color={bg}
-                        handleDragOver={(e) => handleDragOver(e, i)} 
-                        handleDragEnd={(e) => handleDragEnd(e, song, i)} 
-                        song={song} 
-                        key={i} 
-                        i={i}
-                        currentSong={i === currentIndex}
-                    /> 
-                ) :
-                (
-                    isFetching ?
-                    <LyricLoading num={8} /> : 
-                    error ?
-                    <Error title="Something went wrong" /> :
-                    <SongLyrics lyrics={songLyrics} isFetching={isFetching} error={error} />
-                )
-            }
+            <div 
+                style={{ background: (window.innerWidth < 1024) && `linear-gradient(${bg2}, ${bg})` }}
+                className={`rounded-md flex-1 invisible_scroll p-3 overflow-y-scroll ${(lyricsQueue && window.innerWidth < 1024) && 'hidden'}`}
+            >
+                {
+                    (
+                        isFetching ?
+                        <LyricLoading num={8} /> : 
+                        error ?
+                        <Error title="Something went wrong" /> :
+                        <SongLyrics lyrics={songLyrics} isFetching={isFetching} error={error} />
+                    )
+                }
+            </div>
+            <div className={`rounded-md flex-1 lg:p-2 lg:gap-2 invisible_scroll flex flex-col bg-black/50 overflow-y-scroll ${(!lyricsQueue && window.innerWidth < 1024) && 'hidden'}`}>
+                {
+                    currentSongs.map((song, i) =>
+                        <QueueSong
+                            color={bg}
+                            handleDragOver={(e) => handleDragOver(e, i)}
+                            handleDragEnd={(e) => handleDragEnd(e, song, i)}
+                            song={song}
+                            key={i}
+                            i={i}
+                            currentSong={i === currentIndex}
+                        />
+                    )
+                }
+            </div>
         </div>
     )
 }

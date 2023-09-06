@@ -18,7 +18,11 @@ const ArtistDetails = () => {
     const { data: artist, isFetching, error } = useGetArtistDetailsQuery( artistid )
     const { data: tracks, isFetching: isFetchingSongs, error: errorFetchingSongs } = useGetSongsQuery( artist?.tracklist.match(/[\d]+/)[0] || 0, 50)
     const { data: albums, isFetching: isFetchingAlbums, error: errorFetchingAlbums } = useGetArtistAlbumQuery( artistid )
-    const { data: artists, isFetching: isFetchingArtists, error: errorFetchingArtists } = useGetArtistsQuery( artistid )
+    const { data: artists, isFetching: isFetchingArtists, error: errorFetchingArtists } = useGetArtistsQuery(artistid)
+    
+    useEffect(() => { 
+        updateData({ isFetching: true, error: false, data: {}, colors: [] })
+    }, [])
 
     useEffect(() => {
         const refinedData = getSingleData({ type: 'artists', data: artist, favorites, blacklist })

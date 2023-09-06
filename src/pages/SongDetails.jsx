@@ -24,6 +24,10 @@ const SongDetails = () => {
     const { data: lyricsData, isFetching: isFetchingLyrics, error: errorFetchingLyrics } = useGetLyricsQuery( data?.isrc || 0 )
     const { data: relatedSongs, isFetching: isFetchingRelated, error: errorFetchingRelated } = useGetSongsQuery( data?.artist?.tracklist.match(/[\d]+/) || 0, 20)
 
+    useEffect(() => { 
+        updateData({ isFetching: true, error: false, data: {}, colors: [] })
+    }, [])
+    
     useEffect(() => {
         const refinedData = getSingleData({ type: 'tracks', data: song, favorites, blacklist })
         updateData({ ...others, colors, isFetching, error, data: {...refinedData, song: refinedData, tracks: [refinedData]} })

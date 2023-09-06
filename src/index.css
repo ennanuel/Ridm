@@ -151,7 +151,11 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #101010;
+  background-color: #101010;
+}
+
+.invisible_scroll::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
 @media (max-width: 600px) {
@@ -208,7 +212,7 @@ html {
   -webkit-appearance: none;
   /* Override default CSS styles */
   @apply rounded-md;
-  @apply bg-gray-400;
+  @apply bg-gray-200;
   appearance: none;
   height: 5px;
   /* Specified height */

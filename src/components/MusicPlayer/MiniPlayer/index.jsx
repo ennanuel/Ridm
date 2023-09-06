@@ -1,8 +1,8 @@
 import Track from './Track'
 import Controls from './Controls'
-import ExpandCollapse from '../ExpandCollapse'
 import ColorThief from 'colorthief'
 import { useRef, useMemo, useState } from 'react'
+import { BiExpandAlt } from 'react-icons/bi'
 
 const MiniPlayer = ({ dispatch, duration, appTime, scrolled, isPlaying, currentSongs, activeSong, isActive, currentIndex, nowPlaying, handleClick, next, prev, play, pause }) => {
   const [bg, setColors] = useState('')
@@ -35,9 +35,12 @@ const MiniPlayer = ({ dispatch, duration, appTime, scrolled, isPlaying, currentS
             next={next}
           />
         </div>
-        <div className="lg:flex hidden">
-          <ExpandCollapse onClick={handleClick} nowPlaying={nowPlaying} />
-        </div>
+        <button 
+          className={`hidden h-[35px] w-[35px] lg:flex justify-center items-center rounded-md bg-white/20 text-gray-200 cursor-pointer transition-[opacity,transform] hover:opacity-100 hover:text-white active:scale-75 active:bg-gray-200 p-1`}
+          onClick={handleClick}
+        >
+          <BiExpandAlt size={25} />
+        </button>
       </div>
     </div>   
   )

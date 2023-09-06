@@ -1,18 +1,17 @@
 import { useState, useRef } from "react"
 import ColorThief from 'colorthief'
 
-import { BsArrowDown } from 'react-icons/bs'
+import { BsArrowDown, BsCaretLeft } from 'react-icons/bs'
 
 import { useGetLyricsQuery } from "../../../redux/services/MusixMatchApi"
 import { useGetSongDetailsQuery } from "../../../redux/services/DeezerApi"
-
-import ExpandCollapse from '../ExpandCollapse'
 
 import QueueAndLyrics from "./QueueAndLyrics"
 import ChangeQueueLyrics from "./ChangeQueueLyrics"
 import Volume from "./Volume"
 import Track from "./Track"
 import Controls from "./Controls"
+import { RiArrowLeftCircleFill, RiArrowLeftLine } from "react-icons/ri"
 
 
 const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffle, onRepeat, offRepeat, dispatch, nowPlaying, activeSong, currentSongs, currentIndex, isPlaying, shuffle, repeat, duration, volume, setVolume, setSeekTime, appTime, playSongs}) => {
@@ -58,25 +57,26 @@ const NowPlaying = ({ handleClick, play, pause, next, prev, onShuffle, offShuffl
                 '--bg1': colors[0],
                 '--bg2': colors[1]
             }}
-            className={`fixed z-[9999] bottom-0 right-0 h-[100vh] w-full lg:w-[calc(100vw-300px)] overflow-y-scroll overflow-x-clip rounded-lg lg:rounded-none grid grid-cols-1 grid-rows-[30px,83vh,60px,90vh] lg:grid-rows-[200px,1fr] gap-2 transition-[transform,opacity] lg:origin-top-right ${!nowPlaying && 'translate-y-[105%] lg:translate-y-0 scale-y-50 lg:scale-x-50 lg:opacity-0 pointer-events-none'} bg-gradient-to-b from-orange-800 to-black `}
+            className={`invisible_scroll fixed z-[9999] bottom-0 right-0 h-[100vh] w-full lg:w-[calc(100vw-300px)] overflow-y-scroll overflow-x-clip rounded-lg lg:rounded-none grid grid-cols-1 grid-rows-[30px,83vh,60px,90vh] lg:grid-rows-[210px,calc(100vh-230px)] gap-2 transition-[transform,opacity] lg:origin-top-right ${!nowPlaying && 'translate-y-[105%] lg:translate-y-0 scale-y-50 lg:scale-x-50 lg:opacity-0 pointer-events-none'} bg-gradient-to-b from-orange-800 to-black `}
         >
-            <div className="lg:block hidden absolute top-0 left-0">
-                <ExpandCollapse onClick={handleClick} nowPlaying={nowPlaying} />
-            </div>
             <button onMouseOver={handleClick} className="lg:hidden flex items-center justify-center h-3 w-20 aspect-square sticky top-4 m-auto bg-white/80 rounded-md shadow shadow-black/20">
                 <span className="opacity-0">close</span>
             </button>
 
-            <div className="p-6 flex flex-col lg:grid lg:grid-rows-4 lg:grid-cols-5 items-stretch justify-between gap-4">
+            <div className="p-6 flex flex-col lg:grid lg:grid-rows-5 lg:grid-cols-[30px,165px,repeat(4,1fr)] items-stretch justify-between gap-4">
+            <button className="lg:block hidden text-white z-[8888]" onClick={handleClick} nowPlaying={nowPlaying} >
+                <RiArrowLeftLine size={30} />
+            </button>
                 <Track 
                     imgRef={imgRef}
                     handleLoad={handleLoad}
                     colors={colors}
                     activeSong={activeSong} 
+                    currentSongs={currentSongs}
                     handleClick={handleClick} 
                     duration={duration} 
                     appTime={appTime} 
-                    setSeekTime = {setSeekTime}
+                    setSeekTime={setSeekTime}
                 />
                 <Controls 
                     dispatch={dispatch} 
