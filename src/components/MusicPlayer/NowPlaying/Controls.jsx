@@ -11,7 +11,7 @@ const Controls = ({ dispatch, isPlaying , repeat, prev, next, pause, play, onRep
         <div className="flex items-center justify-center gap-4">
             <button className="text-gray-200 transition-transform active:scale-90" onClick={() => prev(dispatch, currentIndex - 1)}><BsSkipStartFill size={30} /></button>
 
-            <button onClick={() => isPlaying ? pause(dispatch) : play(dispatch)} className="play_btn flex items-center justify-center bg-white text-black w-[60px] aspect-square rounded-full transition-transform active:scale-90">
+            <button onClick={() => isPlaying ? pause(dispatch) : play(dispatch)} className="play_btn pl-[2px] flex items-center justify-center bg-white text-black w-[60px] aspect-square rounded-full transition-transform active:scale-90">
                 {
                     isPlaying ?
                     <BsPauseFill size={30} /> :

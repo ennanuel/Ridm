@@ -22,7 +22,7 @@ const Track = ({ activeSong, currentSongs, handleClick, duration, appTime, setSe
             <Link to={`/albums/${activeSong?.album?.id}`}><p className="truncate">{activeSong?.album?.title}</p></Link>
           </div>
         </div>
-        <FavoriteButton small={true} data={activeSong} type="track" />
+        <FavoriteButton data={activeSong} type="track" />
         <Options
           type="track"
           small={true}

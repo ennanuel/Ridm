@@ -3,12 +3,14 @@ import { ArtistCard } from '../Cards'
 import { ArtistLoading, Error } from '../LoadersAndError'
 import { getData } from '../../functions/getData'
 import SeeMore from './SeeMore'
+import { useSearchParams } from 'react-router-dom'
 
 const Artists = ({artists, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter}) => {
+  const [params, setParams] = useSearchParams()
   const [newArtists, setNewArtists] = useState([])
 
   useEffect(() => {
-    setNewArtists(getData({type: 'artists', data: artists, blacklist, favorites, noFilter}))
+    setNewArtists(getData({type: 'artists', data: artists, blacklist, favorites, noFilter, params }))
   }, [blacklist, favorites, artists, noFilter])
   return (
     <div className="mb-8">

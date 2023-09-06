@@ -6,12 +6,14 @@ import Sort from './Sort'
 import SeeMore from './SeeMore'
 
 import { getData } from '../../functions/getData'
+import { useSearchParams } from 'react-router-dom'
 
 const Albums = ({ albums, children, showSort, isFetching, error, favorites, blacklist, showmore, genreid, noFilter }) => {
+  const [params, setParams] = useSearchParams()
   const [newAlbums, setNewAlbums] = useState([])
 
   useEffect(() => {
-    setNewAlbums(() => getData({type: 'albums', data: albums, blacklist, favorites, noFilter}))
+    setNewAlbums(() => getData({type: 'albums', data: albums, blacklist, favorites, noFilter, params }))
   }, [blacklist, favorites, albums, noFilter])
 
   return (
@@ -21,7 +23,7 @@ const Albums = ({ albums, children, showSort, isFetching, error, favorites, blac
         { showmore && <SeeMore link={`/charts?type=albums&genre=${genreid}`} /> }
       </div>
       {
-        showSort && <Sort />
+        showSort && <Sort type="ablum" />
       }
       {
         isFetching ?

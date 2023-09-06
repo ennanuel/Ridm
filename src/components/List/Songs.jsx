@@ -5,13 +5,18 @@ import { SongLoading, Error } from "../LoadersAndError";
 import SeeMore from "./SeeMore"
 
 import { getData } from "../../functions/getData";
+import { useSearchParams } from "react-router-dom";
 
 const Songs = ({ songs, suggestion, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter, full, bg, bg2 }) => {
+  
   const [tracks, setTracks] = useState([])
+
+  const [params, setParams] = useSearchParams()
+
   const style = useMemo(() => ({ background: (full && bg) && `linear-gradient(${bg.replace(')', ',0.5)')}, ${bg2.replace(')', ',0.5)')})` }), [bg, bg2, full, songs])
 
   useEffect(() => {
-    setTracks(getData({type: 'tracks', data: songs, favorites, blacklist, noFilter}))
+    setTracks(getData({type: 'tracks', data: songs, favorites, blacklist, noFilter, params }))
   }, [favorites, blacklist, songs, noFilter])
 
   return (

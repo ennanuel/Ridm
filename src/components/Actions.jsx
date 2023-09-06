@@ -5,8 +5,9 @@ import { Options } from './Options'
 import { useSelector } from 'react-redux'
 
 const Actions = () => {
-    const { isFetching, error, data } = useContext(DetailsContext)
+    const { isFetching, error, data, colors } = useContext(DetailsContext)
     const { activeSong, isPlaying } = useSelector(state => state.player)
+    const [bg, text] = useMemo( () => colors || [], [colors] )
  
     if (!data?.id) return;
 
@@ -18,20 +19,20 @@ const Actions = () => {
                     <>
                         {
                             data.type == 'track' && isPlaying && activeSong.id == data.id ?
-                                <PauseButton /> : 
-                                <PlayButton album={data} tracks={data?.tracks} song={data?.song} i={0} /> 
+                                <PauseButton bg={text} text={bg} /> : 
+                                <PlayButton bg={text} text={bg} album={data} tracks={data?.tracks} song={data?.song} i={0} /> 
                         }
                         {
                             data.type != 'track' ?
-                                <ShuffleButton album={data} tracks={data?.tracks} /> :
-                                <PlayNextButton tracks={data?.tracks} />
+                                <ShuffleButton bg={bg} text={text} album={data} tracks={data?.tracks} /> :
+                                <PlayNextButton bg={bg} text={text} tracks={data?.tracks} />
                         }
                     </>
                 }
             </div>
                 
             <div className="flex-1 flex flex-row justify-end items-center gap-4 overflow-x-clip">
-                <FavoriteButton data={data} type={data.type + 's'} />
+                <FavoriteButton text={text} data={data} type={data.type + 's'} />
                 <Options 
                     type={data.type || 'track'} 
                     favorite={data?.favorite} 

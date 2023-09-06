@@ -1,8 +1,16 @@
-export const getData = ({type, data, blacklist, favorites, noFilter}) => {
+export const getData = ({ type, data, blacklist, favorites, noFilter, params }) => {
     try {
-        if(!(['tracks', 'artists', 'albums', 'genres', 'radios'].includes(type) && data && blacklist && favorites)) throw "parameter(s) empty or invalid 'type' parameter";
+        if (!(['tracks', 'artists', 'albums', 'genres', 'radios'].includes(type) && data && blacklist && favorites)) throw "parameter(s) empty or invalid 'type' parameter";
 
         const newData = data
+            .slice()
+            .sort(
+                (a, b) => params.get('sort') == 'recent' && type != 'artists' ?
+                    (new Date(a.release_date)).getTime() - (new Date(b.release_date)).getTime() :
+                    params.get('sort') == 'recent' && type == 'artists' ?
+                    (a.fans - b.fans) :
+                    1
+            )
             .map( elem => (
                 {
                     ...elem, 
