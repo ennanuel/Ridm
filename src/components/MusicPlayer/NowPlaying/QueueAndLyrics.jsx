@@ -10,7 +10,7 @@ const QueueAndLyrics = ({ currentSongs, isFetching, lyrics, error, lyricsQueue, 
     return (
         <div
             id="queue_lyrics"
-            className={`lg:flex lg:flex-row gap-6 mx-3 mb-3 rounded-lg lg:shadow-none shadow-lg shadow-black/50 transition-colors`}
+            className={`lg:flex lg:flex-row justify-stretch items-stretch gap-6 mx-3 mb-3 rounded-lg lg:shadow-none shadow-lg shadow-black/50 transition-colors`}
         >
             <div 
                 style={{ background: (window.innerWidth < 1024) && `linear-gradient(${bg2}, ${bg})` }}
