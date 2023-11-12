@@ -8,7 +8,7 @@ import { Songs, SongLyrics } from "../components/List";
 
 import { useGetLyricsQuery } from "../redux/services/MusixMatchApi";
 import { useGetSongDetailsQuery, useGetSongsQuery } from "../redux/services/DeezerApi";
-import { getSingleData } from "../functions/getData";
+import { getSingleData } from "../utils/getData";
 import { DetailsContext } from "../components/Details";
 
 

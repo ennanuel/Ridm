@@ -1,13 +1,10 @@
-import { BsDot, BsThreeDots } from 'react-icons/bs'
-import { BiGridHorizontal } from 'react-icons/bi'
-import { playSongs } from '../../../functions/player'
-import { useDispatch } from 'react-redux'
+import { BsDot, BsThreeDots } from 'react-icons/bs';
+import { BiGridHorizontal } from 'react-icons/bi';
+import { playSongs } from '../../../utils/player';
 
 const QueueSong = ({ song, currentSong, handleDragOver, handleDragEnd, color, i, tracks }) => {
-  const dispatch = useDispatch()
-
   return (
-    <div onClick={() => playSongs({ dispatch, song, i, tracks })} style={{ backgroundColor: currentSong && color?.replace(')', ', 0.5)') }}
+    <div onClick={() => playSongs({ song, i, tracks })} style={{ backgroundColor: currentSong && color?.replace(')', ', 0.5)') }}
       draggable={true} i={i}
       onDragStart={e => e.target.style.opacity = '0.5'}
       onDragOver={handleDragOver}

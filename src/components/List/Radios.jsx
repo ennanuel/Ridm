@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import RadioCard from '../Cards/RadioCard'
-import { RadioLoading, Error } from '../LoadersAndError'
-import { getData } from '../../functions/getData'
+import React, { useEffect, useState } from 'react';
+import RadioCard from '../Cards/RadioCard';
+import { RadioLoading, Error } from '../LoadersAndError';
+import { getData } from '../../utils/getData';
 
-import SeeMore from './SeeMore'
+import SeeMore from './SeeMore';
+import { useSelector } from 'react-redux';
 
-const Radios = ({ radios, children, showmore, isFetching, error, blacklist, favorites, genreid, noFilter }) => {
-    const [newRadios, setNewRadios] = useState([])
+const Radios = ({ radios, children, showmore, isFetching, error, genreid, noFilter }) => {
+    const { library } = useSelector(state => state);
+    const [newRadios, setNewRadios] = useState([]);
 
     useEffect(() => {
-        setNewRadios(getData( {type: 'radios', data: radios, blacklist, favorites, noFilter}) )
-    }, [favorites, blacklist, radios, noFilter])
+        const radiosData = getData({ type: 'radios', data: radios, noFilter })
+        setNewRadios(radiosData);
+    }, [library, radios, noFilter])
 
     return (
         <div>

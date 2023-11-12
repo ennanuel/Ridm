@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
-import { GenreCard } from '../Cards'
-import { GenreLoading, Error } from '../LoadersAndError'
-import { getData } from '../../functions/getData'
+import { useEffect, useState } from 'react';
+import { GenreCard } from '../Cards';
+import { GenreLoading, Error } from '../LoadersAndError';
+import { getData } from '../../utils/getData';
+import { useSelector } from 'react-redux';
 
-const Genres = ({children, genres, isFetching, error, blacklist, favorites, noFilter}) => {
+const Genres = ({ children, genres, isFetching, error, noFilter }) => {
+  const library = useSelector(state => state.library);
   const [newGenres, setNewGenres] = useState([])
 
   useEffect(() => {
-    setNewGenres(getData({type: 'genres', data: genres, blacklist, favorites, noFilter}))
-  }, [blacklist, favorites, genres, noFilter])
+    setNewGenres(getData({type: 'genres', data: genres, noFilter}))
+  }, [library, genres, noFilter])
 
   return (
     <>

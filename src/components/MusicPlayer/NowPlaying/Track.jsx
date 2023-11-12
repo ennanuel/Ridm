@@ -5,17 +5,17 @@ import { FavoriteButton } from "../../Buttons"
 import { Options } from "../../Options"
 import { useMemo } from "react"
 import { useSelector } from "react-redux"
-import { getSingleData } from "../../../functions/getData"
+import { getSingleData } from "../../../utils/getData"
 
-const Track = ({ activeSong, currentSongs, handleClick, duration, appTime, setSeekTime, imgRef, handleLoad }) => {
-  const { blacklist, favorites } = useSelector( state => state.library )
+const Track = ({ activeSong, currentSongs, open, duration, appTime, setSeekTime, imgRef, handleLoad }) => {
+  const { blacklist, favorites } = useSelector(state => state.library);
   const song = useMemo(() => getSingleData({type: 'tracks', data: activeSong, favorites, blacklist}), [ activeSong, favorites, blacklist ] )
 
   return (
     <>
       <img crossOrigin="anonymous" ref={imgRef} onLoad={handleLoad} src={song?.album?.cover_big} className="aspect-square rounded-sm shadow-lg shadow-black/20 max-h-[350px] lg:row-span-5" />
       <div className="flex items-center justify-between gap-3 lg:col-span-4 lg:row-span-2">
-        <div className="flex-1 flex flex-col justify-center items-start gap-2" onClick={handleClick}>
+        <div className="flex-1 flex flex-col justify-center items-start gap-2" onClick={open}>
           <Link to={`/songs/${song?.id}`}>
             <p className="text-white text-lg font-bold">
               {song?.title?.length > 50 && window.innerWidth < 800 ? song?.title?.substring(0, 47) + '...' : song?.title}

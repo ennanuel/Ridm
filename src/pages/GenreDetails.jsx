@@ -7,7 +7,7 @@ import { GenreDetailsHeader } from '../components/Headers'
 
 import { useGetGenreChartsQuery, useGetGenreDetailsQuery, useGetGenreRadiosQuery } from '../redux/services/DeezerApi'
 import { useEffect, useState } from 'react'
-import { getSingleData } from '../functions/getData'
+import { getSingleData } from '../utils/getData'
 
 const GenreDetails = () => {
     const { id } = useParams()

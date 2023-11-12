@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react'
 import { ArtistCard } from '../Cards'
 import { ArtistLoading, Error } from '../LoadersAndError'
-import { getData } from '../../functions/getData'
+import { getData } from '../../utils/getData'
 import SeeMore from './SeeMore'
 import { useSearchParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const Artists = ({artists, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter}) => {
-  const [params, setParams] = useSearchParams()
-  const [newArtists, setNewArtists] = useState([])
+const Artists = ({ artists, children, isFetching, error, showmore, genreid, noFilter }) => {
+  const library = useSelector(state => state.library);
+  const [params, setParams] = useSearchParams();
+  const [newArtists, setNewArtists] = useState([]);
 
   useEffect(() => {
-    setNewArtists(getData({type: 'artists', data: artists, blacklist, favorites, noFilter, params }))
-  }, [blacklist, favorites, artists, noFilter])
+    const sortType = params.get('sort');
+    const artistsData = getData({ type: 'artists', data: artists, noFilter, sortType });
+    setNewArtists(artistsData);
+  }, [library, artists, noFilter])
+  
   return (
     <div className="mb-8">
       <div className="flex items-end justify-between mb-4">

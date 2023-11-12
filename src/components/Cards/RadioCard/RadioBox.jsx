@@ -6,22 +6,22 @@ import { useGetRadioTracksQuery } from '../../../redux/services/DeezerApi'
 import { Songs } from '../../List'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getData } from '../../../functions/getData'
+import { getData } from '../../../utils/getData'
 
 const RadioBox = ({ radio, show, handleClick }) => {
-    const { favorites, blacklist } = useSelector(state => state.library)
-    const {data: radioData, isFetching, error} = useGetRadioTracksQuery(radio.id)
+    const { library } = useSelector(state => state);
+    const { data: radioData, isFetching, error } = useGetRadioTracksQuery(radio.id)
     const [radioTracks, setRadioTracks] = useState([])
 
     useEffect(() => {
-        setRadioTracks(getData({type: 'radios', data: radioData?.data, favorites, blacklist}))
-    }, [blacklist, favorites, radioData])
+        setRadioTracks(getData({ type: 'radios', data: radioData?.data }));
+    }, [library, radioData]);
 
     return (
         <>
-            <button 
-            className="absolute top-0 right-0 m-2 w-[30px] h-[30px] flex items-center justify-center bg-white/10 rounded-md text-gray-200 transition-[transform, opacity] opacity-90 hover:scale-110 hover:opacity-100" 
-            onClick={() => handleClick(false)}
+            <button
+                className="absolute top-0 right-0 m-2 w-[30px] h-[30px] flex items-center justify-center bg-white/10 rounded-md text-gray-200 transition-[transform, opacity] opacity-90 hover:scale-110 hover:opacity-100"
+                onClick={() => handleClick(false)}
             >
                 <MdArrowBack size={25} />
             </button>
@@ -35,8 +35,8 @@ const RadioBox = ({ radio, show, handleClick }) => {
                 {
                     radioTracks?.length > 0 &&
                     <div className="flex-1 flex flex-row justify-start lg:justify-end items-center gap-4 lg:mt-[-20px]">
-                    <PlayButton i={0} song={radioTracks[0]} tracks={radioTracks} />
-                    <ShuffleButton tracks={radioTracks} />
+                        <PlayButton i={0} song={radioTracks[0]} tracks={radioTracks} />
+                        <ShuffleButton tracks={radioTracks} />
                     </div>
                 }
             </div>
@@ -45,10 +45,10 @@ const RadioBox = ({ radio, show, handleClick }) => {
                 <Options type="radio" song={radioTracks && radioTracks[0]} i={0} radio={radio} tracks={radioTracks} blacklist={radio.blacklist} favorite={radio.favorite} />
             </div>
             <div className="rounded-md bg-black/50 max-h-[50vh] overflow-y-scroll overflow-x-clip">
-                <Songs blacklist={blacklist} favorites={favorites} isFetching={isFetching} error={error} songs={radioTracks} />
+                <Songs isFetching={isFetching} error={error} songs={radioTracks} />
             </div>
         </>
     )
-}
+};
 
-export default RadioBox
+export default RadioBox;

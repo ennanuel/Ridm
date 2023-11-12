@@ -6,7 +6,7 @@ import { Albums, Artists, Songs } from "../components/List"
 
 import { useGetArtistAlbumQuery, useGetArtistDetailsQuery, useGetArtistsQuery, useGetSongsQuery } from "../redux/services/DeezerApi";
 import { useContext, useEffect, useState } from "react";
-import { getSingleData } from "../functions/getData";
+import { getSingleData } from "../utils/getData";
 import { DetailsContext } from "../components/Details";
 
 const ArtistDetails = () => {

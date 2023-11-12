@@ -2,37 +2,30 @@ import { useEffect, useState } from "react"
 
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
-import { PlaylistDetailsHeader } from "../components/Headers"
-import { Playlists, Tracks } from "../components/List"
+import { PlaylistDetailsHeader } from "../components/Headers";
+import { Playlists, Tracks } from "../components/List";
 
-import { playSongs, pause } from "../functions/player"
-import { editPlaylistPrompt } from "../functions/prompt"
+import { playSongs, pause } from "../utils/player";
+import { editPlaylistPrompt } from "../utils/prompt";
 
 const PlaylistDetails = () => {
-  const dispatch = useDispatch()
+  const { id: playlistid } = useParams();
 
-  const { id: playlistid } = useParams()
+  const { playlists, favorites, blacklist } = useSelector(state => state.library);
+  const { activeSong, isPlaying } = useSelector(state => state.player);
 
-  const { playlists, favorites, blacklist } = useSelector( state => state.library )
-  const { activeSong, isPlaying} = useSelector( state => state.player )
-
-  const [playlist, setPlaylist] = useState(() => playlists[playlists.findIndex( playlist => playlistid == playlist.id )])
-  const [songsToBeDeleted, setSongsToBeDeleted] = useState([])
-  const [editData, setEditData] = useState({...playlist, name: ''})
+  const [playlist, setPlaylist] = useState(() => playlists[playlists.findIndex(playlist => playlistid == playlist.id)]);
+  const [songsToBeDeleted, setSongsToBeDeleted] = useState([]);
+  const [editData, setEditData] = useState({ ...playlist, name: '' });
   
-  const [params, setParams] = useSearchParams()
+  const [params, setParams] = useSearchParams();
 
-  const navigate = useNavigate()
-
-  
-  const handlePause = () => {
-    pause(dispatch)
-  }
+  const navigate = useNavigate();
 
   const handlePlay = (song, i, tracks) => {
-    playSongs({dispatch, tracks, song, i})
+    playSongs({ tracks, song, i });
   }
 
   const handleChange = (e) => {
@@ -49,7 +42,7 @@ const PlaylistDetails = () => {
   }
 
   const handleEdit = () => {
-    editPlaylistPrompt(dispatch, playlist, editData)
+    editPlaylistPrompt(playlist, editData);
   }
 
   useEffect( () => {
@@ -88,7 +81,7 @@ const PlaylistDetails = () => {
         activeSong={activeSong} 
         isPlaying={isPlaying}
         handlePlay={handlePlay} 
-        handlePause={handlePause} 
+        handlePause={pause} 
         songsToBeDeleted={songsToBeDeleted} 
         handleTrack={handleTrack} 
         editDataTracks={editData.tracks} 

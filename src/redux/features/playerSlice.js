@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import shuffle from '../../functions/shuffle'
+import shuffle from '../../utils/shuffle'
 
 const initialState = {
   currentSongs: [],
@@ -76,18 +76,20 @@ const playerSlice = createSlice({
     },
     
     shuffleOn: (state, action) => {
-      const currentSongs = [...state.currentSongs]
-      const shuffledSongs = shuffle(currentSongs, action.payload && state.activeSong)
-      state.shuffle = true
-      state.currentSongs = shuffledSongs.tracks
-      state.currentIndex = shuffledSongs.i
-      state.activeSong = shuffledSongs.song
+      const currentSongs = [...state.currentSongs];
+      const showActiveSong = action.payload;
+      const activeSong = showActiveSong ? state.activeSong : null
+      const { tracks, i, song } = shuffle(currentSongs, activeSong);
+      state.shuffle = true;
+      state.currentSongs = tracks;
+      state.currentIndex = i;
+      state.activeSong = song
     },
 
     shuffleOff: (state) => {
       state.shuffle = false
       state.currentSongs = state.unshuffledSongs
-      state.currentIndex = state.unshuffledSongs.findIndex( song => song.id === state.activeSong.id )
+      state.currentIndex = state.unshuffledSongs.findIndex(song => song.id === state.activeSong.id);
     },
 
     setRepeat: (state) => {
@@ -112,11 +114,6 @@ const playerSlice = createSlice({
     setNowPlaying: (state, action) => {
       state.nowPlaying = action.payload
     },
-
-    setPlayerStorage: (state) => {
-      localStorage.setItem('player', JSON.stringify({...state}))
-    },
-
     setPlayer: (state, action) => {
       for(let [entry, value] of Object.entries(action.payload)) {
         if(entry == 'isPlaying' || entry == 'nowPlaying' || entry == 'isActive') {
@@ -129,6 +126,6 @@ const playerSlice = createSlice({
   },
 });
 
-export const { setActiveSong, addToUpNext, nextSong, prevSong, stop, shuffleOn, shuffleOff, setRepeat, playPause, selectGenreListId, setAlbum, setNowPlaying, setPlayerStorage, setPlayer } = playerSlice.actions;
+export const { setActiveSong, addToUpNext, nextSong, prevSong, stop, shuffleOn, shuffleOff, setRepeat, playPause, selectGenreListId, setAlbum, setNowPlaying, setPlayer } = playerSlice.actions;
 
 export default playerSlice.reducer;

@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from 'react'
 
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { useGetTopGenresQuery } from '../redux/services/DeezerApi'
 
@@ -10,45 +10,47 @@ import CreatePlaylist from '../components/CreatePlaylist'
 import { Options } from '../components/Options'
 import { Playlists } from '../components/List'
 
-import { fetchSuggestedSongs } from '../functions/fetchData'
-import { createNewPlaylist, playlistDispatch } from '../functions/library'
-import { displayMessage } from '../functions/prompt'
+import { fetchSuggestedSongs } from '../utils/fetchData'
+import { createNewPlaylist, playlistDispatch, playlistState } from '../utils/library'
+import { displayMessage } from '../utils/prompt'
 
 const Playlist = () => {
-  const { data: genres, isFetching, error } = useGetTopGenresQuery()
-
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-
-  const [params, setParams] = useSearchParams()
-
-  const { playlists, favorites, blacklist } = useSelector( (state) => state.library )
-
-  const [newPlaylist, setNewPlaylist] = useReducer(playlistDispatch, {genreNum: 5, playlistInfo: {name: '', img: '', genres: [], tracks: []}, suggestedSongs: [], genreAction: {action: '', id: null}})
+  const { playlists } = useSelector((state) => state.library);
+  const { data: genres, isFetching, error } = useGetTopGenresQuery();
+  const navigate = useNavigate();
+  const [params, setParams] = useSearchParams();
+  const [newPlaylist, setNewPlaylist] = useReducer(playlistDispatch, playlistState);
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(newPlaylist.playlistInfo.name !== "") {
-      createNewPlaylist(dispatch, newPlaylist.playlistInfo)
-      displayMessage(dispatch, 'New playlist created!')
-      
-      setNewPlaylist({type: 'RESET'})
-      navigate('/playlists')
+    const { playlistInfo } = newPlaylist;
+    if(playlistInfo.name) {
+      createNewPlaylist(playlistInfo);
+      displayMessage('New playlist created!');
+      setNewPlaylist({ type: 'RESET' });
+      navigate('/playlists');
     } else {
-      displayMessage(dispatch, 'Song title is empty.')
+      displayMessage('Song title is empty.');
     }
   }
 
-  useEffect(() => {
+  useEffect(() => { 
+    if (!genres) return;
+    setNewPlaylist({ type: 'SETGENRES', payload: genres.data });
+  }, [genres])
 
+  useEffect(() => {
     if(newPlaylist.genreAction === 'remove') {
       const id = newPlaylist.genreAction.id
       setNewPlaylist({type: 'REMOVESUGGESTEDSONG', payload: id})
     }
+
     if(newPlaylist.genreAction === 'add') {
-      const id = newPlaylist.genreAction.id
-      const suggestedSongs = newPlaylist.suggestedSongs
-      fetchSuggestedSongs({id, setNewPlaylist, suggestedSongs, blacklist , favorites})
+      const id = newPlaylist.genreAction.id;
+      const suggestedSongsIds = newPlaylist.suggestedSongs.map( song => song.id );
+      fetchSuggestedSongs({ id, setNewPlaylist, suggestedSongsIds })
+        .then(songs => setNewPlaylist({ type: 'ADDSUGGESTEDSONG', payload: songs }))
+        .catch((error) => console.error(error));
     }
 
   }, [newPlaylist.genreAction])

@@ -7,7 +7,6 @@ const Track = ({ i, tracks, song, activeSong, handleTrack, songsToBeDeleted, isP
   const handleClick = () => edit && handleTrack(song.id)
   const active = song?.id === activeSong?.id
 
-
   return (
     <tbody key={i}>
       <tr 

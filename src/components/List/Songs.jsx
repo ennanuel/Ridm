@@ -4,20 +4,21 @@ import { SongBar } from "../Cards";
 import { SongLoading, Error } from "../LoadersAndError";
 import SeeMore from "./SeeMore"
 
-import { getData } from "../../functions/getData";
+import { getData } from "../../utils/getData";
 import { useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Songs = ({ songs, suggestion, children, isFetching, error, blacklist, favorites, showmore, genreid, noFilter, full, bg, bg2 }) => {
-  
-  const [tracks, setTracks] = useState([])
-
-  const [params, setParams] = useSearchParams()
-
+const Songs = ({ songs, suggestion, children, isFetching, error, showmore, genreid, noFilter, full, bg, bg2 }) => {
+  const library = useSelector(state => state.library);
+  const [tracks, setTracks] = useState([]);
+  const [params, setParams] = useSearchParams();
   const style = useMemo(() => ({ background: (full && bg) && `linear-gradient(${bg.replace(')', ',0.5)')}, ${bg2.replace(')', ',0.5)')})` }), [bg, bg2, full, songs])
 
   useEffect(() => {
-    setTracks(getData({type: 'tracks', data: songs, favorites, blacklist, noFilter, params }))
-  }, [favorites, blacklist, songs, noFilter])
+    const sortType = params.get('sort');
+    const songsData = getData({ type: 'tracks', data: songs, noFilter, sortType })
+    setTracks(songsData);
+  }, [library, songs, noFilter])
 
   return (
     <div style={style} className={`flex flex-col ${(!full && !suggestion) && 'mb-8'} ${(full && !suggestion) && 'p-3 rounded-md overflow-clip'}`}>

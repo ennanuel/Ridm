@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { APIURL } from '../../assets/data/constants'
 
 export const deezerApi = createApi({
     reducerPath: "deezerApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: APIURL + '/deezer',
+        baseUrl: `${import.meta.env.VITE_API_URL}/deezer`,
     }),
     endpoints: (builder) => ({
         getTopGenres: builder.query({query: () => "/genre?limit=50"}),

@@ -1,17 +1,16 @@
 import { useParams } from "react-router-dom";
 
 import { useEffect, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 import { Albums, Tracks } from '../components/List'
-import { pause, playSongs } from "../functions/player";
+import { pause, playSongs } from "../utils/player";
 
 import { useGetAlbumDetailsQuery, useGetAlbumsQuery } from "../redux/services/DeezerApi";
-import { getSingleData } from "../functions/getData";
+import { getSingleData } from "../utils/getData";
 import { DetailsContext } from "../components/Details";
 
 const AlbumDetails = () => {
-  const dispatch = useDispatch()
   const { data, updateData, ...others } = useContext(DetailsContext)
   
   const { activeSong, isPlaying } = useSelector( (state) => state.player )
@@ -22,28 +21,27 @@ const AlbumDetails = () => {
   const { data: album, isFetching, error } = useGetAlbumDetailsQuery( albumid )
   const { data: relatedAlbums, isFetching: isFetchingRelatedAlbums, error: errorFetchingRelatedAlbums } = useGetAlbumsQuery( album?.genre_id )
 
-
-  const handlePause = () => {
-    pause(dispatch)
-  }
-
   const handlePlay = (song, i) => {
     const {tracks, contributors, genres, artist, ...album} = data;
-    playSongs({dispatch, tracks, song, i, album})
+    playSongs({ tracks, song, i, album });
   }
   
   useEffect(() => { 
-    updateData({ isFetching: true, error: false, data: {}, colors: [] })
+    updateData({ isFetching: true, error: false, data: {}, colors: [] });
   }, [albumid])
 
   useEffect(() => {
-    const text = `${isFetching ? 'Loading Album...' : error ? 'Something went wrong' : `Album: ${album?.title} by ${album?.artist?.name}`}`
-    document.getElementById('site_title').innerText = text
+    const text = `${isFetching ?
+      'Loading Album...' :
+      error ?
+        'Something went wrong' :
+        `Album: ${album?.title} by ${album?.artist?.name}`}`;
+    document.getElementById('site_title').innerText = text;
   }, [isFetching, error])
 
   useEffect(() => {
-    const refinedData = getSingleData({ data: album, type: 'albums', favorites, blacklist })
-    updateData({ ...others, isFetching, error, data: {...refinedData, song: refinedData?.tracks && refinedData.tracks[0]} })
+    const refinedData = getSingleData({ data: album, type: 'albums', favorites, blacklist });
+    updateData({ ...others, isFetching, error, data: { ...refinedData, song: refinedData?.tracks && refinedData.tracks[0] } });
   }, [album, favorites, blacklist])
 
   return (
@@ -54,7 +52,7 @@ const AlbumDetails = () => {
             album={data} 
             activeSong={activeSong} 
             isPlaying={isPlaying} 
-            handlePause={handlePause} 
+            handlePause={pause} 
             handlePlay={handlePlay} 
             favorites={favorites}
             blacklist={blacklist}

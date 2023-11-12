@@ -1,4 +1,4 @@
-import { useEffect , useState} from 'react'
+import { useEffect , useMemo, useState} from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { BiTime } from 'react-icons/bi'
@@ -6,15 +6,20 @@ import { BiTime } from 'react-icons/bi'
 import Track from './Track'
 import { Loader, Error } from '../LoadersAndError'
 
-import { getData } from '../../functions/getData'
+import { getData } from '../../utils/getData'
+import { useSelector } from 'react-redux'
 
-const AllTracks = ({ tracks,  activeSong, isPlaying, isFetching, error, songsToBeDeleted, handleTrack, editDataTracks, playlists, playlist, blacklist, favorites }) => {
-  const [params, setParams] = useSearchParams()
-  const [allTracks, setAllTracks] = useState([])
+const AllTracks = ({ tracks, activeSong, isPlaying, isFetching, error, songsToBeDeleted, handleTrack, editDataTracks, playlist }) => {
+  const { playlists, ...library } = useSelector(state => state.library);
+  const [params, setParams] = useSearchParams();
+  const isEditing = useMemo(() => params.get('edit') === 'true', [params]);
+  const [allTracks, setAllTracks] = useState([]);
 
   useEffect(() => {
-    setAllTracks(getData({ type: 'tracks', data: params.get('edit') === 'true' ? editDataTracks : tracks, blacklist, favorites }))
-  }, [params, playlist, favorites, blacklist, editDataTracks, tracks])
+    const tracksToUse = isEditing ? editDataTracks : tracks;
+    const tracksData = getData({ type: 'tracks', data: tracksToUse });
+    setAllTracks(tracksData);
+  }, [params, playlist, library, editDataTracks, tracks]);
 
   return (
     isFetching ?
@@ -39,7 +44,7 @@ const AllTracks = ({ tracks,  activeSong, isPlaying, isFetching, error, songsToB
             tracks={songs}
             song={song} 
             activeSong={activeSong} 
-            edit={params && (params.get('edit') === 'true')}
+            edit={isEditing}
             handleTrack={handleTrack}
             songsToBeDeleted={songsToBeDeleted}
             isPlaying={isPlaying}

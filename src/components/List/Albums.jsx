@@ -5,16 +5,21 @@ import { AlbumLoading, Error } from '../LoadersAndError'
 import Sort from './Sort'
 import SeeMore from './SeeMore'
 
-import { getData } from '../../functions/getData'
+import { getData } from '../../utils/getData'
 import { useSearchParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const Albums = ({ albums, children, showSort, isFetching, error, favorites, blacklist, showmore, genreid, noFilter }) => {
-  const [params, setParams] = useSearchParams()
-  const [newAlbums, setNewAlbums] = useState([])
+const Albums = ({ albums, children, showSort, isFetching, error, showmore, genreid, noFilter }) => {
+  const library = useSelector(state => state.library);
+  const [params, setParams] = useSearchParams();
+  const [newAlbums, setNewAlbums] = useState([]);
 
   useEffect(() => {
-    setNewAlbums(() => getData({type: 'albums', data: albums, blacklist, favorites, noFilter, params }))
-  }, [blacklist, favorites, albums, noFilter, params])
+    const sortType = params.get('sort');
+    const albumFilter = params.get('filter');
+    const albumsData = getData({ type: 'albums', data: albums, noFilter, sortType, albumFilter });
+    setNewAlbums(albumsData);
+  }, [library, albums, noFilter, params])
 
   return (
     <div className="mb-8">

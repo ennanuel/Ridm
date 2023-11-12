@@ -1,12 +1,12 @@
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
+import Logo from "./Logo";
+import Links from "./Links";
+import SecondLinks from "./SecondLinks";
+import Footer from "./Footer";
+import { links, secondLinks } from "../../assets/data/constants";
 
-import Logo from "./Logo"
-import Links from "./Links"
-import SecondLinks from "./SecondLinks"
-import Footer from "./Footer"
 
-
-const NavLinks = ({ links, secondLinks, activeLinks }) => {
+const NavLinks = () => {
     const location = useLocation()
 
     return (
