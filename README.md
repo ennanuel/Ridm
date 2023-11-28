@@ -1,137 +1,52 @@
-# Project Lyrics
+# Ridm - Web Player
 
-Develop an elegant React.js Music Application. 
+![Project Logo/Header Image]
 
-Check out the complete project requirements [here](https://docs.google.com/document/d/13PeFwRlPEhMw_HPyrIrInvQuKaVWnpNmcv-y3NA208s/edit?usp=sharing)
+## Overview
 
-# Contributing
+**Ridm - Web Player** is a dynamic and engaging full-stack project with a primary focus on frontend development. This project is a testament to my dedication and growth as a developer over the past two years. By leveraging technologies such as ReactJS, Tailwind CSS, Redux, Redux Toolkit, and Color Thief, I have created a web player that brings rhythm to everyone.
 
-When contributing to this repository, please first discuss the change you wish to make via issue.
-Please note we have a [code of conduct](CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
+## Key Features
 
+- **Deezer API Integration:** Ridm utilizes the Deezer API to seamlessly fetch songs, artist information, album details, genre data, and even radio content. This integration adds a rich layer of content to the web player, enhancing the user experience.
 
-## System Requirements
+- **Musixmatch API for Lyrics:** To provide users with an immersive experience, the Musixmatch API is integrated to fetch accurate and synchronized lyrics for each song. This dual-API approach showcases my ability to work with diverse technologies and integrate them harmoniously.
 
-To get started with development, you need to install few tools
+- **Backend Proxy for CORS:** To resolve CORS-related errors, I implemented a backend proxy. This solution ensures smooth communication between the frontend and the Deezer and Musixmatch APIs, overcoming challenges and enhancing the project's reliability. [(Link to project here)](#).
 
-1. git 
-   
-   `git` version 2.13.1 or higher. Download [git](https://git-scm.com/downloads) if you don't have it already.
+## Technologies Used
 
-   To check your version of git, run:
+- **ReactJS:** The project is built on the ReactJS library, ensuring a smooth and interactive user interface.
 
-   ```shell
-    git --version
-   ```
+- **Tailwind CSS:** Tailwind CSS is employed for styling, allowing for a clean and visually appealing design.
 
-2. node 
-   
-   `node` version 16.15.1 or higher. Download [node](https://nodejs.org/en/download/) if you don't have it already.
+- **Redux and Redux Toolkit:** These state management tools enhance the project's scalability and maintainability, ensuring efficient data flow.
 
-   To check your version of node, run:
+- **Color Thief:** The Color Thief library is utilized to extract color palettes from album artwork, contributing to a visually cohesive design.
 
-   ```shell
-    node --version
-   ```
+## Learning Highlights
 
-3. npm
-  
-   `npm` version 5.6.1 or higher. You will have it after you install node.
+- **API Integration Mastery:** Ridm challenged me to integrate two distinct APIs, Deezer and Musixmatch, fostering a deeper understanding of API interactions and data retrieval.
 
-   To check your version of npm, run:
+- **Responsive Design:** The project pushed the boundaries of my design skills, emphasizing the importance of creating not only aesthetically pleasing designs but also ensuring responsiveness across various devices.
 
-   ```shell
-    npm --version
-   ```
+- **Flexbox and Grid Layout:** A deeper understanding of Flexbox and Grid layout was gained, contributing to the creation of flexible and well-organized user interfaces.
 
-## Setup
+- **Documentation Proficiency:** Ridm encouraged me to dive into documentation, enhancing my ability to comprehend and implement features by effectively navigating through technical documentation.
 
-To set up a development environment, please follow these steps:
+## Showcase
 
-1. Clone the repo
+### Screenshots/GIFs
 
-   ```shell
-    git clone https://github.com/JavaScript-Mastery-PRO/project1_team4_repository.git
-   ```
+![Screenshot 1]
+![Screenshot 2]
 
-2. Change directory to the project directory
+<!-- Include more images or GIFs showcasing different aspects of the project -->
 
-    ```shell
-    cd project1_team4_repository
-    ```
+### Demo Link
 
-3. Install the dependencies
-   
-    ```shell
-     npm install
-    ```
+[Live Demo](https:://ridm.netlify.app)
 
-    If you get an error, please check the console for more information.
+## Feedback
 
-    If you don't get an error, you are ready to start development.
-
-4. Run the app
-   
-    ```shell
-    npm run dev
-    ```
-
-    Project will be running in the browser.
-
-    Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-## Issues
-
-You've found a bug in the source code, a mistake in the documentation or maybe you'd like a new feature? You can help us by [submitting an issue on GitHub](https://github.com/orgs/JavaScript-Mastery-PRO/projects/8). Before you create an issue, make sure to search the issue archive -- your issue may have already been addressed!
-
-Please try to create bug reports that are:
-
-- _Reproducible._ Include steps to reproduce the problem.
-- _Specific._ Include as much detail as possible: which version, what environment, etc.
-- _Unique._ Do not duplicate existing opened issues.
-- _Scoped to a Single Bug._ One bug per report.
-
-
-## Pull Request
-
-There are 2 main work flows when dealing with pull requests:
-
-* Pull Request from a [forked repository](https://help.github.com/articles/fork-a-repo)
-* Pull Request from a branch within a repository
-
-Here we are going to focus on 2. Creating a Topical Branch:
-
-
-1. First, we will need to create a branch from the latest commit on master. Make sure your repository is up to date first using
-
-   ```bash
-    git pull origin main
-   ```
-
-   *Note:* `git pull` does a `git fetch` followed by a `git merge` to update the local repo with the remote repo. For a more detailed explanation, see [this stackoverflow post](http://stackoverflow.com/questions/292357/whats-the-difference-between-git-pull-and-git-fetch).
-
-2. To create a branch, use `git checkout -b <new-branch-name> [<base-branch-name>]`, where `base-branch-name` is optional and defaults to `main`. 
-   
-   Use a standard convention for branch names. For example, `<your-name>-dev`. It will be easier to track your pull requests if you use this convention.
-   
-   I'm going to create a new branch called `jsm-dev` from the `main` branch and push it to github.
-
-   ```bash
-    git checkout -b jsm-dev main
-    git push origin jsm-dev
-   ```
-
-3. To create a pull request, you must have changes committed to your new branch.
-
-4. Go to [Pull Requests](https://github.com/JavaScript-Mastery-PRO/project1_team4_repository/pulls) and click on the `New Pull Request` button.
-
-5. Select the `main` branch as the `base` branch and the `jsm-dev` branch as the `compare` branch.
-
-6. Follow the template and fill in the proper information for the pull request.
-
-7. Click on the `Submit` button.
-
-8. You have successfully created a pull request. Now wait for mentor approval. Once approved, you can merge the pull request.
-
-#
-# Ridm
+I invite you to explore this project and provide any feedback you may have. Your insights are valuable, and I appreciate your time in reviewing my work. Thank you for your consideration!
