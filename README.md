@@ -1,6 +1,9 @@
 # Ridm - Web Player
 
-![Project Logo/Header Image]
+![Project Logo/Header Image]('./src/assets/images/ridm favicon.svg')
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 
 ## Overview
 
@@ -12,7 +15,7 @@
 
 - **Musixmatch API for Lyrics:** To provide users with an immersive experience, the Musixmatch API is integrated to fetch accurate and synchronized lyrics for each song. This dual-API approach showcases my ability to work with diverse technologies and integrate them harmoniously.
 
-- **Backend Proxy for CORS:** To resolve CORS-related errors, I implemented a backend proxy. This solution ensures smooth communication between the frontend and the Deezer and Musixmatch APIs, overcoming challenges and enhancing the project's reliability. [(Link to project here)](#).
+- **Backend Proxy for CORS:** To resolve CORS-related errors, I implemented a backend proxy. This solution ensures smooth communication between the frontend and the Deezer and Musixmatch APIs, overcoming challenges and enhancing the project's reliability. [(Link to project here)](https://github.com/ennanuel/ridm-api-proxy).
 
 ## Technologies Used
 
@@ -38,10 +41,13 @@
 
 ### Screenshots/GIFs
 
-![Screenshot 1]
-![Screenshot 2]
-
-<!-- Include more images or GIFs showcasing different aspects of the project -->
+![Screenshot 1](./demo/ridm_home.png)
+![Screenshot 2](./demo/ridm_album.png)
+![Screenshot 3](./demo/ridm_artists.png)
+![Screenshot 4](./demo/ridm_artist2.png)
+![Screenshot 5](./demo/ridm_nowplaying.png)
+![Screenshot 6](./demo/ridm_search.png)
+![Screenshot 6](#)
 
 ### Demo Link
 
