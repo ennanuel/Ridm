@@ -42,12 +42,11 @@
 ### Screenshots/GIFs
 
 ![Screenshot 1](./demo/ridm_home.png)
-![Screenshot 2](./demo/ridm_album.png)
-![Screenshot 3](./demo/ridm_artists.png)
-![Screenshot 4](./demo/ridm_artist2.png)
-![Screenshot 5](./demo/ridm_nowplaying.png)
+![Screenshot 2](./demo/ridm_nowplaying.png)
+![Screenshot 3](./demo/ridm_album.png)
+![Screenshot 4](./demo/ridm_artists.png)
+![Screenshot 5](./demo/ridm_artist2.png)
 ![Screenshot 6](./demo/ridm_search.png)
-![Screenshot 6](#)
 
 ### Demo Link
 
