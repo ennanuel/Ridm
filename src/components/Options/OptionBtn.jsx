@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiMenu } from 'react-icons/bi';
+import { BiMenuAltLeft } from 'react-icons/bi';
 import { BsThreeDots } from 'react-icons/bs';
 
 const OptionBtn = ({ open, optionType, btnRef, iconSize }) => {
@@ -7,11 +7,11 @@ const OptionBtn = ({ open, optionType, btnRef, iconSize }) => {
         <button
             onClick={open}
             ref={btnRef}
-            className={`text-white flex items-center justify-center drop-shadow-lg`}
+            className={`text-white flex items-center justify-center drop-shadow-lg peer`}
         >
             {
                 optionType == 'playlists' ?
-                    <BiMenu size={iconSize} /> :
+                    <BiMenuAltLeft size={iconSize} /> :
                     <BsThreeDots size={iconSize} />
             }
         </button>
