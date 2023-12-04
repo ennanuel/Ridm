@@ -85,7 +85,7 @@ export const playlistDispatch = (state, action) => {
       ...state,
       playlistInfo: {
         ...state.playlistInfo,
-        tracks: removedTracks = state.playlistInfo.tracks.filter(track => track.id !== action.payload.id)
+        tracks: state.playlistInfo.tracks.filter(track => track.id !== action.payload.id)
       }
     },
     addsuggestedsong: { ...state, suggestedSongs: [...state.suggestedSongs, ...action.payload] },
