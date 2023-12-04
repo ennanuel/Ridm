@@ -1,16 +1,14 @@
-import { useSelector } from "react-redux"
-
-import { useNavigate } from "react-router-dom"
-
-import { hidePrompt } from "../../redux/features/promptSlice"
-
-import { promptFunctions } from "../../utils/prompt"
-import { useMemo } from "react"
+import { useSelector, useDispatch } from "react-redux";
+import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { hidePrompt } from "../../redux/features/promptSlice";
+import { promptFunctions } from "../../utils/prompt";
 
 const Prompt = () => {
   const { displayPrompt, promptMessage, cancelText, acceptText, parameters } = useSelector(state => state.prompt);
   const promptFunction = useMemo(() => promptFunctions[parameters.type], [parameters]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function executePrompt () {
     if (!promptFunction) return;
