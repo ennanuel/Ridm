@@ -55,8 +55,11 @@ export const removeFromPlaylistPrompt = (playlist, songs) => {
 export const displayMessage = (message) => {
     store.dispatch(hideSuccessMessage());
     store.dispatch(showSuccessMessage(message));
+    setTimeout(hideMessage, 10100);
+}
 
-    setTimeout(() => store.dispatch(hideSuccessMessage()), 1100);
+export const hideMessage = () => {
+    store.dispatch(hideSuccessMessage());
 }
 
 export const promptFunctions = {
