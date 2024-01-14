@@ -38,7 +38,7 @@ const Search = () => {
             </ul>
             {
                 (params.get('cat') != 'Artist' && params.get('cat') != 'Album') &&
-                <Songs songs={songSearch?.data || []} isFetchihng={isFetchingSong} error={errorFetchingSong} blacklist={blacklist} favorites={favorites}>
+                <Songs songs={songSearch?.data || []} isFetching={isFetchingSong} error={errorFetchingSong} blacklist={blacklist} favorites={favorites}>
                     <span className="text-gray-400 text-sm md:text-base">Song results for </span><span className="text-gray-100 text-sm md:text-base">{searchTerm}</span>
                 </Songs>
             }
