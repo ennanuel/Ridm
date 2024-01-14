@@ -1,14 +1,20 @@
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
+import { MdAdd } from "react-icons/md";
+import { hideMessage } from "../../utils/prompt";
 
 const MessageBox = () => {
-    const { successMessage, displaySuccessMessage } = useSelector(state => state.prompt)
+    const { successMessage, displaySuccessMessage } = useSelector(state => state.prompt);
+
+    if (!displaySuccessMessage) return;
     
     return (
-        displaySuccessMessage &&
-        <section className="fixed z-[99999] flex items-center justify-center w-full lg:w-[80%] pointer-events-none right-0 bottom-0 pb-10 animate-showmessage translate-y-[100%]">   
-            <p className="max-w-[250px] rounded-sm bg-black/80 backdrop-blur-xl border-white/10 border-2 font-semibold text-center text-gray-300 text-sm md:text-base py-2 px-6 shadow-lg shadow-black/90">
-                {successMessage}
-            </p>
+        <section className="fixed z-[99999] flex items-center justify-center w-full lg:w-[80%] right-0 bottom-10 animate-showmessage">   
+            <div className="max-w-[250px] rounded-sm bg-white/10 backdrop-blur flex items-center gap-4 font-semibold text-white py-2 pl-4 pr-2 shadow-md shadow-black/20">
+                <p className="text-white text-sm md:text-base flex-1">{successMessage}</p>
+                <button onClick={hideMessage} className="flex items-center justify-center rotate-45">
+                    <MdAdd size={20} />
+                </button>
+            </div>
         </section>
     )
 }
