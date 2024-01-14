@@ -4,7 +4,6 @@ const PlaylistGenres = ({ playlistGenres, setNewPlaylist, genres, isLoading, err
     return (
         <>
             <h2 className="text-white text-lg font-bold mt-4">Genres</h2>
-
             <div className="flex flex-row flex-wrap gap-3 mt-2">
             {
                 playlistGenres.map( (genre, i) =>
