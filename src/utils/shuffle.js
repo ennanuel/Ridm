@@ -7,7 +7,7 @@ const shuffle = (tracks = [], song) => {
         shuffledTracks[randomIndex] = currSong;
     }
     const songIndex = song ? shuffledTracks.findIndex(track => track.id === song.id) : 0;
-    const currentSong = shuffledTracks[index];
+    const currentSong = shuffledTracks[songIndex];
     return {
         song: currentSong,
         i: songIndex,
