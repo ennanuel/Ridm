@@ -24,28 +24,35 @@ const Albums = ({ albums, children, showSort, isFetching, error, showmore, genre
   return (
     <div className="mb-8">
       <div className="flex items-end justify-between mb-4">
-        <h3 className="text-white font-bold text-xl">{children}</h3>
-        { showmore && <SeeMore link={`/charts?type=albums&genre=${genreid}`} /> }
+        {
+          isFetching ?
+            <span className="h-4 rounded-md w-full max-w-[240px] loading-animation bg-white/5"></span> :
+            <h3 className="text-white font-bold text-xl">{children}</h3>
+        }
+        {
+          showmore &&
+          <SeeMore link={`/charts?type=albums&genre=${genreid}`} />
+        }
       </div>
       {
         showSort && <Sort type="album" />
       }
       {
         isFetching ?
-        <AlbumLoading num={5} /> :
-        error ?
-        <Error title="Could not load albums" /> :
-        <div className="text-white grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-          {   
-              newAlbums &&
-              newAlbums.map( (album, i) => (
-                <AlbumCard key={i} i={i} isRelated={true} album={album} />
-              ))
-          }
-        </div>
+          <AlbumLoading num={5} /> :
+          error ?
+            <Error title="Could not load albums" /> :
+            <div className="text-white grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              {
+                newAlbums &&
+                newAlbums.map((album, i) => (
+                  <AlbumCard key={i} i={i} isRelated={true} album={album} />
+                ))
+              }
+            </div>
       }
     </div>
-  )
+  );
 }
 
 export default Albums

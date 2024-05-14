@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useRef, useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { options } from "../../utils/options";
 
@@ -8,14 +8,22 @@ import { filterOptions } from "../../utils/option";
 import Option from './Option';
 import OptionBtn from "./OptionBtn";
 
+const getModalPosition = (position) => `${position.clientY > position.height ? 'bottom-0' : 'top-0'} ${position.clientX > position.width ? 'right-[calc(100%+5px)]' : 'left-[calc(100%+5px)]'}`;
+
 const Options = ({ type, small, song, artist, genre, album, radio, playlist, tracks, i, favorite, blacklist }) => {
-    const filteredOptions = useMemo(() => filterOptions({ options, type, favorite, blacklist }), [blacklist, favorite, playlist]);
+    const { pathname } = useLocation();
+
+    const filteredOptions = useMemo(() => filterOptions({ options, type, favorite, blacklist, isInPlaylistPath: /\/playlists\//.test(pathname) }), [pathname, blacklist, favorite, playlist]);
+
     const iconSize = useMemo(() => window.innerWidth < 1024 ? 18 : small ? 20 : 30, []);
+
     const [showModal, setShowModal] = useState(false);
     const [position, setPosition] = useState({ clientY: 0, height: 0, clientX: 0, width: 0 });
+
     const btnRef = useRef(null);
     const modalRef = useRef(null);
-    const modalPosition = useMemo(() => `${position.clientY > position.height ? 'bottom-0' : 'top-0'} ${position.clientX > position.width ? 'right-[calc(100%+5px)]' : 'left-[calc(100%+5px)]'}`, [position]);
+
+    const modalPosition = useMemo(() => getModalPosition(position), [position]);
 
     const navigate = useNavigate();
 
@@ -26,12 +34,10 @@ const Options = ({ type, small, song, artist, genre, album, radio, playlist, tra
     }
     function open() {
         if (!btnRef.current) return;
+
         const rect = btnRef.current.getBoundingClientRect();
         setShowModal(true);
         setPosition({ height: window.innerHeight / 2, width: window.innerWidth / 2, clientX: rect.x, clientY: rect.y });
-    }
-    function close() {
-        setShowModal(false);
     }
 
     return (

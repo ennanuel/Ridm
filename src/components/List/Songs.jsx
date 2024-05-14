@@ -12,7 +12,9 @@ const Songs = ({ songs, suggestion, children, isFetching, error, showmore, genre
   const library = useSelector(state => state.library);
   const [tracks, setTracks] = useState([]);
   const [params, setParams] = useSearchParams();
-  const style = useMemo(() => ({ background: (full && bg) && `linear-gradient(${bg.replace(')', ',0.5)')}, ${bg2.replace(')', ',0.5)')})` }), [bg, bg2, full, songs])
+  const style = useMemo(() => ({
+    background: (full && bg) && `linear-gradient(${bg.replace(')', ',0.5)')}, ${bg2.replace(')', ',0.5)')})`
+  }), [bg, bg2, full, songs]);
 
   useEffect(() => {
     const sortType = params.get('sort');
@@ -23,30 +25,34 @@ const Songs = ({ songs, suggestion, children, isFetching, error, showmore, genre
   return (
     <div style={style} className={`flex flex-col ${(!full && !suggestion) && 'mb-8'} ${(full && !suggestion) && 'p-3 rounded-md overflow-clip'}`}>
       <div className={`relative z-1 flex flex-row justify-between items-end mb-4 ${suggestion ? 'lg:hidden' : ''}`}>
-          <h3 className="text-white/80 font-bold text-xl">{children}</h3>
-          {
-            showmore && <SeeMore link={`/charts?type=songs&genre=${genreid}`} />
-          }
+        {
+          isFetching ?
+            <span className="h-4 rounded-md w-full max-w-[240px] bg-white/5 animation-loading"></span> :
+            <h3 className="text-white/80 font-bold text-xl">{children}</h3>
+        }
+        {
+          showmore &&
+          <SeeMore link={`/charts?type=songs&genre=${genreid}`} />
+        }
       </div>
-
       {
         isFetching ?
-        <SongLoading num={4} full={full} /> :
-        (
-          error ?
-          <Error title="Could not Fetch songs" /> :
-            <div className={`relative z-1 w-full grid grid-cols-1 ${!full && 'md:grid-cols-2'} gap-2`}>
-            {
-              tracks?.map( (song, i, tracks) =>
-                <SongBar 
-                  key={i} 
-                  song={song} i={i} 
-                  tracks={tracks}
-                />
-              )
-            }
-          </div>
-        )
+          <SongLoading num={4} full={full} /> :
+          (
+            error ?
+              <Error title="Could not Fetch songs" /> :
+              <div className={`relative z-1 w-full grid grid-cols-1 ${!full && 'md:grid-cols-2'} gap-2`}>
+                {
+                  tracks?.map((song, i, tracks) =>
+                    <SongBar
+                      key={i}
+                      song={song} i={i}
+                      tracks={tracks}
+                    />
+                  )
+                }
+              </div>
+          )
       }
     </div>
   )
