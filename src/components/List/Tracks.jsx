@@ -23,38 +23,40 @@ const AllTracks = ({ tracks, activeSong, isPlaying, isFetching, error, songsToBe
 
   return (
     isFetching ?
-    <Loader title="Fetching album tracks..." /> :
-    error ?
-    <Error title="Could not fetch album details" /> :
-    <table className="w-full overflow-x-clip">
-      <thead className="bg-white/10">
-        <tr className="px-4 py-4 h-[50px]">
-          <th className="w-[7%]"></th>
-          <th className="w-[66%] text-left text-white font-bold text-xl">Tracks</th>
-          <th className="w-[10%] text-white"><BiTime size={30} /></th>
-          <th className="w-[10%]"></th>
-          <th className="w-[7%]"></th>
-        </tr>
-      </thead>
-      {
-        allTracks?.map( (song, i, songs) => (
-          <Track 
-            i={i}
-            key={i}
-            tracks={songs}
-            song={song} 
-            activeSong={activeSong} 
-            edit={isEditing}
-            handleTrack={handleTrack}
-            songsToBeDeleted={songsToBeDeleted}
-            isPlaying={isPlaying}
-            playlists={playlists}
-            playlist={playlist}
-          />
-        ))
-      }
-    </table>
-  )
+      <Loader title="Fetching album tracks..." /> :
+      error ?
+        <Error title="Could not fetch album details" /> :
+        <div className="m-2 md:m-4 rounded-[20px] bg-black/20 backdrop-blur-md border border-white/5">
+          <table className="w-full overflow-x-clip">
+            <thead>
+              <tr className="px-4 py-4 h-[50px] md:h-[60px]">
+                <th className="w-[7%]"></th>
+                <th className="w-[66%] text-left text-white/80 font-bold text-xl">Tracks</th>
+                <th className="w-[10%] text-white/80"><BiTime size={25} /></th>
+                <th className="w-[10%]"></th>
+                <th className="w-[7%]"></th>
+              </tr>
+            </thead>
+            {
+              allTracks?.map((song, i, songs) => (
+                <Track
+                  i={i}
+                  key={i}
+                  tracks={songs}
+                  song={song}
+                  activeSong={activeSong}
+                  edit={isEditing}
+                  handleTrack={handleTrack}
+                  songsToBeDeleted={songsToBeDeleted}
+                  isPlaying={isPlaying}
+                  playlists={playlists}
+                  playlist={playlist}
+                />
+              ))
+            }
+          </table>
+        </div>
+  );
 }
 
 export default AllTracks;
