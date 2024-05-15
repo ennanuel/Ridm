@@ -4,7 +4,7 @@ const Option = ({ option, handleOption, song, artist, album, genre, playlist, ra
   return (
     <button 
       onClick={() => handleOption(option.action, {song, artist, album, genre, playlist, radio, tracks, i})}
-      className="relative z-[2] px-3 py-2 hover:bg-white/10 cursor-pointer text-left"
+      className="relative z-[2] px-4 pr-6 h-[36px] md:h-[40px] flex items-center hover:bg-white/10 cursor-pointer text-left"
     >
         {option.name}
     </button>
