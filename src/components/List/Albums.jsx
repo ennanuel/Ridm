@@ -25,8 +25,8 @@ const Albums = ({ albums, children, showSort, isFetching, error, showmore, genre
     <div className="mb-8">
       <div className="flex items-end justify-between mb-4">
         {
-          isFetching ?
-            <span className="h-4 rounded-md w-full max-w-[240px] loading-animation bg-white/5"></span> :
+          children && isFetching ?
+            <span className="h-6 rounded-md w-full max-w-[240px] loading-animation bg-white/5"></span> :
             <h3 className="text-white font-bold text-xl">{children}</h3>
         }
         {
