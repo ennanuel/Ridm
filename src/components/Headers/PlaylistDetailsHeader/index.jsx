@@ -17,8 +17,19 @@ const PlaylistDetailsHeader = ({ playlist, songsToBeDeleted, editData, handleEdi
   }
 
   return (
-    <div style={{background: `linear-gradient(90deg, ${bg}, ${text2})`}} className="min-h-[30vh] mt-[-60px] pt-[80px] relative shadow-lg shadow-black/40 flex flex-col md:flex-row gap-4 items-start md:items-end justify-start p-6 overflow-x-clip">
-      <div className="bg-black/40 shadow-lg shadow-black/50 h-[150px] aspect-square">
+    <div style={{background: ''}} className="relative shadow-lg shadow-black/40 flex flex-col md:flex-row gap-6 items-start md:items-end justify-start p-2 md:p-4 m-4 rounded-[15px] border border-white/5 overflow-x-clip">
+      <div className="absolute w-full h-full z-0 overflow-hidden rounded-[15px] bottom-0 left-0">
+        {
+          playlist.tracks.length > 0 &&
+          <img
+            crossOrigin="anonymous"
+            src={playlist.tracks[0].album.cover_medium}
+            alt={playlist.name}
+            className="h-[100%] max-h-[360px] opacity-50 blur-[50px] object-cover"
+          />
+        }
+      </div>
+      <div className="relative bg-black/40 shadow-lg shadow-black/50 h-[150px] aspect-square">
         {playlist.tracks.length > 0 &&
           <img
             crossOrigin="anonymous"
