@@ -15,7 +15,7 @@ const Discover = () => {
     const topArtists = useMemo(() => data ? getData({ data: data.artists.data.slice(0, 10), type: 'artists' }) : [], [data, library]);
     
     const { data: radios, isFetching, error } = useGetTopRadiosQuery();
-    const topRadio = useMemo(() => radios?.data ? radios.data[0] : { id: 0 }, [radios]);
+    const topRadio = useMemo(() => radios?.data ? radios.data[1] : { id: 0 }, [radios]);
     const { data: radio, isFetching: fetchingRadioTracks, error: errorFetchingRadioTracks } = useGetRadioTracksQuery(topRadio.id);
 
     const { data: recentAlbums, isFetching: isFetchingRecentAlbums, error: errorFetchingRecentAlbums } = useGetRecentReleasesQuery(0);
@@ -46,7 +46,7 @@ const Discover = () => {
             <Radios 
                 isFetching={isFetching} 
                 error={error} 
-                radios={radios?.data?.slice(0, 4)}
+                radios={radios?.data?.slice(0, 5)}
                 showmore={true}
                 genreid={0}
             >
