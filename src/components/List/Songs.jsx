@@ -23,12 +23,12 @@ const Songs = ({ songs, suggestion, children, isFetching, error, showmore, genre
   }, [library, songs, noFilter])
 
   return (
-    <div style={style} className={`flex flex-col ${(!full && !suggestion) && 'mb-8'} ${(full && !suggestion) && 'p-3 rounded-md overflow-clip'}`}>
+    <div style={style} className={`flex flex-col ${(!full && !suggestion) && 'mb-8'} ${(full && !suggestion) && 'p-3 rounded-[20px] overflow-clip'}`}>
       <div className={`relative z-1 flex flex-row justify-between items-end mb-4 ${suggestion ? 'lg:hidden' : ''}`}>
         {
-          isFetching ?
-            <span className="h-4 rounded-md w-full max-w-[240px] bg-white/5 animation-loading"></span> :
-            <h3 className="text-white/80 font-bold text-xl">{children}</h3>
+          children && isFetching ?
+            <span className="h-6 rounded-md w-full max-w-[240px] bg-white/5 animation-loading"></span> :
+            <h3 className="text-white/80 font-bold text-xl mb-6">{children}</h3>
         }
         {
           showmore &&
@@ -41,7 +41,7 @@ const Songs = ({ songs, suggestion, children, isFetching, error, showmore, genre
           (
             error ?
               <Error title="Could not Fetch songs" /> :
-              <div className={`relative z-1 w-full grid grid-cols-1 ${!full && 'md:grid-cols-2'} gap-2`}>
+              <div className={`relative z-1 w-full grid grid-cols-1 ${!full && 'md:grid-cols-2'} gap-2 md:gap-4`}>
                 {
                   tracks?.map((song, i, tracks) =>
                     <SongBar
