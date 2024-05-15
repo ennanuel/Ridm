@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Albums, Artists, Songs } from "../components/List";
 
 import { useGetArtistAlbumQuery, useGetArtistDetailsQuery, useGetArtistsQuery, useGetSongsQuery } from "../redux/services/DeezerApi";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { getSingleData } from "../utils/getData";
 import { DetailsContext } from "../components/Details";
 
@@ -37,39 +37,37 @@ const ArtistDetails = () => {
     }, [artist])
 
     return (
-        <div className="flex flex-col">
-            <div className="p-2 md:p-4">
-                <Albums
-                    blacklist={blacklist}
-                    favorites={favorites}
-                    isFetching={isFetchingAlbums}
-                    error={errorFetchingAlbums}
-                    albums={albums?.data}
-                    showSort={true}
-                >
-                    {data?.name} releases
-                </Albums>
-                <Songs
-                    blacklist={blacklist}
-                    favorites={favorites}
-                    isFetching={isFetchingSongs}
-                    error={errorFetchingSongs}
-                    songs={tracks?.data}
-                    artist={data}
-                    artistId={artistid}
-                >
-                    Songs By {data?.name}
-                </Songs>
-                <Artists
-                    blacklist={blacklist}
-                    favorites={favorites}
-                    isFetching={isFetchingArtists}
-                    error={errorFetchingArtists}
-                    artists={artists?.data}
-                >
-                    Similar Artists
-                </Artists>
-            </div>
+        <div className="flex flex-col p-2 md:p-6 gap-10">
+            <Albums
+                blacklist={blacklist}
+                favorites={favorites}
+                isFetching={isFetchingAlbums}
+                error={errorFetchingAlbums}
+                albums={albums?.data}
+                showSort={true}
+            >
+                Recent releases
+            </Albums>
+            <Songs
+                blacklist={blacklist}
+                favorites={favorites}
+                isFetching={isFetchingSongs}
+                error={errorFetchingSongs}
+                songs={tracks?.data}
+                artist={data}
+                artistId={artistid}
+            >
+                Popular Songs by {artist?.name}
+            </Songs>
+            <Artists
+                blacklist={blacklist}
+                favorites={favorites}
+                isFetching={isFetchingArtists}
+                error={errorFetchingArtists}
+                artists={artists?.data}
+            >
+                Similar Artists
+            </Artists>
         </div>
     )
 };
