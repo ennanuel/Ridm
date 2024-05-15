@@ -15,7 +15,7 @@ const SongBar = ({ tracks, song, i, artistId }) => {
   return (
     <div
       style={{ '--delay': i / 20 + 's' }}
-      className={`song-bar animate-slowfade ${song.id === activeSong?.id && 'active-song'} flex flex-row items-center hover:bg-white/5 transition-colors p-[5px] pr-5 rounded-[3px] cursor-pointer`}>
+      className={`song-bar animate-slowfade ${song.id === activeSong?.id && 'active-song'} flex flex-row items-center hover:bg-white/5 transition-colors p-[5px] rounded-[10px] cursor-pointer`}>
       <div className="flex-1 flex flex-row items-center ml-[-6px] overflow-hidden">
         <SongImage
           song={song}
