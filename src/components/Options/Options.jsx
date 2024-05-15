@@ -15,8 +15,6 @@ const Options = ({ type, small, song, artist, genre, album, radio, playlist, tra
 
     const filteredOptions = useMemo(() => filterOptions({ options, type, favorite, blacklist, isInPlaylistPath: /\/playlists\//.test(pathname) }), [pathname, blacklist, favorite, playlist]);
 
-    const iconSize = useMemo(() => window.innerWidth < 1024 ? 18 : small ? 20 : 30, []);
-
     const [showModal, setShowModal] = useState(false);
     const [position, setPosition] = useState({ clientY: 0, height: 0, clientX: 0, width: 0 });
 
@@ -42,8 +40,8 @@ const Options = ({ type, small, song, artist, genre, album, radio, playlist, tra
 
     return (
         <div className="relative" ref={modalRef}>
-            <OptionBtn open={open} btnRef={btnRef} iconSize={iconSize} optionType={type} />
-            <ul className={`${modalPosition} ${showModal ? 'hover:pointer-events-auto hover:flex' : 'hover:pointer-events-none hover:hidden' } hidden pointer-events-none peer-focus:flex peer-focus:pointer-events-auto absolute z-1 animate-slowfade shadow-lg overflow-hidden shadow-black/60 z-[999999] w-max flex-col border text-gray-200 text-sm font-semibold border-white/10 rounded-md bg-black/80 backdrop-blur-lg`}>
+            <OptionBtn open={open} btnRef={btnRef} small={small} optionType={type} />
+            <ul className={`${modalPosition} ${showModal ? 'hover:pointer-events-auto hover:flex' : 'hover:pointer-events-none hover:hidden' } hidden pointer-events-none peer-focus:flex peer-focus:pointer-events-auto absolute z-1 animate-slowfade shadow-lg overflow-hidden shadow-black/60 z-[999999] w-max flex-col text-gray-200 text-sm font-semibold rounded-[20px] bg-black/80 backdrop-blur-lg`}>
                 {
                     filteredOptions
                         .map((option, num) =>
