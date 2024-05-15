@@ -29,7 +29,7 @@ const Suggestion = ({ radioTracks, radio, songs, isFetching, error, blacklist, f
                                         onClick={addToQueue}
                                         className="col-span-2 row-span-2 relative rounded-xl overflow-hidden aspect-square flex flex-col justify-center items-center font-bold text-3xl bg-black/50 text-white p-2"
                                     >
-                                        <img src={radio?.picture_medium} alt="" className="absolute w-full h-full" />
+                                        <img src={radio?.picture_medium} alt="" className="absolute w-full h-full blur-md" />
                                         <p className="relative">Top Mix</p>
                                     </div>
                                     {
