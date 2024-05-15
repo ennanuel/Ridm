@@ -9,11 +9,10 @@ import Chart from '../components/Charts'
 
 
 const TopCharts = () => {
-    const [params, setParams] = useSearchParams()
-    const [showingType, setShowingType] = useState(categories.some( (cat, i) => cat.to == params.get('type') ))
-    const handleClick = (to) => {
-        setParams(() => ({type: to}) )
-    }
+    const [params, setParams] = useSearchParams();
+    const [showingType, setShowingType] = useState(categories.some((cat, i) => cat.to == params.get('type')));
+    
+    const handleClick = (to) => setParams(() => ({ type: to }));
 
     useEffect(() => {
         const type = params.get('type');
