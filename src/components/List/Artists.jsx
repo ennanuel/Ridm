@@ -21,9 +21,9 @@ const Artists = ({ artists, children, isFetching, error, showmore, genreid, noFi
     <div className="mb-8">
       <div className="flex items-end justify-between mb-4">
         {
-          isFetching ?
-            <span className="h-4 rounded-md w-full max-w-[240px] bg-white/5 animation-loading"></span> :
-            <h3 className="text-white/80 font-bold text-xl">{children}</h3>
+          children && isFetching ?
+            <span className="h-6 rounded-md w-full max-w-[240px] bg-white/5 animation-loading"></span> :
+            <h3 className="text-white/80 font-bold text-xl mb-6">{children}</h3>
         }
         {
           showmore &&
