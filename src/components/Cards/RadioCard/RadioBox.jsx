@@ -1,7 +1,7 @@
 import { Options } from '../..//Options'
 import { FavoriteButton, PlayButton, ShuffleButton } from '../../Buttons'
 
-import { MdArrowBack } from 'react-icons/md'
+import { MdClose } from 'react-icons/md'
 import { useGetRadioTracksQuery } from '../../../redux/services/DeezerApi'
 import { Songs } from '../../List'
 import { useSelector } from 'react-redux'
@@ -20,14 +20,15 @@ const RadioBox = ({ radio, show, handleClick }) => {
     return (
         <>
             <button
-                className="absolute top-0 right-0 m-2 w-[30px] h-[30px] flex items-center justify-center bg-white/10 rounded-md text-gray-200 transition-[transform, opacity] opacity-90 hover:scale-110 hover:opacity-100"
+                className="absolute top-0 right-0 m-2 w-[40px] h-[40px] flex items-center justify-center bg-white/10 rounded-full text-gray-200 transition-[transform, opacity] opacity-90 hover:scale-110 hover:opacity-100"
                 onClick={() => handleClick(false)}
             >
-                <MdArrowBack size={25} />
+                <MdClose size={25} />
             </button>
-            <div className="flex flex-row items-end justify-start gap-4 flex-wrap">
-                <img className={`shadow-lg shadow-black/50 ${show && 'w-[150px]'}`} src={radio.picture_medium} alt="" />
-                <p className="flex flex-col">
+            <div className="flex relative items-end justify-start gap-4 flex-wrap">
+                <img src={radio.picture_medium} alt="" className="z-[0] absolute top-[-100px] left-[-100px] w-[50%] max-w-[360px] aspect-square blur-[70px] opacity-20" />
+                <img className={`shadow-lg shadow-black/50 rounded-[10px] ${show && 'w-[150px]'}`} src={radio.picture_medium} alt="" />
+                <p className="relative flex flex-col">
                     <span className="text-gray-400 text-sm font-bold">{radio.type}</span>
                     <span className="text-white uppercase text-xl font-bold truncate">{radio.title}</span>
                     <span className="text-gray-200 text-sm font-semibold">{radioTracks?.length} Songs</span>
@@ -40,11 +41,11 @@ const RadioBox = ({ radio, show, handleClick }) => {
                     </div>
                 }
             </div>
-            <div className="flex flex-row items-center gap-4 my-4">
+            <div className="relative flex flex-row items-center gap-3 my-4">
                 <FavoriteButton type="radios" data={radio} />
                 <Options type="radio" song={radioTracks && radioTracks[0]} i={0} radio={radio} tracks={radioTracks} blacklist={radio.blacklist} favorite={radio.favorite} />
             </div>
-            <div className="rounded-md bg-black/50 max-h-[50vh] overflow-y-scroll overflow-x-clip">
+            <div className="relative rounded-[20px] bg-black/50 max-h-[60vh] overflow-y-scroll overflow-x-clip px-4">
                 <Songs isFetching={isFetching} error={error} songs={radioTracks} />
             </div>
         </>
