@@ -21,7 +21,7 @@ const RadioCard = ({ radio, i }) => {
       style={{'--delay': i/20 + 's'}} 
       onClick={() => !show && setParams({type: 'radios', show: radio.id, })} 
       id={radio.id}
-      className={`radio-card relative bg-white/5 transition-[background-color] ${show ? 'p-4 col-span-full row-span-2' : 'p-1 hover:bg-white/10'}`}>
+      className={`radio-card relative bg-white/5 transition-[background-color] ${show ? 'p-4 col-span-full row-span-2 rounded-[20px] relative overflow-clip' : 'p-1 hover:bg-white/10'}`}>
         {
           !show ?
           <Card radio={radio} show={show} /> :
