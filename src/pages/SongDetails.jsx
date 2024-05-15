@@ -48,15 +48,15 @@ const SongDetails = () => {
 
     return (
         <div className="min-h-[100vh]">
-            <div className="p-2 md:p-4 flex flex-col md:flex-row items-stretch md:items-start justify-stretch">
+            <div className="p-2 md:p-4 flex flex-col md:flex-row gap-4 items-stretch md:items-start justify-stretch">
                 <div className="flex-1">
-                    <SongLyrics isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
+                    <SongLyrics showBlur={true} isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
                 </div>
                 <div className="flex-1">
                     <Songs 
                         full={true}
-                        bg={colors.length > 0 && colors[1]}
-                        bg2={colors.length > 0 && colors[0]}
+                        bg={colors?.length > 0 && colors[1]}
+                        bg2={colors?.length > 0 && colors[0]}
                         blacklist={blacklist} 
                         favorites={favorites}
                         isFetching={isFetchingRelated} 
