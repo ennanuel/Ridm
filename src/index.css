@@ -1,13 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Quicksand:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:wght@300;400;600&family=Outfit:wght@100..900&family=Quicksand:wght@300;400;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
-  @apply bg-black;
+  @apply bg-[#101010];
   user-select: none;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Outfit', sans-serif;
   scroll-behavior: smooth;
+}
+
+.favorites-bg {
+  background: linear-gradient(rgba(162, 221, 255, 0.2), transparent 80vh);
+}
+
+.blacklist-bg {
+  background: linear-gradient(rgba(255, 50, 50, 0.2), transparent 80vh);
+}
+
+.normal-bg {
+  background: linear-gradient(rgba(255, 209, 245, 0.05), transparent 80vh);
 }
 
 .top_overlay {
@@ -32,42 +45,11 @@ html {
   background: rgba(13, 13, 13, 0.3)
 }
 
-.player {
-  background: rgb(10, 10, 10);
-  transition: background-color 1s ease, opacity 0.5s ease;
-}
-
-.search_bar input {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.player .search_bar input {
-  background-color: rgba(20, 20, 20, 0.5);
-}
-
 .album-card {
   @apply animate-popin;
   animation-delay: var(--delay);
   animation-fill-mode: forwards;
   opacity: 0;
-}
-
-.album_overlay {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.album_overlay div {
-  transform: translateY(-30%);
-  transition: transform 0.3s ease;
-}
-
-.album-card:hover .album_overlay div {
-  transform: translateY(0);
-}
-
-.album-card:hover .album_overlay {
-  opacity: 1
 }
 
 .genre-card {
@@ -152,7 +134,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #101010;
+  background-color: transparent;
 }
 
 .invisible_scroll::-webkit-scrollbar-track {
@@ -168,31 +150,24 @@ html {
 /* The slider itself */
 .seek_slider {
   -webkit-appearance: none;
-  /* Override default CSS styles */
   @apply rounded-md;
   @apply bg-gray-400;
   background-color: var(--bg1);
   appearance: none;
   height: 5px;
-  /* Specified height */
   outline: none;
-  /* Remove outline */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .seek_slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  /* Override default look */
   @apply bg-white;
   @apply rounded-full;
   background-color: var(--bg2);
   appearance: none;
   width: 10px;
-  /* Set a specific slider handle width */
   height: 10px;
-  /* Slider handle height */
   cursor: pointer;
-  /* Cursor on hover */
 }
 
 .seek_slider::-moz-range-thumb {
@@ -201,49 +176,36 @@ html {
   @apply shadow-black/50;
   background-color: var(--bg2);
   width: 10px;
-  /* Set a specific slider handle width */
   height: 10px;
-  /* Slider handle height */
   cursor: pointer;
-  /* Cursor on hover */
 }
 
 /* The slider itself */
 .volume_slider {
   -webkit-appearance: none;
-  /* Override default CSS styles */
   @apply rounded-md;
   @apply bg-gray-200;
   appearance: none;
   height: 5px;
-  /* Specified height */
   outline: none;
-  /* Remove outline */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .volume_slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  /* Override default look */
   @apply bg-white;
   @apply rounded-lg;
   appearance: none;
   width: 5px;
-  /* Set a specific slider handle width */
   height: 15px;
-  /* Slider handle height */
   cursor: pointer;
-  /* Cursor on hover */
 }
 
 .volume_slider::-moz-range-thumb {
   @apply bg-white;
   width: 10px;
-  /* Set a specific slider handle width */
   height: 10px;
-  /* Slider handle height */
   cursor: pointer;
-  /* Cursor on hover */
 }
 
 .loading-animation {
