@@ -19,12 +19,10 @@ const MusicPlayer = ({ scrolled, forMobile = false }) => {
 
   const open = () => {
     dispatch(setNowPlaying(true));
-    console.log(nowPlaying);
   }
 
   function close() {
     dispatch(setNowPlaying(false));
-    console.log(nowPlaying);
   }
 
   if (!forMobile && !(activeSong?.id && window.innerWidth >= 1024)) return;
