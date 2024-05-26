@@ -10,7 +10,7 @@ const SuggestedCard = ({ song, i, tracks }) => {
                 background: `center / cover url(${i === 1 ? song?.album?.cover_xl : song?.album?.cover_medium})`,
                 '--delay': i / 10 + 's'
             }} 
-            className={`${(i === 1) && 'col-span-2 row-span-2'} relative rounded-xl overflow-hidden aspect-square`}
+            className={`${(i === 1 || i === 9) && 'col-span-2 row-span-2'} relative rounded-xl overflow-hidden aspect-square`}
         >
             <div className="absolute w-full h-full bg-black/20 hover:bg-black/50"></div>
         </div>
