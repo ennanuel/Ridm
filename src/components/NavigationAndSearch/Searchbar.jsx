@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 
-const Searchbar = () => {
+const Searchbar = ({ scrolled }) => {
   const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
   const handleSubmit = (e) => {
@@ -11,21 +11,19 @@ const Searchbar = () => {
   }
 
   return (
-    <form className="relative flex-1 search_bar text-gray-300 focus-within:text-gray-200 py-[10px] pl-[15px]" onSubmit={handleSubmit}>
-      <div className="flex flex-row justify-start items-center gap-2 w-full">
-        <input 
-          type="search" 
-          id="search-field" 
-          name="search-field" 
-          autoComplete="off" 
-          placeholder="Search"
-          onChange={(e) => {setSearchTerm(e.target.value)}}
-          className="flex-1 border-none outline-none placeholder-gray-300 rounded-[20px] text-white text-xs lg:text-sm p-2 pl-4 w-full max-w-[400px] backdrop-blur-lg shadow-md shadow-black/30"
-         />
-         <button className="flex flex-row justify-center-items-center p-2 bg-white/10 rounded-[20px] opacity-80 transition-opacity hover:opacity-100 crusor-pointer backdrop-blur-lg shadow-md shadow-black/30">
-          <FiSearch size={20} />
-         </button>
-      </div>
+    <form className="relative flex-1 flex gap-2 h-[36px] md:h-[40px] search_bar text-gray-300 focus-within:text-gray-200 pl-[15px]" onSubmit={handleSubmit}>
+      <input
+        type="search"
+        id="search-field"
+        name="search-field"
+        autoComplete="off"
+        placeholder="Search"
+        onChange={(e) => { setSearchTerm(e.target.value) }}
+        className={`flex-1 border-none outline-none placeholder-gray-300 rounded-[20px] text-white text-xs lg:text-sm p-2 pl-4 w-full max-w-[400px] backdrop-blur-lg bg-white/5 border ${!scrolled ? 'shadow shadow-black/30 border-transparent' : 'border-white/5'}`}
+      />
+      <button className={`flex items-center justify-center h-[36px] md:h-[40px] aspect-square bg-white/10 rounded-[20px] opacity-80 transition-opacity hover:opacity-100 crusor-pointer backdrop-blur-lg border ${!scrolled ? 'shadow shadow-black/30 border-transparent' : 'border-white/5'}`}>
+        <FiSearch size={18} />
+      </button>
     </form>
   )
 }
