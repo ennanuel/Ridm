@@ -1,31 +1,27 @@
 import { Songs, Albums, Artists, Genres, Radios } from './'
 
-const Library = ({ library, favorites, blacklist, noFilter }) => (
+const Library = ({ library, noFilter }) => (
     <>
-    {
-        Object.entries(library).map(
-            ([entry, value], i) => {
-                const title = entry === 'tracks' ? 'Song' : entry.substring(0, entry.length - 1)
-                return (
+        {
+            Object.entries(library).map(
+                ([entry, value], i) => (
                     <>
-                    {
-                        (entry === 'tracks' && value.length > 0) ?
-                        <Songs key={i} favorites={favorites} blacklist={blacklist} noFilter={noFilter} songs={value}>{title}</Songs> :
-                        (entry === 'albums' && value.length > 0) ?
-                        <Albums key={i} favorites={favorites} blacklist={blacklist} noFilter={noFilter} albums={value}>{title}</Albums> :
-                        (entry === 'artists' && value.length > 0) ?
-                        <Artists key={i} favorites={favorites} blacklist={blacklist} noFilter={noFilter} artists={value}>{title}</Artists> :
-                        (entry === 'genres' && value.length > 0) ?
-                        <Genres key={i} favorites={favorites} blacklist={blacklist} noFiilter={noFilter} genres={value}>{title}</Genres> :
-                        (entry === 'radios' && value.length > 0) &&
-                        <Radios key={i} favorites={favorites} blacklist={blacklist} noFilter={noFilter} songs={value}>{title}</Radios>
-                    }
+                        {
+                            (entry === 'tracks' && value.length > 0) ?
+                                <Songs key={i} noFilter={noFilter} songs={value}>songs</Songs> :
+                                (entry === 'albums' && value.length > 0) ?
+                                    <Albums key={i} noFilter={noFilter} albums={value}>{entry}</Albums> :
+                                    (entry === 'artists' && value.length > 0) ?
+                                        <Artists key={i} noFilter={noFilter} artists={value}>{entry}</Artists> :
+                                        (entry === 'genres' && value.length > 0) ?
+                                            <Genres key={i} noFiilter={noFilter} genres={value}>{entry}</Genres> :
+                                            (entry === 'radios' && value.length > 0) &&
+                                            <Radios key={i} noFilter={noFilter} radios={value}>{entry}</Radios>
+                        }
                     </>
-                )
-            }
-        )
-    }
+                ))
+        }
     </>
-)
+);
 
 export default Library
