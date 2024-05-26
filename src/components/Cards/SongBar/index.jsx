@@ -6,11 +6,9 @@ import SongImage from './SongImage'
 import SongInfo from './SongInfo'
 
 const SongBar = ({ tracks, song, i, artistId }) => {
-  const { activeSong, isPlaying } = useSelector((store) => store.player)
+  const { activeSong, isPlaying } = useSelector((store) => store.player);
 
-  const handlePlayClick = () => {
-    playSongs({ song, tracks, i })
-  }
+  const handlePlayClick = () => playSongs({ song, tracks, i });
 
   return (
     <div
