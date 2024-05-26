@@ -16,7 +16,7 @@ const GenresAndLink = ({ data, text, bg }) => {
                     genres?.map(
                         (genre, i) =>
                         <Link key={i} to={`/genres/${genre.id}`} style={{ color: text }} className="text-xs w-fit font-bold">
-                            {genre.name}{i !== genres.length ? ',' : ''}
+                            {genre.name}{i < genres.length - 1 ? ',' : ''}
                         </Link>
                     )
                 }
