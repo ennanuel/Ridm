@@ -60,7 +60,7 @@ const Playlist = () => {
   }, [params])
 
   return (
-    <div className={`p-2 flex md:p-4 overflow-x-clip ${!isInAddPage ? 'overflow-y-hidden' : ''}`}>
+    <div className={`px-2 flex md:px-4 overflow-x-clip ${!isInAddPage ? 'overflow-y-hidden' : ''}`}>
       <PlaylistsFront isInAddPage={isInAddPage} />
       <CreatePlaylist
         handleSubmit={handleSubmit}
