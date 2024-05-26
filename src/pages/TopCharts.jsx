@@ -24,36 +24,36 @@ const TopCharts = () => {
 
     return (
         <div className="relative">
-        <div className="absolute top-0 left-0 min-h-[90vh] w-full grid grid-cols-2 grid-rows-2 gap-5 p-4">
-            {
-                categories.map(
-                    (category, i) => {
-                        const type = params.get('type')
-                        const active = category.to == type
-                        return (
-                            <section className={`h-full transition-[transform,opacity] ${(!active && showingType) && 'scale-20 opacity-0 pointer-events-none'}`}>
-                                <ChartCard handleClick={handleClick} active={active} type={type} category={category} i={i} />
-                            </section>
-                        )
-                    }
-                )
-            }
-        </div>
-        <div className="p-4 min-h-[90vh]">
-            {
-                categories.map(
-                    (category, i) => {
-                        const type = params.get('type')
-                        const active = category.to == type
-                        return (
-                            <section className={`h-full transition-[transform,opacity] ${(!active && showingType) && 'scale-20 opacity-0 pointer-events-none absolute w-full top-0 left-0 h-[80vh] overflow-hidden'}`}>
-                                <Chart category={category} active={active} i={i} />
-                            </section>
-                        )
-                    }
-                )
-            }
-        </div>
+            <div className="absolute top-0 left-0 min-h-[82vh] w-full grid grid-cols-2 grid-rows-2 gap-5 md:gap-6 px-2">
+                {
+                    categories.map(
+                        (category, i) => {
+                            const type = params.get('type')
+                            const active = category.to == type
+                            return (
+                                <section className={`h-full transition-[transform,opacity] ${(!active && showingType) && 'scale-20 opacity-0 pointer-events-none'}`}>
+                                    <ChartCard handleClick={handleClick} active={active} type={type} category={category} i={i} />
+                                </section>
+                            )
+                        }
+                    )
+                }
+            </div>
+            <div className="px-4 min-h-[82vh]">
+                {
+                    categories.map(
+                        (category, i) => {
+                            const type = params.get('type')
+                            const active = category.to == type
+                            return (
+                                <section className={`h-full transition-[transform,opacity] ${(!active && showingType) && 'scale-20 opacity-0 pointer-events-none absolute w-full top-0 left-0 h-[80vh] overflow-hidden'}`}>
+                                    <Chart category={category} active={active} i={i} />
+                                </section>
+                            )
+                        }
+                    )
+                }
+            </div>
         </div>
     )
 };
