@@ -27,7 +27,7 @@ const RecentArtists = ({ artists, isFetching, error }) => {
                 // centeredSlides
                 // centeredSlidesBounds
                 modules={{FreeMode}}
-                className="mt-3 mb-5 p-[20px] max-w-[95vw] lg:max-w-[calc(100vw-350px)]"
+                className="mt-3 mb-5 p-[20px] max-w-[95vw] lg:max-w-[calc(100vw-360px)]"
             >
                 {
                     isFetching ?
