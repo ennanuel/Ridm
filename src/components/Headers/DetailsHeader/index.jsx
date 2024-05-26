@@ -1,4 +1,3 @@
-import { BsDot } from 'react-icons/bs'
 import Contributors from './Contributors'
 import AlbumInfo from './AlbumInfo'
 import SongInfo from './SongInfo'
@@ -21,17 +20,18 @@ const DetailsHeader = () => {
     const colors = colorThief.getPalette(imageRef.current).slice(0,2)
     if (colors.length !== 2) return;
     const newColors = colors.map(([r, g, b]) => `rgba(${r}, ${g}, ${b})`)
-    setColors(newColors)
+    setColors(newColors);
     updateData({ ...others, colors: isFetching || error ? [] : newColors, data, isFetching, error })
   }
 
   useEffect(() => {
-    setUrl(isFetching ? '' : data?.picture_xl || data?.cover_xl || data?.album?.cover_xl)
+    setUrl(isFetching ? '' : data?.picture_xl || data?.cover_xl || data?.album?.cover_xl);
+    updateData({ ...others, colors: isFetching || error ? [] : [bg, text], data, isFetching, error });
   }, [isFetching, data])
 
   return (
     <div
-      className="transition-[box-shadow] text-gray-400 relative md:h-[60vh] w-full aspect-square md:aspect-auto flex flex-col justify-end mt-[-60px] overflow-clip"
+      className="transition-[box-shadow] text-gray-400 relative md:h-[60vh] w-full aspect-square md:aspect-auto flex flex-col justify-end mt-[-70px] lg:mt-[-90px] overflow-clip lg:rounded-t-[15px]"
     >
       {
         url &&
@@ -55,7 +55,6 @@ const DetailsHeader = () => {
           
           <h3 style={{ color: text }} className="font-bold w-fit flex flex-row items-center text-xs">
             <AlbumInfo data={data} />
-            <BsDot size={20} />
             <SongInfo data={data} />
           </h3>
         </div>
