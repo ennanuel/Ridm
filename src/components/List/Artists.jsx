@@ -1,25 +1,19 @@
-import { useState, useEffect } from 'react'
-import { ArtistCard } from '../Cards'
-import { ArtistLoading, Error } from '../LoadersAndError'
-import { getData } from '../../utils/getData'
-import SeeMore from './SeeMore'
-import { useSearchParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useMemo } from 'react';
+import { ArtistCard } from '../Cards';
+import { ArtistLoading, Error } from '../LoadersAndError';
+import { getData } from '../../utils/getData';
+import SeeMore from './SeeMore';
+import { useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Artists = ({ artists, children, isFetching, error, showmore, genreid, noFilter }) => {
   const library = useSelector(state => state.library);
   const [params, setParams] = useSearchParams();
-  const [newArtists, setNewArtists] = useState([]);
-
-  useEffect(() => {
-    const sortType = params.get('sort');
-    const artistsData = getData({ type: 'artists', data: artists, noFilter, sortType });
-    setNewArtists(artistsData);
-  }, [library, artists, noFilter])
+  const newArtists = useMemo(() => getData({ type: 'artists', data: artists, noFilter, sortType: params.get('sort') }), [library, artists, noFilter]);
   
   return (
-    <div className="mb-8">
-      <div className="flex items-end justify-between mb-4">
+    <div id="artists" className="mb-8">
+      <div className={`flex items-end justify-between ${children || isFetching ? 'mb-4' : ''}`}>
         {
           children && isFetching ?
             <span className="h-6 rounded-md w-full max-w-[240px] bg-white/5 animation-loading"></span> :
