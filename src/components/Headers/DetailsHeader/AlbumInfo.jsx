@@ -19,34 +19,37 @@ const AlbumInfo = ({ data }) => {
             {
                 data?.type != 'artist' &&
                 <>
-                <span>
-                    {
-                        Math.floor(data.duration/(3600)) ? 
-                        Math.floor(data.duration/(3600)) + (Math.floor(data.duration/3600) > 1 ? 
-                        ' hrs ' : ' hr ') : 
-                        ''
-                    }
-                    {
-                        Math.floor((data.duration%3600)/60) ? 
-                        Math.floor((data.duration%3600)/60) + (Math.floor((data.duration%3600)/60) > 1 
-                        ? ' mins ' : ' min ') : 
-                        ''
-                    }
-                    {data.duration%60 ? data.duration%60 + (data.duration%60 > 1 ? ' secs' : ' sec') : ''}
-                </span>
-                <BsDot size={20} />
+                    <span>
+                        {
+                            Math.floor(data.duration / (3600)) ?
+                                Math.floor(data.duration / (3600)) + (Math.floor(data.duration / 3600) > 1 ?
+                                    ' hrs ' : ' hr ') :
+                                ''
+                        }
+                        {
+                            Math.floor((data.duration % 3600) / 60) ?
+                                Math.floor((data.duration % 3600) / 60) + (Math.floor((data.duration % 3600) / 60) > 1
+                                    ? ' mins ' : ' min ') :
+                                ''
+                        }
+                        {data.duration % 60 ? data.duration % 60 + (data.duration % 60 > 1 ? ' secs' : ' sec') : ''}
+                    </span>
+                    <BsDot size={20} />
                 </>
             }
-            { data?.type == 'artist' && <a href="#albums">{ data?.nb_album} releases </a> }
+            {data?.type == 'artist' && <a href="#albums">{data?.nb_album} releases </a>}
             {
                 data?.type == 'track' &&
-                <Link to={`/albums/${data?.album?.id}`}>
+                <>
+                    <Link to={`/albums/${data?.album?.id}`}>
                         {
                             data?.album?.title.length > 30 ?
-                            data?.album?.title.substring(0, 30) + '...' :
-                            data?.album?.title
+                                data?.album?.title.substring(0, 30) + '...' :
+                                data?.album?.title
                         }
-                </Link>
+                    </Link>
+                    <BsDot size={20} />
+                </>
             }
         </>
     )
