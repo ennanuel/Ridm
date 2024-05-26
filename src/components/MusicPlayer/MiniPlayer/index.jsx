@@ -17,7 +17,7 @@ const MiniPlayer = ({ duration, open, appTime, scrolled, isPlaying, currentSongs
   }
 
   return (
-    <div style={style} className={`${nowPlaying && 'translate-y-[100%] lg:translate-y-0 opacity-0'} relative w-[calc(100%-20px)] m-auto lg:m-0 lg:p-0 lg:px-3 lg:py-2 lg:h-full lg:w-fit md:min-w-[300px] animate-slideup lg:animate-popin music_player transition-[transform,opacity] rounded-lg overflow-hidden lg:rounded-none lg:rounded-bl-xl backdrop-blur-lg ${!scrolled && 'shadow shadow-black/50'}`}>
+    <div style={style} className={`${nowPlaying && 'translate-y-[100%] lg:translate-y-0 opacity-0'} relative w-[calc(100%-20px)] m-auto lg:m-0 lg:p-0 lg:px-3 lg:h-full lg:w-fit md:min-w-[300px] animate-slideup lg:animate-popin music_player transition-[transform,opacity] rounded-lg overflow-hidden lg:rounded-[15px] backdrop-blur-lg border border-white/5 ${!scrolled && 'shadow shadow-black/50 border-none'}`}>
       <button
         className="absolute z-[1] w-full h-full lg:hidden lg:pointer-events-none"
         onClick={open}
