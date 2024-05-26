@@ -1,31 +1,87 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import { Library } from '../components/List'
-import { useEffect, useState } from 'react'
+import { Radios } from '../components/List';
+import { useEffect, useMemo } from 'react';
+import { AlbumCard, ArtistCard, SongBar } from '../components/Cards';
 
 const Favorites = () => {
-  const { favorites, blacklist } = useSelector(state => state.library)
+  const { favorites } = useSelector(state => state.library);
+  const favoriteLibrary = useMemo(() => (Object.entries(favorites))
+    .map(([key, value]) => [key, value.map(item => ({ ...item, favorite: true }))])
+    .reduce((otherEntries, [key, value]) => ({ ...otherEntries, [key]: value }), {})
+  , [favorites]);
 
   useEffect(() => {
-    document.getElementById('site_title').innerText = 'Ridm - Favorites'
+    document.getElementById('site_title').innerText = 'Ridm - Favorites';
   }, [])
 
   return (
-    <div className="flex flex-col gap-6 bg-gradient-to-b from-slate-600/50 to-[transparent] to-[400px] min-h-[90vh] mt-[-60px] pt-[60px]">
-      <div className="p-4 backdrop-blur-xl">
+    <div className="flex flex-col gap-6 min-h-[90vh]">
+      <div className="px-2 md:px-4 backdrop-blur-xl">
         {
-          Object.entries(favorites).some( ([entry, value], i) => value.length > 0 ) ?
-          <Library library={favorites} favorites={favorites} blacklist={blacklist} /> :
-          <div className="p-4 flex-1 flex flex-col items-center justify-center gap-4">
-            <h3 className="text-gray-400 font-bold text-xl">You haven't liked anything yet.</h3>
-            <Link to="/"
-              className="px-4 py-2 rounded-md border-2 border-gray-400 text-gray-400 text-sm font-bold transition-[background-color] hover:bg-gray-400 hover:text-black"
-            >
-              Go Home
-            </Link>
-          </div>
+          Object.values(favoriteLibrary).some((value) => value.length > 0) ?
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 gap-y-8">
+
+              {
+                favoriteLibrary.albums.length > 0 ?
+                  <section className={`flex flex-col gap-4 min-h-[80vh] ${!favoriteLibrary.albums.length && !favoriteLibrary.tracks.length ? 'col-span-2' : ''}`}>
+                    <h3 className="font-bold text-xl text-gray-200">Artists</h3>
+                    <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {
+                        favoriteLibrary.artists.map((artist) => (
+                          <li key={artist.id}><ArtistCard artist={artist} /></li>
+                        ))
+                      }
+                    </ul>
+                  </section> :
+                  null
+              }
+
+              {
+                favoriteLibrary.tracks.length > 0 ?
+                  <section className="md:row-span-2">
+                    <div className="sticky top-[80px] flex flex-col gap-4 border border-white/5 rounded-[20px] bg-white/5 p-4 md:max-h-[83vh]">
+                      <h3 className="font-bold text-xl text-gray-200">Songs</h3>
+                      <ul className="flex flex-col gap-2 flex-1 overflow-y-scroll overflow-x-clip">
+                        {favoriteLibrary.tracks.map((song) => (
+                          <li key={song.id}><SongBar song={song} /></li>
+                        ))}
+                      </ul>
+                    </div>
+                  </section> :
+                  null
+              }
+              
+              {
+                favoriteLibrary.albums.length > 0 ?
+                  <section className={`flex flex-col gap-4 min-h-[80vh] ${!favoriteLibrary.artists.length && !favoriteLibrary.tracks.length ? 'col-span-2' : ''}`}>
+                    <h3 className="font-bold text-xl text-gray-200">Albums</h3>
+                    <ul className='grid grid-cols-2 gap-4 md:grid-cols-2'>
+                      {
+                        favoriteLibrary.albums.map((album) => (
+                          <li key={album.id}><AlbumCard album={album} /></li>
+                        ))
+                      }
+                    </ul>
+                  </section> :
+                  null
+              }
+
+              {
+                favoriteLibrary.radios.length > 0 ?
+                  <section className="md:col-span-2 flex flex-col gap-4 sticky top-[70px] min-h-[80vh]">
+                    <h3 className="font-bold text-xl text-gray-200">Radios</h3>
+                    <Radios radios={favoriteLibrary.radios} />
+                  </section> :
+                  null
+              }
+            </div> :
+            <div className="p-4 flex-1 flex flex-col items-center justify-center gap-4">
+              <h3 className="text-gray-400 font-bold text-xl">You haven't liked anything yet.</h3>
+              <Link to="/" className="px-4 py-2 rounded-md border-2 border-gray-400 text-gray-400 text-sm font-bold transition-[background-color] hover:bg-gray-400 hover:text-black">Go Home</Link>
+            </div>
         }
       </div>
     </div>
