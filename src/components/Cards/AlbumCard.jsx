@@ -20,28 +20,30 @@ const AlbumCard = ({ album, i, isRelated, isRecent, activeSong, isPlaying }) => 
         <div 
             style={{'--delay': (i/10) + 's'}} 
             onClick={handleClick} 
-            className="album-card p-3 rounded-xl flex flex-col flex-1 hover:bg-white/5 transition-[background-color] top-0 cursor-pointer"
+            className="album-card group p-3 rounded-xl flex flex-col flex-1 hover:bg-white/5 transition-[background-color] top-0 cursor-pointer"
         >
             <div className="relative">
                 <img
                     className="transition-transform w-full aspect-square rounded-lg"
-                    alt="song_img"
+                    alt=""
                     src={album?.cover_medium}
                 />
-                <div className={`album_overlay ${activeSong?.album?.title !== album?.title ? 'show_overlay' : ''} hidden lg:flex absolute top-0 left-0 w-full h-full bg-black/50 items-end justify-end p-2`}>
-                    <PlayPause 
-                        handlePlay={playSongs} 
-                        isCurrent={activeSong?.album?.title === album?.title} 
-                        handlePause={pause} activeSong={activeSong} 
-                        isPlaying={isPlaying} 
-                        cover={true} 
-                    />
+                <div className={`group-hover:opacity-100 group-hover:pointer-events-auto opacity-0 transition-opacity pointer-events-none hidden lg:flex absolute top-0 left-0 w-full h-full bg-black/50 items-end justify-end p-2`}>
+                    <span className="group-hover:translate-y-0 group-hover:opacity-100 translate-y-[-30%] opacity-0 transition-[opacity,transform] duration-300">
+                        <PlayPause 
+                            handlePlay={playSongs} 
+                            isCurrent={activeSong?.album?.title === album?.title} 
+                            handlePause={pause} activeSong={activeSong} 
+                            isPlaying={isPlaying} 
+                            cover={true} 
+                        />
+                    </span>
                 </div>
             </div>
             {
                 isRelated || isRecent ?
                 <Link to={`/artists/${album?.artist?.id}`}>
-                    <p className="text-gray-400 text-xs mt-2 mb-1 font-semibold truncate">{album?.artist?.name}</p>
+                    <p className="text-gray-400 text-xs mt-3 mb-1 font-semibold truncate">{album?.artist?.name}</p>
                 </Link> :
                 <>
                     {
