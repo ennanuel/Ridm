@@ -16,10 +16,12 @@ const NowPlaying = ({ close, open, nowPlaying, activeSong, currentSongs, current
     const [lyricsQueue, setLyricsQueue] = useState(false);
     const [colors, setColors] = useState([]);
     const imgRef = useRef(null);
+
     const { data: song } = useGetSongDetailsQuery(activeSong.id);
     const { data: lyrics, isFetching, error } = useGetLyricsQuery(song?.isrc);
+
     const style = useMemo(() => ({
-        background: `linear-gradient(${colors[0]}, #151515)`,
+        background: `linear-gradient(${colors[0]}, transparent)`,
         '--bg1': colors[0],
         '--bg2': colors[1]
     }), [colors]);
@@ -31,14 +33,10 @@ const NowPlaying = ({ close, open, nowPlaying, activeSong, currentSongs, current
     }
 
     return (
-        <>
-            <button
-                className={`fixed top-0 left-0 w-full h-full hidden lg:block cursor-default ${!nowPlaying && 'hidden pointer-events-none'}`}
-                onClick={close}
-            ></button>
+        <div className={`fixed bottom-0 right-0 lg:p-2 z-[9999] h-[100vh] w-full lg:w-[calc(100vw-308px)] flex flex-col ${!nowPlaying && 'pointer-events-none'}`}>
             <div
                 style={style}
-                className={`invisible_scroll fixed z-[9999] bottom-0 right-0 h-[100vh] w-full lg:w-[calc(100vw-300px)] overflow-y-scroll overflow-x-clip rounded-lg lg:rounded-none grid grid-cols-1 grid-rows-[30px,83vh,60px,90vh] lg:grid-rows-[210px,calc(100vh-230px)] gap-2 transition-[transform,opacity] lg:origin-top-right ${!nowPlaying && 'translate-y-[105%] lg:translate-y-0 scale-y-50 lg:scale-x-50 lg:opacity-0 pointer-events-none'} bg-gradient-to-b from-orange-800 to-black`}
+                className={`invisible_scroll flex-1 lg:h-[calc(100vh-16px)] w-full overflow-y-scroll overflow-x-clip lg:border lg:border-white/5 rounded-lg lg:rounded-[15px] grid grid-cols-1 grid-rows-[30px,83vh,60px,90vh] lg:grid-rows-[210px,calc(100vh-246px)] gap-2 transition-[transform,opacity] lg:origin-top-right ${!nowPlaying && 'translate-y-[105%] lg:translate-y-0 scale-y-50 lg:scale-x-50 lg:opacity-0 pointer-events-none'}bg-gray-700`}
             >
                 <button
                     onMouseOver={close}
@@ -87,7 +85,7 @@ const NowPlaying = ({ close, open, nowPlaying, activeSong, currentSongs, current
                     currentIndex={currentIndex}
                 />
             </div>
-        </>
+        </div>
     )
 };
 
