@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 
 import { AlbumCard } from '../Cards'
 import { AlbumLoading, Error } from '../LoadersAndError'
@@ -12,17 +12,10 @@ import { useSelector } from 'react-redux'
 const Albums = ({ albums, children, showSort, isFetching, error, showmore, genreid, noFilter }) => {
   const library = useSelector(state => state.library);
   const [params, setParams] = useSearchParams();
-  const [newAlbums, setNewAlbums] = useState([]);
-
-  useEffect(() => {
-    const sortType = params.get('sort');
-    const albumFilter = params.get('filter');
-    const albumsData = getData({ type: 'albums', data: albums, noFilter, sortType, albumFilter });
-    setNewAlbums(albumsData);
-  }, [library, albums, noFilter, params])
+  const newAlbums = useMemo(() => getData({ type: 'albums', data: albums, noFilter, sortType: params.get('sort'), albumFilter: params.get('filter') }), [library, albums, noFilter, params]);
 
   return (
-    <div className="mb-8">
+    <div id="albums" className="mb-8">
       <div className="flex items-end justify-between mb-4">
         {
           children && isFetching ?
