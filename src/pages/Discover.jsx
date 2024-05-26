@@ -11,7 +11,7 @@ const Discover = () => {
     // feels like you fell right on my head, gave you a way to the wind, I hope it was worth it anyway, us against the world... if I keep you here I'd only be doing it for myself
 
     const { data, isFetching: isFetchingTopCharts, error: errorFetchingTopCharts } = useGetTopChartQuery(0);
-    const topTracks = useMemo(() => data ? getData({ data: data.tracks.data.slice(0, 5), type: 'tracks' }) : [], [data, library]);
+    const topTracks = useMemo(() => data ? getData({ data: data.tracks.data.slice(0, 6), type: 'tracks' }) : [], [data, library]);
     const topArtists = useMemo(() => data ? getData({ data: data.artists.data.slice(0, 10), type: 'artists' }) : [], [data, library]);
     
     const { data: radios, isFetching, error } = useGetTopRadiosQuery();
