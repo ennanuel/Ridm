@@ -10,14 +10,12 @@ const PlaylistDetailsHeader = ({ playlist, songsToBeDeleted, editData, handleEdi
   const handleLoad = () => {
     const colorThief = new ColorThief();
     const colors = colorThief.getPalette(imgRef.current).slice(0, 3);
-    console.log(colors);
     if (colors.length < 3) return;
     setColors(colors.map( ([r,g,b], i) => `rgba(${r}, ${g}, ${b}, ${i === 0 ? '0.7' : '1'})`))
-    console.log(colors);
   }
 
   return (
-    <div style={{background: ''}} className="relative shadow-lg shadow-black/40 flex flex-col md:flex-row gap-6 items-start md:items-end justify-start p-2 md:p-4 m-4 rounded-[15px] border border-white/5 overflow-x-clip">
+    <div className="relative shadow-lg shadow-black/40 flex flex-col md:flex-row gap-6 items-start md:items-end justify-start p-2 md:p-4 mx-4 rounded-[15px] border border-white/5 overflow-x-clip">
       <div className="absolute w-full h-full z-0 overflow-hidden rounded-[15px] bottom-0 left-0">
         {
           playlist.tracks.length > 0 &&
