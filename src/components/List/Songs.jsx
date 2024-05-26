@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import { SongBar } from "../Cards";
 import { SongLoading, Error } from "../LoadersAndError";
@@ -10,21 +10,17 @@ import { useSelector } from "react-redux";
 
 const Songs = ({ songs, suggestion, children, isFetching, error, showmore, genreid, noFilter, full, bg, bg2 }) => {
   const library = useSelector(state => state.library);
-  const [tracks, setTracks] = useState([]);
   const [params, setParams] = useSearchParams();
+
+  const tracks = useMemo(() => getData({ type: 'tracks', data: songs, noFilter, sortType: params.get('sort') }), [library, songs, noFilter]);
+
   const style = useMemo(() => ({
     background: (full && bg) && `linear-gradient(${bg.replace(')', ',0.5)')}, ${bg2.replace(')', ',0.5)')})`
   }), [bg, bg2, full, songs]);
 
-  useEffect(() => {
-    const sortType = params.get('sort');
-    const songsData = getData({ type: 'tracks', data: songs, noFilter, sortType })
-    setTracks(songsData);
-  }, [library, songs, noFilter])
-
   return (
-    <div style={style} className={`flex flex-col ${(!full && !suggestion) && 'mb-8'} ${(full && !suggestion) && 'p-3 rounded-[20px] overflow-clip'}`}>
-      <div className={`relative z-1 flex flex-row justify-between items-end mb-4 ${suggestion ? 'lg:hidden' : ''}`}>
+    <div id='tracks' style={style} className={`flex flex-col ${(!full && !suggestion) && 'mb-4'} ${(full && !suggestion) && 'p-3 rounded-[20px] overflow-clip'}`}>
+      <div className={`relative z-1 flex flex-row justify-between items-end ${isFetching && 'mb-4'} ${suggestion ? 'lg:hidden' : ''}`}>
         {
           children && isFetching ?
             <span className="h-6 rounded-md w-full max-w-[240px] bg-white/5 animation-loading"></span> :
