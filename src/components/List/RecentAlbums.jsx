@@ -10,7 +10,7 @@ import SeeMore from "./SeeMore"
 const RecentAlbums = ({ albums, isFetching, error }) => {
 
   return (
-    <div className="mt-4">
+    <div className="">
     <div className="flex items-end justify-between">
       <h3 className="text-white font-bold text-xl">Recent albums</h3>
       <SeeMore link="/charts?type=albums" />
@@ -22,7 +22,7 @@ const RecentAlbums = ({ albums, isFetching, error }) => {
         // centeredSlides
         // centeredSlidesBounds
         modules={{FreeMode}}
-        className="mt-4 p-[20px] max-w-[95vw] lg:max-w-[calc(100vw-350px)]"
+        className="mt-4 p-[20px] max-w-[95vw] lg:max-w-[calc(100vw-370px)]"
         >
         {
           isFetching ?
