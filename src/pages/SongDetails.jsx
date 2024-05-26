@@ -52,7 +52,7 @@ const SongDetails = () => {
                 <div className="flex-1">
                     <SongLyrics showBlur={true} isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 md:sticky md:top-[75px]">
                     <Songs 
                         full={true}
                         bg={colors?.length > 0 && colors[1]}
