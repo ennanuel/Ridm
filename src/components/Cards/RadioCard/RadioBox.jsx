@@ -27,11 +27,11 @@ const RadioBox = ({ radio, show, handleClick }) => {
             </button>
             <div className="flex relative items-end justify-start gap-4 flex-wrap">
                 <img src={radio.picture_medium} alt="" className="z-[0] absolute top-[-100px] left-[-100px] w-[50%] max-w-[360px] aspect-square blur-[70px] opacity-20" />
-                <img className={`shadow-lg shadow-black/50 rounded-[10px] ${show && 'w-[150px]'}`} src={radio.picture_medium} alt="" />
+                <img className={`shadow-lg shadow-black/50 rounded-[10px] ${show && 'w-[150px] aspect-square'}`} src={radio.picture_medium} alt="" />
                 <p className="relative flex flex-col">
                     <span className="text-gray-400 text-sm font-bold">{radio.type}</span>
                     <span className="text-white uppercase text-xl font-bold truncate">{radio.title}</span>
-                    <span className="text-gray-200 text-sm font-semibold">{radioTracks?.length} Songs</span>
+                    <span className="text-gray-200 text-sm font-semibold">{radioTracks?.length && `${radioTracks?.length} Song${radioTracks?.length === 1 ? '' : 's'}`}</span>
                 </p>
                 {
                     radioTracks?.length > 0 &&
