@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 
 
 const Song = () => (
@@ -14,18 +14,13 @@ const Song = () => (
 
 
 const SongLoading = ({ num, full }) => {
-    const [songs, setSongs] = useState([])
+    const songs = useMemo(() => {
+        if (!num || typeof (num) !== 'number') return [];
 
-    useEffect(() => {
-        if(!num || typeof(num) !== 'number') return;
-
-        setSongs( prev => {
-            const values = []
-            for(let i = num; i > 0 && values.length <= num; i--) {
-                values.push(i)
-            }
-            return values
-        })
+        const values = [];
+        for (let i = num; i > 0 && values.length <= num; i--) values.push(i);
+        
+        return values;
     }, [])
 
     return (

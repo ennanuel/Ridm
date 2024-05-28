@@ -1,31 +1,22 @@
-import { useState, useEffect } from 'react'
+import { useMemo } from 'react';
 
 const LyricLoading = ({ text, num }) => {
-    const [lyrics, setLyrics] = useState([])
+    const lyrics = useMemo(() => {
+        if (!num || typeof (num) !== 'number') return [];
 
-    useEffect(() => {
-        if(!num || typeof(num) !== 'number') return;
+        const values = [];
 
-        setLyrics( prev => {
-            const values = []
-            for(let i = num; i > 0 && values.length <= num; i--) {
-                values.push(i)
-            }
-            return values
-        })
+        for (let i = num; i > 0 && values.length <= num; i--) values.push(`${Math.floor(Math.random() * 100)}%`);
+
+        return values;
     }, [])
 
-    const Lyric = ({width}) => (
-        <div style={{width}} className='bg-white/5 rounded-md h-[25px] loading-animation'>
-        </div>
-    )
-
     return (
-        <div className='flex flex-col md:gap-4 gap-2'>
+        <ul className='flex flex-col md:gap-4 gap-2'>
             {
-                lyrics.map( lyric => <Lyric key={lyric} width={Math.floor(Math.random() * 100) + '%'} /> )
+                lyrics.map((width, index) => <li key={index} style={{ width }} className='bg-white/5 rounded-md h-[25px] loading-animation' />)
             }
-        </div>
+        </ul>
     )
 }
 

@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useMemo } from 'react'
 
 const RadioLoading = ({ num }) => {
-    const [radios, setRadios] = useState([])
+    const radios = useMemo(() => {
+        if (!num || typeof (num) !== 'number') return [];
+        
+        const values = [];
 
-    useEffect(() => {
-        if(!num || typeof(num) !== 'number') return;
+        for (let i = num; i > 0 && values.length <= num; i--) values.push(i);
 
-        setRadios( prev => {
-            const values = []
-            for(let i = num; i > 0 && values.length <= num; i--) {
-                values.push(i)
-            }
-            return values
-        })
+        return values;
     }, [])
 
     const Radio = () => (

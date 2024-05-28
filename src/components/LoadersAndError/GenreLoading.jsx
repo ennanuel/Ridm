@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useMemo } from 'react';
 
 const Genre = () => (
     <div className='w-full aspect-square flex flex-col items-end justify-end gap-2 p-2 rounded-lg bg-white/5'>
@@ -9,18 +9,14 @@ const Genre = () => (
 )
 
 const GenreLoading = ({ num }) => {
-    const [genres, setGenres] = useState([])
+    const genres = useMemo(() => {
+        if (!num || typeof (num) !== 'number') return [];
 
-    useEffect(() => {
-        if(!num || typeof(num) !== 'number') return;
+        const values = [];
 
-        setGenres( prev => {
-            const values = []
-            for(let i = num; i > 0 && values.length <= num; i--) {
-                values.push(i)
-            }
-            return values
-        })
+        for (let i = num; i > 0 && values.length <= num; i--) values.push(i);
+
+        return values;
     }, [])
 
     return (
