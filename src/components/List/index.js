@@ -11,4 +11,17 @@ import RecentAlbums from './RecentAlbums';
 import Suggestion from './Suggestion';
 import RecentArtists from './RecentArtists';
 
-export { Albums, Playlists, Artists, Radios, Songs, Tracks, Genres, Library, SongLyrics, RecentAlbums, RecentArtists, Suggestion }
+export {
+    Albums,
+    Playlists,
+    Artists,
+    Radios,
+    Songs,
+    Tracks,
+    Genres,
+    Library,
+    SongLyrics,
+    RecentAlbums,
+    RecentArtists,
+    Suggestion
+}

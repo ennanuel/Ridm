@@ -1,13 +1,13 @@
 import { useEffect , useMemo, useState} from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import { BiTime } from 'react-icons/bi'
 
 import Track from './Track'
-import { Loader, Error } from '../LoadersAndError'
+import { Error, TracksLoading } from '../LoadersAndError'
 
 import { getData } from '../../utils/getData'
-import { useSelector } from 'react-redux'
 
 const AllTracks = ({ tracks, activeSong, isPlaying, isFetching, error, songsToBeDeleted, handleTrack, editDataTracks, playlist }) => {
   const { playlists, ...library } = useSelector(state => state.library);
@@ -23,7 +23,7 @@ const AllTracks = ({ tracks, activeSong, isPlaying, isFetching, error, songsToBe
 
   return (
     isFetching ?
-      <Loader title="Fetching album tracks..." /> :
+      <TracksLoading num={6} /> :
       error ?
         <Error title="Could not fetch album details" /> :
         <div className="m-2 md:m-4 rounded-[20px] bg-black/20 backdrop-blur-md border border-white/5">
