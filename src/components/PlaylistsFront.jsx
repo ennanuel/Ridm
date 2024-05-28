@@ -14,9 +14,9 @@ const PlaylistsFront = ({ isInAddPage }) => {
             </div>
             {
                 playlists.length < 1 ?
-                    <div className="mt-[-40px] flex flex-col items-center justify-center gap-4 h-[90vh]">
+                    <div className="mt-[-40px] flex flex-col items-center justify-center gap-4 h-[60vh]">
                         <h3 className="text-gray-400 font-bold text-xl">You don't have any saved playlists</h3>
-                        <Link to="/playlists?add=true" className="flex items-center justify-center font-bold text-xs md:text-sm bg-gray-400 text-black border border-gray-400 px-3 h-[28px] md:h-[36px] rounded-[18px] hover:text-gray-400 hover:bg-transparent transition-[background-color]">Create New</Link>
+                        <Link to="/playlists?add=true" className="flex items-center justify-center font-bold text-xs md:text-sm bg-white/5 text-black border border-white/5 px-3 h-[30px] md:h-[40px] rounded-[20px] hover:text-black hover:bg-gray-400 transition-[background-color]">Create New</Link>
                     </div> :
                     <Playlists playlists={playlists} />
             }
