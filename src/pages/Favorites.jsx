@@ -79,7 +79,7 @@ const Favorites = () => {
           </div> :
           <div className="p-4 flex-1 flex flex-col items-center justify-center gap-4">
             <h3 className="text-gray-400 font-bold text-xl">You haven't liked anything yet.</h3>
-            <Link to="/" className="px-4 h-[30x] md:h-[40px] rounded-[20px] border border-white/5 text-gray-400 bg-white/5 text-xs md:text-sm font-bold transition-[background-color] hover:bg-gray-400 hover:text-black">Go Home</Link>
+            <Link to="/" className="px-4 h-[30x] md:h-[40px] flex items-center justify-center rounded-[20px] border border-white/5 text-gray-400 bg-white/5 text-xs md:text-sm font-bold transition-[background-color] hover:bg-gray-400 hover:text-black">Go Home</Link>
           </div>
       }
     </div>
