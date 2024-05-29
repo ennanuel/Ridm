@@ -23,19 +23,6 @@ const Favorites = () => {
         Object.values(favoriteLibrary).some((value) => value.length > 0) ?
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 gap-y-8">
             {
-              favoriteLibrary.genres.length > 0 ?
-                <section className='flex flex-col gap-4 min-h-[80vh]'>
-                  <h3 className="font-bold text-xl text-gray-200">Genres</h3>
-                  <ul className='grid grid-cols-6'>
-                    {
-                      favoriteLibrary.genres.map((genre) => <li key={genre.id}><GenreCard genre={genre} /></li>)
-                    }
-                  </ul>
-                </section> :
-                null
-            }
-            
-            {
               favoriteLibrary.albums.length > 0 ?
                 <section className={`flex flex-col gap-4 min-h-[80vh] ${!favoriteLibrary.albums.length && !favoriteLibrary.tracks.length ? 'col-span-2' : ''}`}>
                   <h3 className="font-bold text-xl text-gray-200">Artists</h3>
@@ -74,6 +61,19 @@ const Favorites = () => {
                       favoriteLibrary.albums.map((album) => (
                         <li key={album.id}><AlbumCard album={album} /></li>
                       ))
+                    }
+                  </ul>
+                </section> :
+                null
+            }
+
+            {
+              favoriteLibrary.genres.length > 0 ?
+                <section className='col-span-2 flex flex-col gap-4 min-h-[80vh]'>
+                  <h3 className="font-bold text-xl text-gray-200">Genres</h3>
+                  <ul className='grid grid-cols-5 gap-4'>
+                    {
+                      favoriteLibrary.genres.map((genre) => <li key={genre.id}><GenreCard genre={genre} /></li>)
                     }
                   </ul>
                 </section> :
