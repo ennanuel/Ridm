@@ -71,7 +71,7 @@ const Favorites = () => {
               favoriteLibrary.genres.length > 0 ?
                 <section className="flex flex-col gap-4 min-h-[80vh]">
                   <h3 className="font-bold text-xl text-gray-200">Genres</h3>
-                  <ul className='grid grid-cols-5 gap-4'>
+                  <ul className='grid grid-cols-2 md:grid-cols-3 gap-4'>
                     {
                       favoriteLibrary.genres.map((genre) => <li key={genre.id}><GenreCard genre={genre} /></li>)
                     }
