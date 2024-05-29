@@ -13,7 +13,7 @@ const GenreCard = ({ genre, i }) => {
         <p className="text-white font-semibold text-base uppercase text-right">{genre.name}</p>
       </div>
     </Link>
-  );
+  )
 }
 
 export default GenreCard
