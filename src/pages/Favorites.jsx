@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Radios } from '../components/List';
 import { useEffect, useMemo } from 'react';
-import { AlbumCard, ArtistCard, SongBar } from '../components/Cards';
+import { AlbumCard, ArtistCard, GenreCard, SongBar } from '../components/Cards';
 
 const Favorites = () => {
   const { favorites } = useSelector(state => state.library);
@@ -22,7 +22,19 @@ const Favorites = () => {
       {
         Object.values(favoriteLibrary).some((value) => value.length > 0) ?
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 gap-y-8">
-
+            {
+              favoriteLibrary.genres.length > 0 ?
+                <section className='flex flex-col gap-4 min-h-[80vh]'>
+                  <h3 className="font-bold text-xl text-gray-200">Genres</h3>
+                  <ul className='grid grid-cols-6'>
+                    {
+                      favoriteLibrary.genres.map((genre) => <li key={genre.id}><GenreCard genre={genre} /></li>)
+                    }
+                  </ul>
+                </section> :
+                null
+            }
+            
             {
               favoriteLibrary.albums.length > 0 ?
                 <section className={`flex flex-col gap-4 min-h-[80vh] ${!favoriteLibrary.albums.length && !favoriteLibrary.tracks.length ? 'col-span-2' : ''}`}>
@@ -79,7 +91,7 @@ const Favorites = () => {
           </div> :
           <div className="p-4 flex-1 flex flex-col items-center justify-center gap-4">
             <h3 className="text-gray-400 font-bold text-xl">You haven't liked anything yet.</h3>
-            <Link to="/" className="px-4 h-[30x] md:h-[40px] flex items-center justify-center rounded-[20px] border border-white/5 hover:text-gray-400 hover:bg-white/5 text-xs md:text-sm font-bold bg-gray-400 text-black">Go Home</Link>
+            <Link to="/" className="px-4 h-[30px] md:h-[40px] flex items-center justify-center rounded-[20px] border border-white/5 hover:text-gray-400 hover:bg-white/5 text-xs md:text-sm font-bold bg-gray-400 text-black">Go Home</Link>
           </div>
       }
     </div>
