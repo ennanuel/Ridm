@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 
@@ -16,7 +16,7 @@ const PlaylistDetails = () => {
   const { playlists, favorites, blacklist } = useSelector(state => state.library);
   const { activeSong, isPlaying } = useSelector(state => state.player);
 
-  const [playlist, setPlaylist] = useState(() => playlists[playlists.findIndex(playlist => playlistid == playlist.id)]);
+  const [playlist, ...otherPlaylists] = useMemo(() => playlists.sort(playlist => playlist.id == playlistid ? -1 : 1), [playlists, playlistid]);
   const [songsToBeDeleted, setSongsToBeDeleted] = useState([]);
   const [editData, setEditData] = useState({ ...playlist, name: '' });
   
@@ -44,10 +44,6 @@ const PlaylistDetails = () => {
   const handleEdit = () => {
     editPlaylistPrompt(playlist, editData);
   }
-
-  useEffect( () => {
-    setPlaylist(() => playlists[playlists.findIndex( playlist => playlistid == playlist.id )])
-  }, [playlists, playlistid])
 
   useEffect( () => {
     if(!playlist || playlists.length < 1) {
@@ -92,10 +88,10 @@ const PlaylistDetails = () => {
         blacklist={blacklist}
       />
     {
-      playlists.filter( playlist => playlist.id !== playlistid ).length > 0 &&
+      otherPlaylists.length > 0 &&
       <div className="p-2 md:p-4">
         <h3 className="text-white font-bold text-xl py-4">More Playlist</h3>
-        <Playlists playlists={playlists} playlistid={playlistid}>More Playlists</Playlists>
+        <Playlists playlists={otherPlaylists} playlistid={playlistid} />
       </div>
     }
     </div>
