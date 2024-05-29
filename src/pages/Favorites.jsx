@@ -39,7 +39,7 @@ const Favorites = () => {
 
             {
               favoriteLibrary.tracks.length > 0 ?
-                <section className="md:row-span-2">
+                <section className="md:row-span-3">
                   <div className="sticky top-[80px] flex flex-col gap-4 border border-white/5 rounded-[20px] bg-white/5 p-4 md:max-h-[83vh]">
                     <h3 className="font-bold text-xl text-gray-200">Songs</h3>
                     <ul className="flex flex-col gap-2 flex-1 overflow-y-scroll overflow-x-clip">
@@ -69,7 +69,7 @@ const Favorites = () => {
 
             {
               favoriteLibrary.genres.length > 0 ?
-                <section className='col-span-2 flex flex-col gap-4 min-h-[80vh]'>
+                <section className="flex flex-col gap-4 min-h-[80vh]">
                   <h3 className="font-bold text-xl text-gray-200">Genres</h3>
                   <ul className='grid grid-cols-5 gap-4'>
                     {
