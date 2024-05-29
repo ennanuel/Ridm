@@ -16,7 +16,7 @@ const PlaylistDetails = () => {
   const { playlists, favorites, blacklist } = useSelector(state => state.library);
   const { activeSong, isPlaying } = useSelector(state => state.player);
 
-  const [playlist, ...otherPlaylists] = useMemo(() => playlists.sort(playlist => playlist.id == playlistid ? -1 : 1), [playlists, playlistid]);
+  const [playlist, ...otherPlaylists] = useMemo(() => playlists.slice().sort(playlist => playlist.id == playlistid ? -1 : 1), [playlists, playlistid]);
   const [songsToBeDeleted, setSongsToBeDeleted] = useState([]);
   const [editData, setEditData] = useState({ ...playlist, name: '' });
   
