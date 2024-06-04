@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 
 const Genre = () => (
-    <div className='w-full aspect-square flex flex-col items-end justify-end gap-2 p-2 rounded-lg bg-white/5'>
-        <div className="bg-black/50 rounded-md loading-animation w-full aspect-square"></div>
-        <div className="bg-black/50 h-3 w-[50%] rounded-md"></div>
-        <div className="w-[70%] h-[25px] rounded-lg bg-black/50"></div>
+    <div className='relative overflow-clip loading-animation w-full aspect-[2] flex flex-col items-start justify-start gap-2 p-2 rounded-lg bg-white/5'>
+        <div className="absolute bottom-[-10px] right-[-10%] bg-black/50 rounded-md rotate-[20deg] h-[calc(100%-30px)] aspect-square"></div>
+        <div className="bg-black/50 h-3 w-[30%] rounded-md"></div>
+        <div className="w-[50%] h-[25px] rounded-lg bg-black/50"></div>
     </div>
 )
 
@@ -20,7 +20,7 @@ const GenreLoading = ({ num }) => {
     }, [])
 
     return (
-        <div className='grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 lg:gap-6 md:gap-4 gap-2'>
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:gap-6 md:gap-4 gap-2'>
             {
                 genres.map( genre => <Genre key={genre} /> )
             }
