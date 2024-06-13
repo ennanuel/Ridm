@@ -8,18 +8,20 @@ import { getData } from "../../utils/getData";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const Songs = ({ songs, suggestion, children, isFetching, error, showmore, genreid, noFilter, full, bg, bg2 }) => {
+const Songs = ({ songs, suggestion, children, isFetching, error, showmore, genreid, noFilter, full, bg }) => {
   const library = useSelector(state => state.library);
   const [params, setParams] = useSearchParams();
 
   const tracks = useMemo(() => getData({ type: 'tracks', data: songs, noFilter, sortType: params.get('sort') }), [library, songs, noFilter]);
 
-  const style = useMemo(() => ({
-    background: (full && bg) && `linear-gradient(${bg.replace(')', ',0.5)')}, ${bg2.replace(')', ',0.5)')})`
-  }), [bg, bg2, full, songs]);
+  const background = useMemo(() =>  (full && bg) && bg.replace(')', ',0.6)'), [bg, full, songs]);
 
   return (
-    <div id='tracks' style={style} className={`flex flex-col ${(!full && !suggestion) && 'mb-4'} ${(full && !suggestion) && 'p-3 rounded-[20px] overflow-clip'}`}>
+    <div id='tracks' className={`relative flex flex-col ${(!full && !suggestion) && 'mb-4'} ${(full && !suggestion) && 'p-3 rounded-[20px] overflow-clip'} ${bg && 'bg-black'}`}>
+      {
+        (full && bg) &&
+        <div style={{ background }} className="absolute z-[0] w-full h-full top-0 left-0"></div>
+      }
       <div className={`relative z-1 flex flex-row justify-between items-end ${isFetching && 'mb-4'} ${suggestion ? 'lg:hidden' : ''}`}>
         {
           children && isFetching ?
