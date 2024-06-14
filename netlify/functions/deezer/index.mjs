@@ -1,9 +1,9 @@
 import axios from "axios";
 
-async function musixMatchHandler(req) {
+async function deezerHandler(req) {
     try {
         const endpoint = req.params;
-        const params = { ...req.query, apikey: process.env.MUSIXMATCH_API_KEY };
+        const params = req.query;
 
         const URL = `${process.env.DEEZER_URL}/${endpoint}`;
 
@@ -21,7 +21,7 @@ async function musixMatchHandler(req) {
     }
 };
 
-export default musixMatchHandler;
+export default deezerHandler;
 
 export const config = {
     path: "/deezer/:endpoint([\\/\\w\\.-]*"
