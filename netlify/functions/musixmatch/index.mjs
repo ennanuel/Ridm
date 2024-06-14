@@ -2,10 +2,10 @@ import axios from "axios";
 
 async function musixMatchHandler(req) {
     try {
-        const endpoint = req.params;
-        const params = { ...req.query, apikey: process.env.MUSIXMATCH_API_KEY };
+        const { path, ...query } = req.query;
+        const params = { ...query, apikey: process.env.MUSIXMATCH_API_KEY };
 
-        const URL = `${process.env.MUSIXMATCH_URL}/${endpoint}`;
+        const URL = `${process.env.MUSIXMATCH_URL}/${path}`;
 
         const response = await axios.get(URL, { params });
 
@@ -24,5 +24,5 @@ async function musixMatchHandler(req) {
 export default musixMatchHandler;
 
 export const config = {
-    path: "/lyrics"
+    path: "/api/lyrics"
 };
