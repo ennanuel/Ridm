@@ -47,27 +47,27 @@ const SongDetails = () => {
     }, [lyricsData])
 
     return (
-        <div className="min-h-[100vh]">
-            <div className="p-2 md:p-4 flex flex-col md:flex-row gap-4 items-stretch md:items-start justify-stretch">
-                <div className="flex-1">
-                    <SongLyrics showBlur={true} isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
-                </div>
-                <div className="flex-1 md:sticky md:top-[75px]">
-                    <Songs 
+        <div className="min-h-[100vh] p-2 md:p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <section>
+                <SongLyrics showBlur={true} isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
+            </section>
+            <section>
+                <div className="md:sticky md:top-[85px]">
+                    <Songs
                         full={true}
                         bg={colors?.length > 0 && colors[1]}
                         bg2={colors?.length > 0 && colors[0]}
-                        blacklist={blacklist} 
+                        blacklist={blacklist}
                         favorites={favorites}
-                        isFetching={isFetchingRelated} 
-                        error={errorFetchingRelated} 
-                        songData={data} 
-                        songs={relatedSongs?.data?.filter( song => song.id != songid )?.slice(0, 6)}
+                        isFetching={isFetchingRelated}
+                        error={errorFetchingRelated}
+                        songData={data}
+                        songs={relatedSongs?.data?.filter(song => song.id != songid)?.slice(0, 6)}
                     >
                         Similar Songs
                     </Songs>
                 </div>
-            </div>
+            </section>
         </div>
     )
 };
