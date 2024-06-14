@@ -24,5 +24,5 @@ async function deezerHandler(req) {
 export default deezerHandler;
 
 export const config = {
-    path: "/deezer/:endpoint([\\/\\w\\.-]*"
+    path: "/deezer"
 };

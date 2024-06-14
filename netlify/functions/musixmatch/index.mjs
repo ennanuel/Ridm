@@ -24,5 +24,5 @@ async function musixMatchHandler(req) {
 export default musixMatchHandler;
 
 export const config = {
-    path: "/lyrics/:endpoint([\\/\\w\\.-]*"
+    path: "/lyrics"
 };
