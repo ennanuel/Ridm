@@ -1,6 +1,5 @@
-[functions]
-  node_bundler = "esbuild"
-  directory = "netlify/functions"
+[build]
+  functions = "functions"
 
 [[redirects]]
   from = "/api/*"
