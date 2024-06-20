@@ -18,7 +18,3 @@ async function deezerHandler(req) {
 };
 
 export default deezerHandler;
-
-export const config = {
-    path: "/api/deezer"
-};
