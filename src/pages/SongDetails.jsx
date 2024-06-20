@@ -49,7 +49,7 @@ const SongDetails = () => {
     return (
         <div className="min-h-[100vh] p-2 md:p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
             <section>
-                <SongLyrics showBlur={true} isFetching={isFetchingLyrics} error={isFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
+                <SongLyrics showBlur={true} isFetching={isFetchingLyrics} error={errorFetchingLyrics} lyrics={lyrics} lyricsData={lyricsData} />
             </section>
             <section>
                 <div className="md:sticky md:top-[85px]">
