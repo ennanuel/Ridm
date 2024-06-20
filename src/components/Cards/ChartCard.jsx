@@ -28,7 +28,7 @@ const ChartCard = ({ active, type, category, i, handleClick }) => {
                 <p className={`md:mb-4 w-fit transition-transform duration-500 text-white text-2xl md:text-[3em] font-bold capitalize ${active ? 'translate-y-[100%]' : 'translate-y-[0] delay-200'}`}>{category.name}</p>
             </div>
             <div className='relative overflow-hidden'>
-                <p className="text-gray-400 group-hover:translate-y-[0] transition-transform text-sm translate-y-[110%]">{category.desc}</p>
+                <p className="text-gray-200 text-right group-hover:translate-y-[0] transition-transform text-sm translate-y-[110%]">{category.desc}</p>
             </div>
         </div>
     )
