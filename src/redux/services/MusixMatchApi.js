@@ -1,12 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const musixMatchApi = createApi({
     reducerPath: "musixMatchApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: `${import.meta.env.VITE_API_URL}/musixmatch`,
+        baseUrl: `${import.meta.env.VITE_API_URL}/lyrics`,
     }),
     endpoints: (builder) => ({
-        getLyrics: builder.query({query: (trackisrc) => `/matcher.lyrics.get?track_isrc=${ trackisrc }`})
+        getLyrics: builder.query({query: (trackisrc) => `?path=matcher.lyrics.get?track_isrc=${ trackisrc }`})
     })
 })
 
