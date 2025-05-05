@@ -7,7 +7,7 @@ import SeeMore from './SeeMore';
 import { useSelector } from 'react-redux';
 
 const Radios = ({ radios, children, showmore, isFetching, error, genreid, noFilter }) => {
-    const { library } = useSelector(state => state);
+    const library = useSelector(state => state.library);
     const newRadios = useMemo(() => getData({ type: 'radios', data: radios, noFilter }), [library, radios, noFilter]);
 
     return (

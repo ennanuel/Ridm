@@ -11,6 +11,7 @@ module.exports = {
         black: '#050505',
       },
       animation: {
+        infiniterotate: 'infinite-rotate 500ms linear infinite',
         slidedown: 'slidedown 0.3s ease-in-out',
         slideleft: 'slideleft 0.3s ease-in-out',
         slideright: 'slideright 0.5s ease-in-out',
@@ -24,51 +25,55 @@ module.exports = {
         popinslideright: 'popinslideright 1s ease'
       },
       keyframes: {
-        slowfade: {
+        "infinite-rotate": {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' }
+        },
+        "slowfade": {
           from: { opacity: 0 },
           to: { opacity: 1 },
         },
-        slideup: {
+        "slideup": {
           from: { opacity: 0, transform: 'translateY(25%)' },
           to: { opacity: 1, transform: 'none' },
         },
-        popin: {
+        "popin": {
           from: {opacity: 0, transform: 'scale(0.8)'},
           to: {opacity: 1, transform: 'scale(1)'}
         },
-        slidedown: {
+        "slidedown": {
           from: { opacity: 0, transform: 'translateY(-25%)' },
           to: { opacity: 1, transform: 'none' },
         },
-        slideleft: {
+        "slideleft": {
           from: { opacity: 0, transform: 'translateX(-20px)' },
           to: { opacity: 1, transform: 'translateX(0)' },
         },
-        slideright: {
+        "slideright": {
           from: { opacity: 0, transform: 'translateX(20px)' },
           to: { opacity: 1, transform: 'translateX(0)' },
         },
-        popinslideright: {
+        "popinslideright": {
           '0%': { opacity: 0, transform: 'scale(0.5) translateX(75%)' },
           '50%': { opacity: 1, transform: 'scale(1) translateX(75%)'},
           '100%': { opacity: 1, transform: 'scale(1) translateX(0%)'}
         },
-        wave: {
+        "wave": {
           '0%': { transform: 'scale(0)' },
           '50%': { transform: 'scale(1)' },
           '100%': { transform: 'scale(0)' },
         },
-        showmessage: {
+        "showmessage": {
           '0%': { opacity: 0 },
           '20%': { opacity: 1},
           '80%': { opacity: 1},
           '100%': { opacity: 0 }
         },
-        sliderightfull: {
+        "sliderightfull": {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' }
         },
-        slideleftfull: {
+        "slideleftfull": {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-100%)' }
         }

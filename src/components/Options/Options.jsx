@@ -30,23 +30,38 @@ const Options = ({ type, small, song, artist, genre, album, radio, playlist, tra
         if (navigateTo) navigate(navigateTo);
         setShowModal(false);
     }
-    function open() {
+    function openModal() {
         if (!btnRef.current) return;
 
         const rect = btnRef.current.getBoundingClientRect();
         setShowModal(true);
-        setPosition({ height: window.innerHeight / 2, width: window.innerWidth / 2, clientX: rect.x, clientY: rect.y });
+        setPosition({ height:( window.innerHeight / 2), width: (window.innerWidth / 2), clientX: rect.x, clientY: rect.y });
+    }
+    function handleClick(event) {
+        if(!modalRef.current || !showModal) return;
+
+        const modalRect = modalRef.current.getBoundingClientRect();
+        const shouldCloseModal = event.clientX > modalRect.left + modalRect.width || 
+            event.clientX < modalRect.left || 
+            event.clientY > modalRect.top + modalRect.height || 
+            event.clientY < modalRect.top;
+
+        if(shouldCloseModal) setShowModal(false);
     }
 
     return (
-        <div className="relative" ref={modalRef}>
-            <OptionBtn open={open} btnRef={btnRef} small={small} optionType={type} />
-            <ul className={`${modalPosition} ${showModal ? 'hover:pointer-events-auto hover:flex' : 'hover:pointer-events-none hover:hidden' } hidden pointer-events-none peer-focus:flex peer-focus:pointer-events-auto absolute z-1 animate-slowfade shadow-lg overflow-hidden shadow-black/60 z-[999999] w-max flex-col text-gray-200 text-sm font-semibold rounded-[20px] bg-black/80 backdrop-blur-lg`}>
+        <div className="relative">
+            <OptionBtn openModal={openModal} btnRef={btnRef} small={small} optionType={type} />
+            <ul 
+                ref={modalRef}
+                onClick={handleClick} 
+                className={`${modalPosition} ${showModal ? 'flex' : 'hidden'} absolute animate-slowfade shadow-xl overflow-hidden shadow-black/20 z-[3] w-max flex-col text-gray-200 text-sm font-semibold rounded-[20px] bg-[#202020] min-w-[160px] before:z-[2] before:fixed before:top-0 before:left-0 before:w-screen before:h-screen`}
+            >
                 {
                     filteredOptions
-                        .map((option, num) =>
+                        .map((option, index) =>
                             <Option
-                                key={num}
+                                key={index}
                                 option={option}
                                 handleOption={handleOption}
                                 song={song}

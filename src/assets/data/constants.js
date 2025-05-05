@@ -2,7 +2,6 @@ import { AiOutlineHome, AiFillHome, AiFillHeart, AiOutlineHeart } from 'react-ic
 import { BsBarChartLine, BsFillBarChartLineFill } from 'react-icons/bs'
 import { MdLibraryMusic, MdOutlineLibraryMusic } from 'react-icons/md';
 import { RiPlayListFill, RiPlayListLine } from "react-icons/ri";
-import { songImage, artistImage, albumImage, radioImage } from '../images';
 
 export const links = [
   { name: 'Home', to: '/', icon: AiOutlineHome, altIcon: AiFillHome },
@@ -16,8 +15,8 @@ export const secondLinks = [
 ]
 
 export const categories = [
-  { name: 'album', to: 'albums', desc: "View Albums Releases Toping the Charts", image: albumImage },
-  { name: 'artist', to: 'artists', desc: "View Artists That are Treding Right Now", image: artistImage },
-  { name: 'song', to: 'songs', desc: "View Songs That are Toping the Charts", image: songImage },
-  { name: 'radio', to: 'radios', desc: "Tune in to the Top Radio Selections", image: radioImage },
+  { name: 'album', to: 'albums', desc: "View albums releases toping the charts" },
+  { name: 'artist', to: 'artists', desc: "View artists that are trending right now" },
+  { name: 'song', to: 'songs', desc: "View songs that are toping the charts" },
+  { name: 'radio', to: 'radios', desc: "Tune in to the top radio selections" },
 ]

@@ -17,16 +17,16 @@ const Blacklist = () => {
   return (
     <div className="mt-[-60px] min-h-[90vh] flex flex-col">
       <div className="bg-red-500/5 h-[20%] flex flex-col gap-8 justify-between items-start p-4 min-h-[30vh] mt-[70px] m-4 border border-white/5 rounded-[20px] shadow-lg shadow-black/50">
-        <div className="flex items-center gap-3">
-          <Link to="/playlists" className="flex items-center justify-center hover:text-white text-gray-400">
+        <div className="flex items-center gap-2 text-white">
+          <Link to="/playlists" className="flex items-center justify-center w-10 aspect-square rounded-full hover:bg-white/5">
             <MdArrowBack size={25} />
           </Link>
-          <h1 className="text-2xl font-bold text-white/50 mt-[1px]">Blacklist</h1>
+          <h1 className="text-2xl font-bold mt-[1px]">Blacklist</h1>
         </div>
         <div className="flex items-center flex-wrap gap-3">
           {
             Object.entries(blacklist).map(([key, value]) => (
-              <a href={`#${key}`} className="border rounded-[20px] h-[34px] md:h-[40px] flex items-center justify-center gap-3 px-4 py-1 border-white/5 bg-white/5 text-gray-400 font-semibold text-sm hover:bg-white/10 hover:border-transparent">
+              <a href={`#${key}`} className="rounded-full h-8 md:h-9 flex items-center justify-center gap-3 px-4 py-1 bg-white/5 text-gray-300 font-semibold text-sm hover:bg-white/10 hover:border-transparent">
                 {
                   key === 'artists' ?
                     <MdPersonOutline size={20} /> :
@@ -51,7 +51,7 @@ const Blacklist = () => {
           </div> :
           <div className="p-4 pt-10 flex flex-col items-center justify-center gap-4 flex-1">
             <h3 className="text-white/60 font-bold text-xl">There is Nothing here.</h3>
-            <Link to='/' className="px-4 h-[36px] md:h-[40px] rounded-[20px] flex items-center justify-center border border-white/5 bg-white/60 text-black text-xs md:text-sm font-bold transition-[background-color] hover:bg-white/5 hover:text-white">
+            <Link to='/' className="px-4 sm:px-6 h-9 md:h-10 rounded-full flex items-center justify-center bg-gray-200 text-black text-xs md:text-sm font-bold transition-[background-color] hover:bg-gray-300">
               Go Home
             </Link>
           </div>

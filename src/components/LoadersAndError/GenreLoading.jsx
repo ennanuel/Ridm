@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 const Genre = () => (
     <div className='relative overflow-clip loading-animation w-full aspect-[2] flex flex-col items-start justify-start gap-2 p-2 rounded-lg bg-white/5'>
-        <div className="absolute bottom-[-10px] right-[-10%] bg-black/50 rounded-md rotate-[20deg] h-[calc(100%-30px)] aspect-square"></div>
+        <div className="absolute bottom-[-10px] right-[-10%] bg-black/50 rounded-md rotate-[20deg] min-h-25 h-[calc(100%-30px)] aspect-square"></div>
         <div className="bg-black/50 h-3 w-[30%] rounded-md"></div>
         <div className="w-[50%] h-[25px] rounded-lg bg-black/50"></div>
     </div>
@@ -10,11 +10,13 @@ const Genre = () => (
 
 const GenreLoading = ({ num }) => {
     const genres = useMemo(() => {
-        if (!num || typeof (num) !== 'number') return [];
-
+        const isValidNumber = num && typeof (num) === 'number';
         const values = [];
 
-        for (let i = num; i > 0 && values.length <= num; i--) values.push(i);
+        if (isValidNumber) {
+            for (let i = 0; i < num && i < 1000; i++) values.push(i);
+        }
+        
 
         return values;
     }, [])

@@ -35,7 +35,7 @@ const Favorites = () => {
                   </ul> :
                   <div className="flex-1 flex flex-col gap-4 items-center justify-center">
                     <span className="font-semibold text-gray-300">You haven't liked any artists</span>
-                    <Link to="/charts?type=artists" className="flex items-center justify-center font-bold px-4 h-[30px] md:h-[40px] rounded-[20px] bg-white/5 text-gray-400 hover:text-white hover:bg-white/10">View Artists</Link>
+                    <Link to="/charts?type=artists" className="flex items-center justify-center font-bold px-4 sm:px-6 h-8 md:h-10 rounded-full bg-gray-200 hover:bg-gray-400 text-black">View Artists</Link>
                   </div>
               }
             </section>
@@ -51,7 +51,7 @@ const Favorites = () => {
                     </ul> :
                   <div className="flex-1 flex flex-col gap-4 items-center justify-center">
                     <span className="font-semibold text-gray-300">You haven't liked any songs</span>
-                    <Link to="/charts?type=tracks" className="flex items-center justify-center font-bold px-4 h-[30px] md:h-[40px] rounded-[20px] bg-white/5 text-gray-400 hover:text-white hover:bg-white/10">View Artists</Link>
+                    <Link to="/charts?type=tracks" className="flex items-center justify-center font-bold px-4 sm:px-6 h-8 md:h-10 rounded-full bg-gray-200 hover:bg-gray-400 text-black">View Artists</Link>
                   </div>
                 }
               </div>
@@ -70,7 +70,7 @@ const Favorites = () => {
                   </ul> :
                   <div className="flex-1 flex flex-col gap-4 items-center justify-center">
                     <span className="font-semibold text-gray-300">You haven't liked any albums</span>
-                    <Link to="/charts?type=albums" className="flex items-center justify-center font-bold px-4 h-[30px] md:h-[40px] rounded-[20px] bg-white/5 text-gray-400 hover:text-white hover:bg-white/10">View Artists</Link>
+                    <Link to="/charts?type=albums" className="flex items-center justify-center font-bold px-4 sm:px-6 h-8 md:h-10 rounded-full bg-gray-200 hover:bg-gray-400 text-black">View Artists</Link>
                   </div>
               }
             </section>
@@ -86,7 +86,7 @@ const Favorites = () => {
                   </ul> :
                   <div className="flex-1 flex flex-col gap-4 items-center justify-center">
                     <span className="font-semibold text-gray-300">You haven't liked any genres</span>
-                    <Link to="/genres" className="flex items-center justify-center font-bold px-4 h-[30px] md:h-[40px] rounded-[20px] bg-white/5 text-gray-400 hover:text-white hover:bg-white/10">View Artists</Link>
+                    <Link to="/genres" className="flex items-center justify-center font-bold px-4 sm:px-6 h-8 md:h-10 rounded-full bg-gray-200 text-black hover:bg-gray-400">View Artists</Link>
                   </div>
               }
             </section>
@@ -98,15 +98,14 @@ const Favorites = () => {
                   <Radios radios={favoriteLibrary.radios} /> :
                   <div className="flex-1 flex flex-col gap-4 items-center justify-center">
                     <span className="font-semibold text-gray-300">You haven't liked any radios</span>
-                    <Link to="/charts?type=radios
-                    " className="flex items-center justify-center font-bold px-4 h-[30px] md:h-[40px] rounded-[20px] bg-white/5 text-gray-400 hover:text-white hover:bg-white/10">View Artists</Link>
+                    <Link to="/charts?type=radios" className="flex items-center justify-center font-bold px-4 sm:px-6 h-8 md:h-10 rounded-full bg-gray-200 text-black hover:bg-gray-400">View Artists</Link>
                   </div>
               }
             </section>
           </div> :
           <div className="p-4 flex-1 flex flex-col items-center justify-center gap-4">
             <h3 className="text-gray-400 font-bold text-xl">You haven't liked anything yet.</h3>
-            <Link to="/" className="px-4 h-[30px] md:h-[40px] flex items-center justify-center rounded-[20px] border border-white/5 hover:text-gray-400 hover:bg-white/5 text-xs md:text-sm font-bold bg-gray-400 text-black">Go Home</Link>
+            <Link to="/" className="px-4 sm:px-6 h-8 md:h-10 flex items-center justify-center rounded-full border border-white/5 hover:bg-gray-400 text-xs md:text-sm font-bold bg-gray-200 text-black">Go Home</Link>
           </div>
       }
     </div>
