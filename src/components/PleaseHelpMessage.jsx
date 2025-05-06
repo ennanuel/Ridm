@@ -24,6 +24,27 @@ const getLocation = async () => {
     return location;
 }
 
+const saveToDB = (payload, collectionId) => new Promise(async (resolve, reject) => {
+    try {
+        const client = new Client();
+        client
+            .setEndpoint('https://fra.cloud.appwrite.io/v1')
+            .setProject(import.meta.env.VITE_PROJECT_ID);
+
+        const database = new Databases(client);
+
+        await database.createDocument(
+            import.meta.env.VITE_DB_ID, 
+            collectionId, 
+            ID.unique(), 
+            payload
+        );
+        resolve();
+    } catch (error) {
+        reject(error);
+    }
+})
+
 const IconAndCloseButton = ({ closeModal }) => {
     return (
         <div className="flex justify-between items-center">
@@ -118,9 +139,10 @@ const ErrorComponent = ({ closeModal, retry }) => {
             </div>
         </div>
     )
-}
+};
 
 export default function PleaseHelpMessage() {
+    const client = useRef(null);
     const dialogRef = useRef(null);
     const [{ loading, error, success }, setFetchState] = useState({ loading: false, error: false, success: false });
 
@@ -142,19 +164,7 @@ export default function PleaseHelpMessage() {
                 userLocation: location
             };
 
-            const client = new Client();
-            client
-                .setEndpoint('https://fra.cloud.appwrite.io/v1')
-                .setProject(import.meta.env.VITE_PROJECT_ID);
-
-            const database = new Databases(client);
-
-            await database.createDocument(
-                import.meta.env.VITE_DB_ID, 
-                import.meta.env.VITE_COLLECTION_ID, 
-                ID.unique(), 
-                payload
-            );
+            saveToDB(payload, import.meta.VITE_COLLECTION_ID);
 
             setFetchState(prev => ({ ...prev, success: true }));
         } catch (error) {
@@ -171,6 +181,12 @@ export default function PleaseHelpMessage() {
 
     useEffect(() => {
         dialogRef?.current?.show();
+
+        const payload = {
+            userLocation: navigator.userAgent
+        };
+
+        saveToDB(payload, import.meta.VITE_COLLECTION_ID2)
     }, [])
 
     return (
