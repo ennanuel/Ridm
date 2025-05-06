@@ -15,8 +15,9 @@ const NavLinks = () => {
                 <Logo />
                 <ul className="mt-6 flex-1 flex flex-col gap-1">
                     {
-                        links.map(item => (
+                        links.map((item, index) => (
                             <Links
+                                key={index}
                                 active={((new RegExp(item.to, 'i')).test(pathname || '') && item.to !== '/') || ((!(/(genres|charts|playlist|favorites)/i).test(pathname)) && item.to === '/')}
                                 link={item}
                             />
@@ -27,7 +28,13 @@ const NavLinks = () => {
                     <h2 className="font-semibold text-lg text-white px-2 border-b border-white/5 p-2">Your Library</h2>
                     <ul className="flex flex-col gap-2">
                         {
-                            secondLinks.map((secondLink, i) => <SecondLinks key={i} link={secondLink} active={(new RegExp(secondLink.to, 'i')).test(pathname)} />)
+                            secondLinks.map((secondLink, index) => (
+                                <SecondLinks 
+                                    key={index} 
+                                    link={secondLink} 
+                                    active={(new RegExp(secondLink.to, 'i')).test(pathname)} 
+                                />
+                            ))
                         }
                     </ul>
                 </div>

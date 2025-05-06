@@ -4,7 +4,7 @@ import { Error } from "../LoadersAndError"
 import Songs from "./Songs"
 import { useMemo } from "react"
 
-const MOCK_RADIO_SONGS = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+const MOCK_RADIO_SONGS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 const Suggestion = ({ radioTracks, radio, songs, isFetching, error, blacklist, favorites }) => {
     const tracks = useMemo(() => radioTracks?.slice(0, 15), [radioTracks]);
@@ -22,8 +22,8 @@ const Suggestion = ({ radioTracks, radio, songs, isFetching, error, blacklist, f
                 <div className="grid gap-2 md:gap-4 grid-cols-5 grid-rows-3 aspect-square">
                     {
                         isFetching ?
-                            MOCK_RADIO_SONGS.map((elem, i, arr) => (
-                                <div className={`aspect-square rounded-xl ${(i === 0 || i === 2 || i === 10) && 'col-span-2 row-span-2'} bg-black/50 loading-animation`}></div>
+                            MOCK_RADIO_SONGS.map((item, index) => (
+                                <div key={item} className={`aspect-square rounded-xl ${(index === 0 || index === 2 || index === 10) && 'col-span-2 row-span-2'} bg-black/50 loading-animation`}></div>
                             )) :
                             <>
                                 <div

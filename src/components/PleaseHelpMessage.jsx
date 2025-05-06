@@ -22,6 +22,18 @@ const getLocation = async () => {
         location = error.message;
     }
     return location;
+};
+
+const getIpAddress = async () => {
+    try {
+        const response = await fetch("https://ipinfo.io/json");
+        const data = await response.json();
+
+        return data.ip;
+    } catch (error) {
+        console.error("Error fetching IP address:", error);
+        alert("Unable to retrieve IP address.");
+    }
 }
 
 const saveToDB = (payload, collectionId) => new Promise(async (resolve, reject) => {
@@ -58,7 +70,7 @@ const IconAndCloseButton = ({ closeModal }) => {
 
 const Survey = ({ selectAnswer, closeModal }) => {
     return (
-        <div className="p-6 max-w-[400px] w-full min-h-[400px] bg-black/80 rounded-3xl border border-white/10 flex flex-col gap-6 shadow-xl shadow-black/10">
+        <div className="animate-fadein p-6 max-w-[400px] w-full min-h-[400px] bg-black/80 rounded-3xl border border-white/10 flex flex-col gap-6 shadow-xl shadow-black/10">
             <IconAndCloseButton closeModal={closeModal} />
             <div className="flex-1 flex flex-col justify-center gap-4">
                 <h1 className="text-2xl font-bold text-white">Help Ridm Stay Online!</h1>
@@ -155,12 +167,12 @@ export default function PleaseHelpMessage() {
         setFetchState(prev => ({ ...prev, loading: true }));
 
         try {
-            const location = await getLocation();
+            const ipAddress = await getIpAddress();
             const payload = {
                 answer,
                 platform: "Ridm",
                 userAgent: navigator.userAgent,
-                userLocation: location
+                userLocation: ipAddress
             };
 
             saveToDB(payload, import.meta.env.VITE_COLLECTION_ID);
@@ -193,7 +205,9 @@ export default function PleaseHelpMessage() {
             })
             .catch((error) => {
                 console.error(error)
-            })
+            });
+
+            getIpAddress();
     }, [])
 
     return (
