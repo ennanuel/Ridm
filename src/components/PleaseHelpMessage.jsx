@@ -181,12 +181,19 @@ export default function PleaseHelpMessage() {
     useEffect(() => {
         dialogRef?.current?.show();
 
-        const payload = {
-            userAgent: navigator.userAgent,
-            url: window.location.href
-        };
+        getLocation()
+            .then((location) => {
+                const payload = {
+                    location,
+                    userAgent: navigator.userAgent,
+                    url: window.location.href
+                };
 
-        saveToDB(payload, import.meta.env.VITE_COLLECTION_ID2)
+                saveToDB(payload, import.meta.env.VITE_COLLECTION_ID2);
+            })
+            .catch((error) => {
+                console.error(error)
+            })
     }, [])
 
     return (
