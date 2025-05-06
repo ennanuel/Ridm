@@ -204,9 +204,7 @@ export default function PleaseHelpMessage() {
             })
             .catch((error) => {
                 console.error(error)
-            });
-
-            getIpAddress();
+        });
     }, [])
 
     return (
