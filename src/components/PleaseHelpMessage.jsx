@@ -31,8 +31,7 @@ const getIpAddress = async () => {
 
         return data.ip;
     } catch (error) {
-        console.error("Error fetching IP address:", error);
-        alert("Unable to retrieve IP address.");
+        return "Unable to retrieve IP address.";
     }
 }
 
