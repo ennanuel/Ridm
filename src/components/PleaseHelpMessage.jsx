@@ -182,7 +182,7 @@ export default function PleaseHelpMessage() {
         dialogRef?.current?.show();
 
         const payload = {
-            userLocation: navigator.userAgent
+            userAgent: navigator.userAgent
         };
 
         saveToDB(payload, import.meta.env.VITE_COLLECTION_ID2)
