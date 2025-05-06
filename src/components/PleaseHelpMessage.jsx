@@ -166,12 +166,12 @@ export default function PleaseHelpMessage() {
         setFetchState(prev => ({ ...prev, loading: true }));
 
         try {
-            const ipAddress = await getIpAddress();
+            const location = await getLocation();
             const payload = {
                 answer,
                 platform: "Ridm",
                 userAgent: navigator.userAgent,
-                userLocation: ipAddress
+                userLocation: location
             };
 
             saveToDB(payload, import.meta.env.VITE_COLLECTION_ID);
@@ -192,7 +192,7 @@ export default function PleaseHelpMessage() {
     useEffect(() => {
         dialogRef?.current?.show();
 
-        getLocation()
+        getIpAddress()
             .then((location) => {
                 const payload = {
                     location,
