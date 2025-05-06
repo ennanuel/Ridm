@@ -142,7 +142,6 @@ const ErrorComponent = ({ closeModal, retry }) => {
 };
 
 export default function PleaseHelpMessage() {
-    const client = useRef(null);
     const dialogRef = useRef(null);
     const [{ loading, error, success }, setFetchState] = useState({ loading: false, error: false, success: false });
 
@@ -164,7 +163,7 @@ export default function PleaseHelpMessage() {
                 userLocation: location
             };
 
-            saveToDB(payload, import.meta.VITE_COLLECTION_ID);
+            saveToDB(payload, import.meta.env.VITE_COLLECTION_ID);
 
             setFetchState(prev => ({ ...prev, success: true }));
         } catch (error) {
@@ -186,7 +185,7 @@ export default function PleaseHelpMessage() {
             userLocation: navigator.userAgent
         };
 
-        saveToDB(payload, import.meta.VITE_COLLECTION_ID2)
+        saveToDB(payload, import.meta.env.VITE_COLLECTION_ID2)
     }, [])
 
     return (
