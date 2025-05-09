@@ -31,12 +31,13 @@ const AlbumDetails = () => {
   }, [albumid])
 
   useEffect(() => {
-    const text = `${isFetching ?
-      'Loading Album...' :
+    const text = isFetching ?
+      'Loading details...' :
       error ?
-        'Something went wrong' :
-        `Album: ${album?.title} by ${album?.artist?.name}`}`;
-    document.getElementById('site_title').innerText = text;
+        'Uh Oh, Something went wrong' :
+        `${album?.title} by ${album?.artist?.name}`;
+
+    document.getElementById('site_title').innerText = `Ridm Album - ${text}`;
   }, [isFetching, error])
 
   useEffect(() => {

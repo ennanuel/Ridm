@@ -34,7 +34,7 @@ const ArtistDetails = () => {
         const text = `Ridm Artist - ${isFetching ? 'Loading...' : error ? 'Something went wrong.' : artist?.name}`;
 
         document.getElementById('site_title').innerText = text;
-    }, [artist])
+    }, [artist, isFetching, error])
 
     return (
         <div className="flex flex-col p-2 md:p-6 gap-10">
