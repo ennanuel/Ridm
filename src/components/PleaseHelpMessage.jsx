@@ -5,24 +5,8 @@ import { Client, Databases, ID } from "appwrite";
 import { MdClose } from "react-icons/md";
 import { FiInstagram, FiMail, FiTwitter } from "react-icons/fi";
 
-
 import { logo } from "../assets/images";
-
-const getPosition = () => new Promise((resolve, reject) => {
-    if (navigator.geolocation) navigator.geolocation.getCurrentPosition(resolve, reject);
-    else reject("Geolocation is not supported!");
-});
-
-const getLocation = async () => {
-    let location;
-    try {
-        const position = await getPosition();
-        location = `longitude: ${position?.coords?.longitude}, latitude: ${position?.coords?.latitude}`;
-    } catch (error) {
-        location = error.message;
-    }
-    return location;
-};
+import { createToken } from "../utils/token";
 
 const getIpAddress = async () => {
     try {
@@ -152,7 +136,7 @@ const ErrorComponent = ({ closeModal, retry }) => {
     )
 };
 
-export default function PleaseHelpMessage() {
+export default function PleaseHelpMessage({ setUserIsValidated }) {
     const dialogRef = useRef(null);
     const [{ loading, error, success }, setFetchState] = useState({ loading: false, error: false, success: false });
 
@@ -160,13 +144,12 @@ export default function PleaseHelpMessage() {
         setFetchState({ loading: false, error: false, success: false });
     };
 
-    const closeModal = () => dialogRef?.current?.close();
 
     const selectAnswer = async (answer) => {
         setFetchState(prev => ({ ...prev, loading: true }));
 
         try {
-            const location = await getLocation();
+            const location = await getIpAddress();
             const payload = {
                 answer,
                 platform: "Ridm",
@@ -184,10 +167,23 @@ export default function PleaseHelpMessage() {
         }
     };
 
-    const closeModalAndSendRequest = () => {
+    const validateUser = () => {
+        createToken();
+        setUserIsValidated(true);
+    }
+
+    const closeModal = () => dialogRef?.current?.close();
+
+    const closeModalAndValidateUser = () => {
+        closeModal();
+        validateUser();
+    }
+
+    const closeModalSendRequestAndValidateUser = () => {
         selectAnswer('User closed without a response');
         closeModal();
-    }
+        validateUser();
+    };
 
     useEffect(() => {
         dialogRef?.current?.show();
@@ -208,15 +204,15 @@ export default function PleaseHelpMessage() {
     }, [])
 
     return (
-        <dialog ref={dialogRef} className="p-4 sm:p-6 md:p-10 fixed z-[9999999] top-0 left-0 w-screen h-[100dvh] backdrop-blur bg-black/50 hidden open:flex items-center justify-center">
+        <dialog ref={dialogRef} className="p-4 sm:p-6 md:p-10 w-screen h-[100dvh] fixed top-0 left-0 bg-black/50 backdrop-blur hidden open:flex items-center justify-center">
             {
                 success ?
-                    <Success closeModal={closeModal} /> :
+                    <Success closeModal={closeModalAndValidateUser} /> :
                     loading ?
-                        <Loading closeModal={closeModal} /> :
+                        <Loading closeModal={closeModalAndValidateUser} /> :
                         error ?
-                            <ErrorComponent retry={reset} closeModal={closeModal} /> :
-                            <Survey selectAnswer={selectAnswer} closeModal={closeModalAndSendRequest} />
+                            <ErrorComponent retry={reset} closeModal={closeModalAndValidateUser} /> :
+                            <Survey selectAnswer={selectAnswer} closeModal={closeModalSendRequestAndValidateUser} />
             }
         </dialog>
     )
