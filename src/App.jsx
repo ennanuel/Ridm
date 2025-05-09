@@ -1,6 +1,6 @@
-import { useRef, useLayoutEffect } from 'react'
+import { useRef, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom';
 import {
   ArtistDetails,
   Discover,
@@ -19,16 +19,25 @@ import Details from './components/Details';
 import { setPlayer } from './redux/features/playerSlice';
 import { setLibrary } from './redux/features/librarySlice';
 import Layout from './Layout';
+import PleaseHelpMessage from './components/PleaseHelpMessage';
+
+import { checkIfVisitorHasToken } from './utils/token';
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [userIsValidated, setUserIsValidated] = useState(false);
 
   useLayoutEffect(() => {
     const playerStorage = localStorage.getItem('player');
     const libraryStorage = localStorage.getItem('library');
     if (playerStorage) dispatch(setPlayer(JSON.parse(playerStorage)));
     if (libraryStorage) dispatch(setLibrary(JSON.parse(libraryStorage)));
-  }, [])
+
+    const visitorHasToken = checkIfVisitorHasToken();
+    setUserIsValidated(visitorHasToken);
+  }, []);
+
+  if(!userIsValidated) return <PleaseHelpMessage setUserIsValidated={setUserIsValidated} />;
 
   return (
     <Routes>
