@@ -7,7 +7,6 @@ import { MessageBox, AddToPlaylist, Prompt } from './components/Prompts';
 import NavigationAndSearch from './components/NavigationAndSearch';
 import MobileNavLinks from './components/Sidebar/MobileNavLinks';
 import NavLinks from './components/Sidebar/NavLinks';
-import PleaseHelpMessage from './components/PleaseHelpMessage';
 
 const Layout = () => {
     const location = useLocation();
@@ -29,7 +28,6 @@ const Layout = () => {
     
     return (
         <div className={`relative w-full grid grid-cols-1 lg:grid-cols-[300px,1fr] lg:grid-rows-[60px,1fr] p-2 gap-2 ${backgroundColor}`}>
-            <PleaseHelpMessage />
             <NavLinks />
             <MessageBox />
             <AddToPlaylist />
