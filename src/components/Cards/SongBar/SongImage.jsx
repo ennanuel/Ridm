@@ -11,7 +11,7 @@ const SongImage = ({ song, activeSong, isPlaying, handlePlayClick, handlePauseCl
           isCurrent={activeSong?.id === song.id}
           handlePause={handlePauseClick}
           handlePlay={handlePlayClick} 
-          size={20} 
+          size={24} 
         />
       </div>
     </div>

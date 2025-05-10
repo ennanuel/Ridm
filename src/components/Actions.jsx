@@ -31,7 +31,7 @@ const Actions = () => {
                 }
             </div>
                 
-            <div className="flex-1 flex flex-row justify-end items-center gap-4 overflow-x-clip">
+            <div className="flex-1 flex flex-row justify-end items-center gap-4">
                 <FavoriteButton text={text} data={data} type={data.type + 's'} />
                 <Options 
                     type={data.type || 'track'} 

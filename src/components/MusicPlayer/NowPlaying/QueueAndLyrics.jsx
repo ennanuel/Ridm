@@ -32,7 +32,7 @@ const QueueAndLyrics = ({ currentSongs, activeSong, isFetching, lyrics, error, l
     }
 
     return (
-        <div id="queue_lyrics" className={`lg:flex lg:flex-row justify-stretch items-stretch gap-6 mx-3 mb-3 rounded-lg lg:shadow-none shadow-lg shadow-black/50 transition-colors`}>
+        <div id="queue_lyrics" className={`lg:flex lg:flex-row justify-stretch items-stretch gap-6 mx-3 mb-3 rounded-lg lg:shadow-none shadow-xl shadow-black/10 transition-colors min-h-[60vh]`}>
             <div style={lyricsBackground} className={`h-full rounded-md flex-1 invisible_scroll p-3 overflow-y-scroll ${lyricsQueue && 'hidden lg:block'}`}>
                 {
                     <SongLyrics
@@ -43,7 +43,7 @@ const QueueAndLyrics = ({ currentSongs, activeSong, isFetching, lyrics, error, l
                     />
                 }
             </div>
-            <div className={`h-full rounded-md flex-1 lg:p-2 lg:gap-2 invisible_scroll flex flex-col bg-black/50 overflow-y-scroll ${!lyricsQueue && 'hidden lg:block'}`}>
+            <div className={`h-full rounded-md flex-1 lg:p-2 lg:gap-2 invisible_scroll flex flex-col bg-black/50 p-2 md:p-0 overflow-y-scroll ${!lyricsQueue && 'hidden lg:block'}`}>
                 {
                     currentSongs.map((song, i, tracks) =>
                         <QueueSong

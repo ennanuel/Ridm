@@ -18,13 +18,13 @@ const TopCharts = () => {
         const type = params.get('type');
         const text = `Ridm - Top ${categories.some( (cat, i) => cat.to == type ) ? type[0].toUpperCase() + type.substring(1, ) : 'Charts'}`
 
-        setShowingType(categories.some( (cat, i) => cat.to == type ))
-        document.getElementById('site_title').innerText = text
+        setShowingType(categories.some( (cat, i) => cat.to == type ));
+        document.getElementById('site_title').innerText = text;
     }, [params])
 
     return (
         <div className="relative">
-            <div className="absolute top-0 left-0 min-h-[82vh] w-full grid grid-cols-2 grid-rows-2 gap-5 md:gap-6 px-2">
+            <div className="absolute top-0 left-0 min-h-[82vh] w-full grid grid-cols-2 grid-rows-2 gap-4 sm:gap-5 md:gap-6 px-2">
                 {
                     categories.map(
                         (category, i) => {

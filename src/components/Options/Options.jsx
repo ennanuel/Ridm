@@ -55,7 +55,7 @@ const Options = ({ type, small, song, artist, genre, album, radio, playlist, tra
             <ul 
                 ref={modalRef}
                 onClick={handleClick} 
-                className={`${modalPosition} ${showModal ? 'flex' : 'hidden'} absolute animate-slowfade shadow-xl overflow-hidden shadow-black/20 z-[3] w-max flex-col text-gray-200 text-sm font-semibold rounded-[20px] bg-[#202020] min-w-[160px] before:z-[2] before:fixed before:top-0 before:left-0 before:w-screen before:h-screen`}
+                className={`${modalPosition} ${showModal ? 'flex' : 'hidden'} absolute animate-slowfade shadow-xl overflow-hidden shadow-black/20 z-[3] w-max flex-col text-gray-200 text-sm font-semibold rounded-[20px] bg-[#202020] min-w-[160px] before:z-[2] before:fixed before:top-0 before:left-0 before:w-full before:h-full`}
             >
                 {
                     filteredOptions

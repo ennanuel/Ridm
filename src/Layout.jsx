@@ -27,13 +27,13 @@ const Layout = () => {
     }, [location])
     
     return (
-        <div className={`relative w-full grid grid-cols-1 lg:grid-cols-[300px,1fr] lg:grid-rows-[60px,1fr] p-2 gap-2 ${backgroundColor}`}>
+        <div className={`relative w-full grid grid-cols-1 lg:grid-cols-[300px,1fr] lg:grid-rows-[60px,1fr] sm:p-2 gap-2 ${backgroundColor}`}>
             <NavLinks />
             <MessageBox />
             <AddToPlaylist />
             <Prompt />
             <Welcome />
-            <div ref={bodyRef} id="main-body" className="pb-[100px] lg:pb-0 lg:border lg:border-white/5 rounded-[15px] lg:h-[calc(100vh-16px)] h-[calc(100vh-16px)] overflow-y-scroll flex flex-col gap-2">
+            <div ref={bodyRef} id="main-body" className="pb-[100px] lg:pb-0 lg:border lg:border-white/5 sm:rounded-[15px] lg:h-[calc(100vh-16px)] h-[calc(100vh-16px)] overflow-y-scroll flex flex-col gap-2">
                 <NavigationAndSearch />
                 <div className={`transition-opacity ${nowPlaying && 'opacity-0'} row-span-2`}>
                     <Outlet />

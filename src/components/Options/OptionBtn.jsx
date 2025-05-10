@@ -14,7 +14,7 @@ const OptionBtn = ({ openModal, optionType, btnRef, small }) => {
             <button
                 onClick={openModal}
                 ref={btnRef}
-                className={`${!small && 'w-10 h-10 md:w-[50px] md:h-[50px] rounded-full hover:bg-white/10 bg-white/5'} peer text-white aspect-square rounded-full focus:bg-white/10 flex items-center justify-center drop-shadow-lg`}
+                className={`${small ? 'w-10 h-10' : 'w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-white/10 bg-white/5'} peer text-white aspect-square rounded-full focus:bg-white/10 flex items-center justify-center drop-shadow-lg`}
             >
                 <BiDotsVerticalRounded size={small ? 18 : 24} />
             </button>

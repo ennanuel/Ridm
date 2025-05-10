@@ -16,7 +16,7 @@ const Blacklist = () => {
 
   return (
     <div className="mt-[-60px] min-h-[90vh] flex flex-col">
-      <div className="bg-red-500/5 h-[20%] flex flex-col gap-8 justify-between items-start p-4 min-h-[30vh] mt-[70px] m-4 border border-white/5 rounded-[20px] shadow-lg shadow-black/50">
+      <div className="bg-red-500/5 h-[20%] flex flex-col gap-8 justify-between items-start p-4 min-h-[30vh] mt-[70px] mx-0 md:mx-4 my-4 border border-white/5 rounded-[20px] shadow-lg shadow-black/50">
         <div className="flex items-center gap-2 text-white">
           <Link to="/playlists" className="flex items-center justify-center w-10 aspect-square rounded-full hover:bg-white/5">
             <MdArrowBack size={25} />
@@ -26,7 +26,7 @@ const Blacklist = () => {
         <div className="flex items-center flex-wrap gap-3">
           {
             Object.entries(blacklist).map(([key, value]) => (
-              <a href={`#${key}`} className="rounded-full h-8 md:h-9 flex items-center justify-center gap-3 px-4 py-1 bg-white/5 text-gray-300 font-semibold text-sm hover:bg-white/10 hover:border-transparent">
+              <a href={`#${key}`} className="rounded-full h-8 md:h-9 flex items-center justify-center gap-3 pl-2 sm:pl-4 pr-4 py-1 bg-white/5 text-gray-300 font-semibold text-sm hover:bg-white/10 hover:border-transparent">
                 {
                   key === 'artists' ?
                     <MdPersonOutline size={20} /> :

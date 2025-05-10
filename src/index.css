@@ -11,6 +11,14 @@ html {
   scroll-behavior: smooth;
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .favorites-bg {
   background: linear-gradient(rgba(162, 221, 255, 0.2), transparent 80vh);
 }
