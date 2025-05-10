@@ -16,7 +16,7 @@ const FavoriteButton = ({ data, type, small, text }) => {
             style={{
                 backgroundColor: text ? text.replace(')', ',.8') : ''
             }}
-            className={`flex items-center justify-center ${small ? 'text-white drop-shadow-lg drop-shadow-black/50' : 'text-white md:w-[50px] md:h-[50px] w-[40px] h-[40px] bg-white/5'} transition-transform active:scale-90 rounded-full`}
+            className={`flex items-center justify-center ${small ? 'text-white drop-shadow-lg drop-shadow-black/50' : 'text-white md:min-w-[50px] md:w-[50px] md:max-h-[50px] md:h-[50px] min-w-[40px] w-10 max-h-10 h-10 bg-white/5'} transition-transform active:scale-90 rounded-full`}
         >
             {
                 data?.favorite ?

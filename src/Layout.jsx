@@ -33,7 +33,7 @@ const Layout = () => {
             <AddToPlaylist />
             <Prompt />
             <Welcome />
-            <div ref={bodyRef} id="main-body" className="pb-[100px] lg:pb-0 lg:border lg:border-white/5 sm:rounded-[15px] lg:h-[calc(100vh-16px)] h-[calc(100vh-16px)] overflow-y-scroll flex flex-col gap-2">
+            <div ref={bodyRef} id="main-body" className="pb-[100px] lg:pb-0 lg:border lg:border-white/5 sm:rounded-[15px] lg:h-[calc(100vh-16px)] h-[100vh] overflow-y-scroll flex flex-col gap-2">
                 <NavigationAndSearch />
                 <div className={`transition-opacity ${nowPlaying && 'opacity-0'} row-span-2`}>
                     <Outlet />

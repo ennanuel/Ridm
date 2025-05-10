@@ -7,11 +7,14 @@ import { filterOptions } from "../../utils/option";
 
 import Option from './Option';
 import OptionBtn from "./OptionBtn";
+import { useDispatch } from "react-redux";
+import { setNowPlaying } from "../../redux/features/playerSlice";
 
 const getModalPosition = (position) => `${position.clientY > position.height ? 'bottom-0' : 'top-0'} ${position.clientX > position.width ? 'right-[calc(100%+5px)]' : 'left-[calc(100%+5px)]'}`;
 
 const Options = ({ type, small, song, artist, genre, album, radio, playlist, tracks, i, favorite, blacklist }) => {
     const { pathname } = useLocation();
+    const dispatch = useDispatch();
 
     const filteredOptions = useMemo(() => filterOptions({ options, type, favorite, blacklist, isInPlaylistPath: /\/playlists\//.test(pathname) }), [pathname, blacklist, favorite, playlist]);
 
@@ -28,7 +31,8 @@ const Options = ({ type, small, song, artist, genre, album, radio, playlist, tra
     function handleOption(cbAction, values) {
         const navigateTo = cbAction(values);
         if (navigateTo) navigate(navigateTo);
-        setShowModal(false);
+        closeModal();
+        dispatch(setNowPlaying(false));
     }
     function openModal() {
         if (!btnRef.current) return;
@@ -36,6 +40,15 @@ const Options = ({ type, small, song, artist, genre, album, radio, playlist, tra
         const rect = btnRef.current.getBoundingClientRect();
         setShowModal(true);
         setPosition({ height:( window.innerHeight / 2), width: (window.innerWidth / 2), clientX: rect.x, clientY: rect.y });
+        
+        document.getElementById('main-body')?.classList?.remove('overflow-y-scroll');
+        document.getElementById('main-body')?.classList?.add('overflow-y-hidden');
+    }
+    function closeModal() {
+        setShowModal(false);
+        
+        document.getElementById('main-body')?.classList?.add('overflow-y-scroll');
+        document.getElementById('main-body')?.classList?.remove('overflow-y-hidden');
     }
     function handleClick(event) {
         if(!modalRef.current || !showModal) return;
@@ -46,7 +59,7 @@ const Options = ({ type, small, song, artist, genre, album, radio, playlist, tra
             event.clientY > modalRect.top + modalRect.height || 
             event.clientY < modalRect.top;
 
-        if(shouldCloseModal) setShowModal(false);
+        if(shouldCloseModal) closeModal();
     }
 
     return (
