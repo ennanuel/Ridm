@@ -61,10 +61,10 @@ const Survey = ({ selectAnswer, closeModal }) => {
             </div>
             <div className="pt-6 border-t border-white/10 flex items-center gap-4">
                 <button onClick={() => selectAnswer('human')} className="h-10 rounded-lg bg-white border border-white hover:bg-white/90 text-black px-6 flex items-center justify-center">
-                    <span className="font-semibold text-sm">Yes, I'm human</span>
+                    <span className="font-semibold text-sm">Yes, I&apos;m human</span>
                 </button>
                 <button onClick={() => selectAnswer('fuck you, on one gives a shit')} className="h-10 rounded-lg border hover:border-transparent border-white/20 hover:bg-white/5 text-white px-6 flex items-center justify-center">
-                    <span className="font-semibold text-sm">Fuck you!</span>
+                    <span className="font-semibold text-sm">I don&apos;t care</span>
                 </button>
             </div>
         </div>
