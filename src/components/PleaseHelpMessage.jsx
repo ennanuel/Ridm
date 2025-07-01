@@ -10,7 +10,7 @@ import { createToken } from "../utils/token";
 
 const getIpAddress = async () => {
     try {
-        const response = await fetch("https://ipinfo.io/json");
+        const response = await fetch(import.meta.env.VITE_IP_URL);
         const data = await response.json();
 
         return data.ip;
@@ -23,7 +23,7 @@ const saveToDB = (payload, collectionId) => new Promise(async (resolve, reject) 
     try {
         const client = new Client();
         client
-            .setEndpoint('https://fra.cloud.appwrite.io/v1')
+            .setEndpoint(import.meta)
             .setProject(import.meta.env.VITE_PROJECT_ID);
 
         const database = new Databases(client);
