@@ -1,5 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Client, Databases, ID } from "appwrite";
 
 import { MdClose } from "react-icons/md";
@@ -137,7 +138,7 @@ const ErrorComponent = ({ closeModal, retry }) => {
 };
 
 export default function PleaseHelpMessage({ setUserIsValidated }) {
-    const searchParams = useSearchParams();
+    const [searchParams] = useSearchParams();
     const dialogRef = useRef(null);
 
     const [{ loading, error, success }, setFetchState] = useState({ loading: false, error: false, success: false });
