@@ -24,7 +24,7 @@ const saveToDB = (payload, collectionId) => new Promise(async (resolve, reject) 
     try {
         const client = new Client();
         client
-            .setEndpoint(import.meta)
+            .setEndpoint(import.meta.env.VITE_ENDPOINT_URL)
             .setProject(import.meta.env.VITE_PROJECT_ID);
 
         const database = new Databases(client);
