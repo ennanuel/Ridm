@@ -63,7 +63,7 @@ const Survey = ({ selectAnswer, closeModal }) => {
                 <button onClick={() => selectAnswer('human')} className="h-10 rounded-lg bg-white border border-white hover:bg-white/90 text-black px-6 flex items-center justify-center">
                     <span className="font-semibold text-sm">Yes, I&apos;m human</span>
                 </button>
-                <button onClick={() => selectAnswer('fuck you, on one gives a shit')} className="h-10 rounded-lg border hover:border-transparent border-white/20 hover:bg-white/5 text-white px-6 flex items-center justify-center">
+                <button onClick={() => selectAnswer('fuck you, no one gives a shit')} className="h-10 rounded-lg border hover:border-transparent border-white/20 hover:bg-white/5 text-white px-6 flex items-center justify-center">
                     <span className="font-semibold text-sm">I don&apos;t care</span>
                 </button>
             </div>
@@ -137,14 +137,18 @@ const ErrorComponent = ({ closeModal, retry }) => {
 };
 
 export default function PleaseHelpMessage({ setUserIsValidated }) {
+    const searchParams = useSearchParams();
     const dialogRef = useRef(null);
+
     const [{ loading, error, success }, setFetchState] = useState({ loading: false, error: false, success: false });
+
+    const displayDialog = () => {
+        dialogRef?.current?.show();
+    }
 
     const reset = () => {
         setFetchState({ loading: false, error: false, success: false });
     };
-
-
     const selectAnswer = async (answer) => {
         setFetchState(prev => ({ ...prev, loading: true }));
 
@@ -166,19 +170,16 @@ export default function PleaseHelpMessage({ setUserIsValidated }) {
             setFetchState(prev => ({ ...prev, loading: false }));
         }
     };
-
     const validateUser = () => {
         createToken();
         setUserIsValidated(true);
     }
 
     const closeModal = () => dialogRef?.current?.close();
-
     const closeModalAndValidateUser = () => {
         closeModal();
         validateUser();
     }
-
     const closeModalSendRequestAndValidateUser = () => {
         selectAnswer('User closed without a response');
         closeModal();
@@ -186,22 +187,28 @@ export default function PleaseHelpMessage({ setUserIsValidated }) {
     };
 
     useEffect(() => {
-        dialogRef?.current?.show();
+        displayDialog();
+        const avoidVisitor = localStorage.getItem('omit') <= Number(Date.now()) || searchParams.get('omit') === 'true';
 
-        getIpAddress()
-            .then((location) => {
-                const payload = {
-                    location,
-                    userAgent: navigator.userAgent,
-                    url: window.location.href
-                };
+        if(avoidVisitor) {
+            const nextThreeDays = Date.now() + 259200000;
+            localStorage.setItem('omit', String(nextThreeDays));
+        } else {
+            getIpAddress()
+                .then((location) => {
+                    const payload = {
+                        location,
+                        userAgent: navigator.userAgent,
+                        url: window.location.href
+                    };
 
-                saveToDB(payload, import.meta.env.VITE_COLLECTION_ID2);
-            })
-            .catch((error) => {
-                console.error(error)
-        });
-    }, [])
+                    saveToDB(payload, import.meta.env.VITE_COLLECTION_ID2);
+                })
+                .catch((error) => {
+                    console.error(error);
+            });
+        }
+    }, []);
 
     return (
         <dialog ref={dialogRef} className="p-4 sm:p-6 md:p-10 w-screen h-[100dvh] fixed top-0 left-0 bg-black/50 backdrop-blur hidden open:flex items-center justify-center">
