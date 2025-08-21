@@ -10,23 +10,23 @@ import { useSelector } from "react-redux";
 
 const Songs = ({ songs, suggestion, children, isFetching, error, showmore, genreid, noFilter, full, bg }) => {
   const library = useSelector(state => state.library);
-  const [params, setParams] = useSearchParams();
+  const [params] = useSearchParams();
 
   const tracks = useMemo(() => getData({ type: 'tracks', data: songs, noFilter, sortType: params.get('sort') }), [library, songs, noFilter]);
 
   const background = useMemo(() =>  (full && bg) && bg.replace(')', ',0.6)'), [bg, full, songs]);
 
   return (
-    <div id='tracks' className={`relative flex flex-col ${(!full && !suggestion) && 'mb-4'} ${(full && !suggestion) && 'p-3 rounded-[20px] overflow-clip'} ${bg && 'bg-black'}`}>
+    <div id='tracks' className={`relative flex flex-col ${(!full && !suggestion) && 'mb-4'} ${(full && !suggestion) && 'p-3 md:p-4 lg:p-6 rounded-xl overflow-clip'} ${bg && 'bg-zinc-900'}`}>
       {
         (full && bg) &&
-        <div style={{ background }} className="absolute z-[0] w-full h-full top-0 left-0"></div>
+        <div style={{ background }} className="absolute z-[0] opacity-60 w-full h-full top-0 left-0"></div>
       }
       <div className={`relative z-1 flex flex-row justify-between items-end ${isFetching && 'mb-4'} ${suggestion ? 'lg:hidden' : ''}`}>
         {
           children && isFetching ?
             <span className="h-6 rounded-md w-full max-w-[240px] bg-white/5 animation-loading"></span> :
-            <h3 className="text-white/80 font-bold text-xl mb-6">{children}</h3>
+            <h3 className="text-white/80 font-bold text-xl sm:text-2xl mb-6">{children}</h3>
         }
         {
           showmore &&

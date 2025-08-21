@@ -1,16 +1,12 @@
-import { useMemo, useState } from 'react'
-import { SongLyrics } from '../../List'
-import QueueSong from './QueueSong'
+import { useMemo, useState } from 'react';
+
+import { SongLyrics } from '../../List';
+import QueueSong from './QueueSong';
+
 import { playSongs } from '../../../utils/player';
 
-const QueueAndLyrics = ({ currentSongs, activeSong, isFetching, lyrics, error, lyricsQueue, currentIndex, bg, bg2 }) => {
+const QueueAndLyrics = ({ currentSongs, activeSong, lyricsQueue, currentIndex, bg, bg2 }) => {
     const [queueIndex, setQueueIndex] = useState(null);
-
-    const songLyrics = useMemo(() => {
-        return lyrics?.message?.body?.lyrics?.lyrics_body
-            .replace(/(\*{7}[a-z|\s]+\*{7}|\(\d+\))/ig, '')
-            .split('\n');
-    }, [lyrics]);
     
     const lyricsBackground = useMemo(() => ({
         background: (window.innerWidth < 1024) && `linear-gradient(${bg2}, ${bg})`
@@ -36,10 +32,8 @@ const QueueAndLyrics = ({ currentSongs, activeSong, isFetching, lyrics, error, l
             <div style={lyricsBackground} className={`h-full rounded-md flex-1 invisible_scroll p-3 overflow-y-scroll ${lyricsQueue && 'hidden lg:block'}`}>
                 {
                     <SongLyrics
+                        songId={activeSong.id}
                         nowPlaying={true}
-                        lyrics={songLyrics}
-                        isFetching={isFetching}
-                        error={error}
                     />
                 }
             </div>

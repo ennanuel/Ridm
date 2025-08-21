@@ -1,24 +1,19 @@
-import { useState, useRef, useMemo } from "react"
-import ColorThief from 'colorthief'
+import { useState, useRef, useMemo } from "react";
+import ColorThief from 'colorthief';
 
-import { useGetLyricsQuery } from "../../../redux/services/MusixMatchApi"
-import { useGetSongDetailsQuery } from "../../../redux/services/DeezerApi"
+import { RiArrowLeftLine } from "react-icons/ri";
 
-import QueueAndLyrics from "./QueueAndLyrics"
-import ChangeQueueLyrics from "./ChangeQueueLyrics"
-import Volume from "./Volume"
+import QueueAndLyrics from "./QueueAndLyrics";
+import ChangeQueueLyrics from "./ChangeQueueLyrics";
+import Volume from "./Volume";
 import Track from "./Track";
 import Controls from "./Controls";
-import { RiArrowLeftLine } from "react-icons/ri";
 
 
 const NowPlaying = ({ close, open, nowPlaying, activeSong, currentSongs, currentIndex, isPlaying, shuffle, repeat, duration, volume, setVolume, setSeekTime, appTime }) => {
     const [lyricsQueue, setLyricsQueue] = useState(false);
     const [colors, setColors] = useState([]);
     const imgRef = useRef(null);
-
-    const { data: song } = useGetSongDetailsQuery(activeSong.id);
-    const { data: lyrics, isFetching, error } = useGetLyricsQuery(song?.isrc);
 
     const style = useMemo(() => ({
         background: `linear-gradient(${colors[0]}, transparent)`,
@@ -76,11 +71,8 @@ const NowPlaying = ({ close, open, nowPlaying, activeSong, currentSongs, current
                 <QueueAndLyrics
                     bg={colors[0]}
                     bg2={colors[2]}
-                    isFetching={isFetching}
-                    error={error}
                     currentSongs={currentSongs}
                     activeSong={activeSong}
-                    lyrics={lyrics}
                     lyricsQueue={lyricsQueue}
                     currentIndex={currentIndex}
                 />

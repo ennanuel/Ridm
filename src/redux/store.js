@@ -1,18 +1,18 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 import playerReducer from './features/playerSlice';
 import libraryReducer from './features/librarySlice';
 import promptReducer from './features/promptSlice';
 import { deezerApi } from './services/DeezerApi';
-import { musixMatchApi } from './services/MusixMatchApi';
+import { lyricsApi } from './services/LyricsApi';
 
 export const store = configureStore({
   reducer: {
     [deezerApi.reducerPath]: deezerApi.reducer,
-    [musixMatchApi.reducerPath]: musixMatchApi.reducer,
+    [lyricsApi.reducerPath]: lyricsApi.reducer,
     player: playerReducer,
     library: libraryReducer,
     prompt: promptReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(deezerApi.middleware, musixMatchApi.middleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(deezerApi.middleware, lyricsApi.middleware)
 });
