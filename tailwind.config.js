@@ -65,8 +65,8 @@ module.exports = {
         },
         "showmessage": {
           '0%': { opacity: 0 },
-          '20%': { opacity: 1},
-          '80%': { opacity: 1},
+          '10%': { opacity: 1},
+          '90%': { opacity: 1},
           '100%': { opacity: 0 }
         },
         "sliderightfull": {
