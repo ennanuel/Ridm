@@ -9,7 +9,7 @@ const MessageBox = () => {
     
     return (
         <section className="fixed z-[99999] flex items-center justify-center w-full lg:w-[80%] right-0 bottom-10 animate-showmessage">   
-            <div className="max-w-[250px] rounded-[10px] bg-black/50 backdrop-blur-lg flex items-center gap-4 font-semibold text-white py-2 pl-4 pr-2 shadow-md shadow-black/20">
+            <div className="max-w-[250px] rounded-[10px] bg-zinc-800 flex items-center gap-4 font-semibold text-white py-2 pl-4 pr-2 shadow-md shadow-black/20">
                 <p className="text-white text-sm md:text-base flex-1">{successMessage}</p>
                 <button onClick={hideMessage} className="flex items-center justify-center rotate-45">
                     <MdAdd size={20} />
