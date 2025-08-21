@@ -9,7 +9,7 @@ import { lyricsApi } from './services/LyricsApi';
 export const store = configureStore({
   reducer: {
     [deezerApi.reducerPath]: deezerApi.reducer,
-    [musixMatchApi.reducerPath]: musixMatchApi.reducer,
+    [lyricsApi.reducerPath]: lyricsApi.reducer,
     player: playerReducer,
     library: libraryReducer,
     prompt: promptReducer,
