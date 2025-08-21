@@ -12,8 +12,6 @@ export default function SongLyrics ({ songId, showBlur, nowPlaying = false }) {
             ?.filter((line) => line && !/(\n|\r)/.test(line))
     ), [data]);
     
-    console.log(lyrics);
-
     if(isFetching) return <LyricLoading num={8} />
 
     if(error) return <Error title="Could not load lyrics." />
