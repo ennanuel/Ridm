@@ -1,19 +1,28 @@
-import React from 'react'
-import { playSongs } from '../../utils/player'
 
-const SuggestedCard = ({ song, i, tracks }) => {
+import { useMemo } from 'react';
+import { playSongs } from '../../utils/player';
+import { FiPlay } from 'react-icons/fi';
+
+const INDECES_WITH_BIG_SQUARES = [1, 5];
+
+const SuggestedCard = ({ song, index, tracks }) => {
+    const cardIsBig = useMemo(() => INDECES_WITH_BIG_SQUARES.includes(index), [index]);
+
     return (
-        <div 
-            key={i} 
-            onClick={() => playSongs({ tracks, i, song })}
+        <button 
+            onClick={() => playSongs({ tracks, index, song })}
             style={{
-                background: `center / cover url(${i === 1 ? song?.album?.cover_xl : song?.album?.cover_medium})`,
-                '--delay': i / 10 + 's'
+                background: `center / cover url(${cardIsBig ? song?.album?.cover_xl : song?.album?.cover_medium})`,
+                '--delay': index / 10 + 's'
             }} 
-            className={`${(i === 1 || i === 9) && 'col-span-2 row-span-2'} relative rounded-xl overflow-hidden aspect-square`}
+            className={`${cardIsBig ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1 aspect-square'} group relative rounded-xl overflow-hidden transition-transform active:scale-90 duration-300`}
         >
-            <div className="absolute w-full h-full bg-black/20 hover:bg-black/50"></div>
-        </div>
+            <div className="relative w-full h-full group-hover:opacity-100 opacity-0 bg-black/50 flex items-center justify-center">
+                <span className="flex items-center justify-center w-12 aspect-square rounded-full bg-zinc-900/50 text-white backdrop-blur-md">
+                    <FiPlay size={20} />
+                </span>
+            </div>
+        </button>
     )
 }
 
