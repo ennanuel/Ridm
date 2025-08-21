@@ -1,5 +1,20 @@
-import { FaGlobe } from "react-icons/fa"
-import { useGetCountryInfoQuery } from '../../redux/services/DeezerApi'
+import { FaGlobe } from "react-icons/fa";
+import { useGetCountryInfoQuery } from '../../redux/services/DeezerApi';
+
+const CONTRIBUTORS = [
+  {
+    title: "Deezer",
+    href: "https://developer.deezer.com"
+  },
+  {
+    title: "Lyrics.ovh",
+    href: "https://lyrics.ovh"
+  },
+  {
+    title: "Developed by Emmanuel Ezema.",
+    href: "https://ezema.dev?p=Ridm"
+  },
+]
 
 const Footer = () => {
   const { data, isFetching, error } = useGetCountryInfoQuery()
@@ -20,9 +35,13 @@ const Footer = () => {
       </button>
       <div className="flex flex-col gap-4">
         <ul className="flex text-xs text-gray-400 gap-y-2 gap-x-4 flex-wrap items-center whitespace-nowrap">
-          <li className="hover:text-white hover:underline"><a href="https://developer.deezer.com" target="_blank">Deezer</a></li>
-          <li className="hover:text-white hover:underline"><a href="https://developer.musixmatch.com" target="_blank">MusixMatch</a></li>
-          <li className="hover:text-white hover:underline text-white-300"><a href="https://ezema.netlify.app" taget="_blank">Developed by Emmanuel Ezema.</a></li>
+          {
+            CONTRIBUTORS.map(({ title, href }) => (
+                <li className="hover:text-white hover:underline text-white-300">
+                  <a href={href} taget="_blank">{title}</a>
+                </li>
+            ))
+          }
         </ul>
       </div>
     </footer>
