@@ -66,7 +66,7 @@ function Background({ showBackground, backgroundColor }) {
   if(!showBackground) return;
 
   return (
-    <div className="absolute top-0 left-0 z-[0] w-full h-full rounded-xl overflow-hidden bg-zinc-900 outline outline-white/5">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[0] w-full h-full rounded-xl overflow-hidden bg-zinc-900 border border-white/5">
       <span style={{ backgroundColor }} className="block absolute opacity-50 w-full max-w-[400px] h-full min-h-[320px] max-h-[400px] -top-1/2 left-1/2 -translate-x-1/2 rounded-[50%] blur-[64px]"></span>
     </div>
   )
