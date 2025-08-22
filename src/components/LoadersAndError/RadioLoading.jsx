@@ -1,15 +1,8 @@
 import { useMemo } from 'react'
+import { generateArray } from '../../utils'
 
 const RadioLoading = ({ num }) => {
-    const radios = useMemo(() => {
-        if (!num || typeof (num) !== 'number') return [];
-        
-        const values = [];
-
-        for (let i = num; i > 0 && values.length <= num; i--) values.push(i);
-
-        return values;
-    }, [])
+    const radios = useMemo(() => generateArray(num), [])
 
     const Radio = () => (
         <div className='flex flex-col gap-2 p-2 bg-white/5 loading-animation'>

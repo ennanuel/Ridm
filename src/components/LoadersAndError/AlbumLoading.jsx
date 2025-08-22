@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { generateArray } from '../../utils';
 
 const Album = () => (
     <div className='flex flex-col gap-2 rounded-md p-2 bg-white/5 loading-animation'>
@@ -9,15 +10,7 @@ const Album = () => (
 );
 
 const AlbumLoading = ({ num }) => {
-    const albums = useMemo(() => {
-        if (!num || typeof (num) !== 'number') return [];
-
-        const values = [];
-
-        for (let i = num; i > 0 && values.length <= num; i--) values.push(i);
-
-        return values;
-    }, []);
+    const albums = useMemo(() => generateArray(num), []);
 
     return (
         <div className='grid grid-cols-2 lg:grid-cols-5 md:grid-cols-4 lg:gap-6 md:gap-4 gap-2'>

@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { generateArray } from '../../utils';
 
 
 const Song = () => (
@@ -14,20 +15,11 @@ const Song = () => (
 
 
 const SongLoading = ({ num, isFull }) => {
-    const songs = useMemo(() => {
-        if (!num || typeof (num) !== 'number') return [];
-
-        const values = [];
-        for (let i = num; i > 0 && values.length <= num; i--) values.push(i);
-        
-        return values;
-    }, []);
+    const songs = useMemo(() => generateArray(num), []);
 
     return (
         <div className={`grid grid-cols-1 ${!isFull && 'md:grid-cols-2'} gap-2 gap-x-4`}>
-            {
-                songs.map( song => <Song key={song} /> )
-            }
+            {songs.map( song => <Song key={song} /> )}
         </div>
     )
 }

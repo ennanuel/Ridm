@@ -1,6 +1,6 @@
-import React from 'react'
 
-const HeaderLoading = () => {
+
+export default function HeaderLoading() {
   return (
     <div className='relative z-1 w-full h-full flex flex-col gap-2 md:gap-4 items-start justify-end p-2 md:p-4'>
       <div className="loading-animation w-[60%] md:w-[200px] h-[50px] bg-white/5 rounded-md"></div>
@@ -11,6 +11,4 @@ const HeaderLoading = () => {
       <div className="loading-animation h-[20px] w-[70%] md:w-[400px] bg-white/5 rounded-md"></div>
     </div>
   )
-}
-
-export default HeaderLoading
+};
