@@ -5,7 +5,7 @@ import { FiPlay } from 'react-icons/fi';
 
 const INDECES_WITH_BIG_SQUARES = [1, 5];
 
-const SuggestedCard = ({ song, index, tracks }) => {
+export default function SuggestedCard ({ song, index, tracks }) {
     const cardIsBig = useMemo(() => INDECES_WITH_BIG_SQUARES.includes(index), [index]);
 
     return (
@@ -24,6 +24,4 @@ const SuggestedCard = ({ song, index, tracks }) => {
             </div>
         </button>
     )
-}
-
-export default SuggestedCard
+};
