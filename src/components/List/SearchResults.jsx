@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 
-import { useGetSearchArtistsQuery, useGetSearchAlbumsQuery, useGetSearchSongsQuery } from "../redux/services/DeezerApi";
+import { useGetSearchArtistsQuery, useGetSearchAlbumsQuery, useGetSearchSongsQuery } from "../../redux/services/DeezerApi";
 import { CATEGORIES } from "../../assets/data/constants";
 
 export default function SearchResults({ search, selectedCategory }) {
