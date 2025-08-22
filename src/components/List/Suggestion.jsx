@@ -2,9 +2,9 @@
 import { useMemo, useState } from "react";
 
 import { HiOutlineQueueList, HiQueueList } from "react-icons/hi2";
-import SuggestedCard from '../Cards/SuggestedCard';
+import { SuggestedCard } from "../Cards";
+import { Songs } from "../List";
 import { Error } from "../LoadersAndError";
-import Songs from "./Songs";
 
 import { playNext } from "../../utils/player";
 import { editorialImage, logo, logo1 } from "../../assets/images";
@@ -27,13 +27,13 @@ export default function Suggestion ({ radioTracks, songs, isFetching, error, bla
             <div className="grid grid-cols-1 md:grid-cols-2 gap-14 lg:gap-6 mt-4">
                 <Editorials loading={isFetching} addToQueue={addToQueue} tracks={tracks} />
                 <Songs
+                    isFull
+                    isSuggestion
                     blacklist={blacklist}
                     favorites={favorites}
                     isFetching={isFetching}
                     error={error}
                     songs={songs}
-                    full={true}
-                    suggestion={true}
                 />
             </div>
         </div>
