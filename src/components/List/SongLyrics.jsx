@@ -2,22 +2,18 @@
 import { useMemo } from 'react';
 import { useGetLyricsQuery } from '../../redux/services/LyricsApi';
 import { LyricLoading, Error } from '../LoadersAndError';
+import { cleanUpLyrics } from '../../utils';
 
-export default function SongLyrics ({ songId, showBlur, nowPlaying = false }) {
+export default function SongLyrics ({ songId, nowPlaying }) {
     const { data, isFetching, error } = useGetLyricsQuery(songId);
-    const lyrics = useMemo(() => (
-        data
-            ?.lyrics
-            ?.split(/(\n|\r)/ig)
-            ?.filter((line) => line && !/(\n|\r)/.test(line))
-    ), [data]);
+    const lyrics = useMemo(() => cleanUpLyrics(data), [data]);
     
     if(isFetching) return <LyricLoading num={8} />
 
     if(error) return <Error title="Could not load lyrics." />
         
     return (
-        <div className={`mb-8 flex flex-col gap-3 ${showBlur ? 'border border-white/5 rounded-xl backdrop-blur-lg p-3 md:p-4 lg:p-6' : 'px-3 md:px-4 lg:px-6'}`}>
+        <div className={`mb-8 flex flex-col gap-3 px-3 sm:px-4`}>
             <Lyrics lyrics={lyrics} isNowPlaying={nowPlaying} />
             <p className="text-xs text-zinc-500">
                 <span>Lyrics provided by </span>
