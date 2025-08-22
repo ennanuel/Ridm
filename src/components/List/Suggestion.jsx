@@ -10,7 +10,7 @@ import { playNext } from "../../utils/player";
 import { editorialImage, logo, logo1 } from "../../assets/images";
 
 
-const MOCK_RADIO_SONGS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+const MOCK_RADIO_SONGS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 export default function Suggestion ({ radioTracks, songs, isFetching, error, blacklist, favorites }) {
     const tracks = useMemo(() => radioTracks?.slice(0, 10), [radioTracks]);
@@ -47,7 +47,7 @@ function Editorials({ loading, addToQueue, tracks }) {
     );
 
     else return (
-        <div className="grid gap-1 md:gap-3 grid-cols-5 grid-rows-3">
+        <div className="grid gap-1 md:gap-3 grid-cols-5">
             <EditorialImage addToQueue={addToQueue} />
             <EditorialTracks tracks={tracks} />
         </div>
@@ -55,12 +55,15 @@ function Editorials({ loading, addToQueue, tracks }) {
 };
 
 function LoadingEditorials() {
-
+    
     return (
-        <div className="grid gap-1 md:gap-2 grid-cols-5 grid-rows-3 aspect-square">
+        <div className="grid gap-1 md:gap-2 grid-cols-5">
             {
                 MOCK_RADIO_SONGS.map((item, index) => (
-                    <div key={item} className={`aspect-square rounded-xl ${(index === 0 || index === 2 || index === 10) && 'col-span-2 row-span-2'} bg-black/50 loading-animation`}></div>
+                    <span 
+                        key={item} 
+                        className={`${([0, 2, 6].includes(index)) ? 'col-span-2 row-span-2' : 'w-full col-span-1 row-span-1 aspect-square'} rounded-xl bg-black/50 loading-animation`} 
+                    />
                 ))
             }
         </div>
