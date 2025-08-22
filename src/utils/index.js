@@ -9,3 +9,10 @@ export function generateArray(size) {
     }
     return values;
 }
+
+export function cleanUpLyrics(rawLyrics) {
+    return rawLyrics
+        ?.lyrics
+        ?.split(/(\n|\r)/ig)
+        ?.filter((line) => line && !/(\n|\r)/.test(line))
+};
