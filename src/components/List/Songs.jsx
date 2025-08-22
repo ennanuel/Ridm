@@ -13,7 +13,7 @@ export default function Songs ({ songs, suggestion, children, isFetching, error,
   const [params] = useSearchParams();
 
   const tracks = useMemo(() => getData({ type: 'tracks', data: songs, noFilter, sortType: params.get('sort') }), [library, songs, noFilter]);
-  const parentClassName = useMemo(() => `relative flex flex-col ${(!full && !suggestion) && 'mb-4'} ${(full && !suggestion) && 'p-3 md:p-4 lg:p-6 rounded-xl overflow-clip'} ${bg ? 'bg-zinc-900 border border-white/5' : ''}`, [full, suggestion, bg]);
+  const parentClassName = useMemo(() => `relative flex flex-col ${(!full && !suggestion) && 'mb-4'} ${(full && !suggestion) && 'p-3 md:p-4 lg:p-6'}`, [full, suggestion]);
 
   return (
     <div 
@@ -66,6 +66,8 @@ function Background({ showBackground, backgroundColor }) {
   if(!showBackground) return;
 
   return (
-    <div style={{ backgroundColor }} className="absolute z-[0] opacity-50 w-full max-w-[400px] h-full min-h-[320px] max-h-[400px] -top-1/2 left-1/2 -translate-x-1/2 rounded-[50%] blur-[64px]" />
+    <div className="absolute top-0 left-0 z-[0] w-full h-full rounded-xl overflow-hidden bg-zinc-900 outline outline-white/5">
+      <span style={{ backgroundColor }} className="block absolute opacity-50 w-full max-w-[400px] h-full min-h-[320px] max-h-[400px] -top-1/2 left-1/2 -translate-x-1/2 rounded-[50%] blur-[64px]"></span>
+    </div>
   )
 };

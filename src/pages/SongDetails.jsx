@@ -45,8 +45,7 @@ const SongDetails = () => {
                 <div className="md:sticky md:top-[85px]">
                     <Songs
                         full={true}
-                        bg={colors?.length > 0 && colors[1]}
-                        bg2={colors?.length > 0 && colors[0]}
+                        bg={colors?.length > 0 ? colors[0] : ''}
                         blacklist={blacklist}
                         favorites={favorites}
                         isFetching={isFetchingRelated}
