@@ -20,12 +20,12 @@ const AlbumCard = ({ album, i, isRelated, isRecent, activeSong, isPlaying }) => 
         <div 
             style={{'--delay': (i/10) + 's'}} 
             onClick={handleClick} 
-            className="album-card group p-3 rounded-xl flex flex-col flex-1 hover:bg-white/5 transition-[background-color] top-0 cursor-pointer"
+            className="album-card group p-3 rounded-lg flex flex-col flex-1 hover:bg-white/5 transition-[background-color] top-0 cursor-pointer"
         >
-            <div className="relative">
+            <div className="relative rounded-md overflow-hidden">
                 <img
-                    className="transition-transform w-full aspect-square rounded-lg"
-                    alt=""
+                    className="transition-transform w-full aspect-square"
+                    alt="Album image"
                     src={album?.cover_medium}
                 />
                 <div className={`group-hover:opacity-100 group-hover:pointer-events-auto opacity-0 transition-opacity pointer-events-none hidden lg:flex absolute top-0 left-0 w-full h-full bg-black/50 items-end justify-end p-2`}>
@@ -43,7 +43,7 @@ const AlbumCard = ({ album, i, isRelated, isRecent, activeSong, isPlaying }) => 
             {
                 isRelated || isRecent ?
                 <Link to={`/artists/${album?.artist?.id}`}>
-                    <p className="text-gray-400 text-xs mt-3 mb-1 font-semibold truncate">{album?.artist?.name}</p>
+                    <p className="text-zinc-400 text-xs mt-3 mb-1 font-semibold truncate">{album?.artist?.name}</p>
                 </Link> :
                 <>
                     {

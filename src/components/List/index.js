@@ -6,8 +6,10 @@ import Songs from './Songs';
 import Tracks from './Tracks';
 import Genres from './Genres';
 import Library from './Library';
-import SongLyrics from './SongLyrics';
 import RecentAlbums from './RecentAlbums';
+import SearchCategories from './SearchCategories';
+import SearchResults from './SearchResults';
+import SongLyrics from './SongLyrics';
 import Suggestion from './Suggestion';
 import RecentArtists from './RecentArtists';
 
@@ -20,8 +22,10 @@ export {
     Tracks,
     Genres,
     Library,
-    SongLyrics,
     RecentAlbums,
     RecentArtists,
+    SearchResults,
+    SearchCategories,
+    SongLyrics,
     Suggestion
 }
