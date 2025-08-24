@@ -1,22 +1,15 @@
 import { useMemo } from 'react';
+import { generateArray } from '../../utils';
 
-const LyricLoading = ({ text, num }) => {
-    const lyrics = useMemo(() => {
-        if (!num || typeof (num) !== 'number') return [];
-
-        const values = [];
-
-        for (let i = num; i > 0 && values.length <= num; i--) values.push(`${Math.floor(Math.random() * 100)}%`);
-
-        return values;
-    }, [])
+const LyricLoading = ({ num }) => {
+    const lyrics = useMemo(() => generateArray(num), [])
 
     return (
-        <ul className='flex flex-col md:gap-4 gap-2'>
+        <div className='flex flex-col md:gap-4 gap-2'>
             {
-                lyrics.map((width, index) => <li key={index} style={{ width }} className='bg-white/5 rounded-md h-[25px] loading-animation' />)
+                lyrics.map((width, index) => <span key={index} style={{ width }} className='block bg-white/5 rounded-full h-6 loading-animation' />)
             }
-        </ul>
+        </div>
     )
 }
 

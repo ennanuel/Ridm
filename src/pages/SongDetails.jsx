@@ -37,14 +37,14 @@ const SongDetails = () => {
     }, [song, isFetching, error]);
 
     return (
-        <div className="min-h-[100vh] p-2 md:p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="min-h-[100vh] pt-12 p-2 md:p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
             <section>
-                <SongLyrics showBlur={true} songId={songid} />
+                <SongLyrics songId={songid} />
             </section>
             <section>
                 <div className="md:sticky md:top-[85px]">
                     <Songs
-                        full={true}
+                        isFull
                         bg={colors?.length > 0 ? colors[0] : ''}
                         blacklist={blacklist}
                         favorites={favorites}

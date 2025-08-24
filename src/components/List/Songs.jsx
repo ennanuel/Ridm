@@ -8,27 +8,27 @@ import { getData } from "../../utils/getData";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export default function Songs ({ songs, suggestion, children, isFetching, error, showmore, genreid, noFilter, full, bg }) {
+export default function Songs ({ songs, isSuggestion, children, isFetching, error, showmore, genreid, noFilter, isFull, bg }) {
   const library = useSelector(state => state.library);
   const [params] = useSearchParams();
 
   const tracks = useMemo(() => getData({ type: 'tracks', data: songs, noFilter, sortType: params.get('sort') }), [library, songs, noFilter]);
-  const parentClassName = useMemo(() => `relative flex flex-col ${(!full && !suggestion) && 'mb-4'} ${(full && !suggestion) && 'p-3 md:p-4 lg:p-6'}`, [full, suggestion]);
+  const parentClassName = useMemo(() => `${!isSuggestion ? (isFull ? 'p-3 md:p-4 lg:p-6' : 'mb-4') : ''} relative flex flex-col`, [isFull, isSuggestion]);
 
   return (
     <div 
       id='tracks' 
       className={parentClassName}
      >
-      <Background showBackground={full && bg} backgroundColor={bg} />
-      <TitleAndSeeMore children={children} isFetching={isFetching} suggestion={suggestion} showMore={showmore} genreId={genreid} />
+      <Background showBackground={isFull && bg} backgroundColor={bg} />
+      <TitleAndSeeMore children={children} isFetching={isFetching} isSuggestion={isSuggestion} showMore={showmore} genreId={genreid} />
       {
         isFetching ?
-          <SongLoading num={4} full={full} /> :
+          <SongLoading num={4} isFull={isFull} /> :
           (
             error ?
               <Error title="Could not Fetch songs" /> :
-              <div className={`relative z-1 w-full grid grid-cols-1 ${!full && 'md:grid-cols-2'} gap-2 md:gap-4`}>
+              <div className={`relative z-1 w-full grid grid-cols-1 ${!isFull && 'md:grid-cols-2'} gap-2 md:gap-4`}>
                 {
                   tracks?.map((song, i, tracks) =>
                     <SongBar
@@ -45,9 +45,9 @@ export default function Songs ({ songs, suggestion, children, isFetching, error,
   )
 };
 
-function TitleAndSeeMore({ isFetching, children, showMore, suggestion, genreId }) {
+function TitleAndSeeMore({ isFetching, children, showMore, isSuggestion, genreId }) {
   return (
-      <div className={`relative z-1 flex flex-row justify-between items-end ${isFetching ? 'mb-4' : ''} ${suggestion ? 'lg:hidden' : ''}`}>
+      <div className={`relative z-1 flex flex-row justify-between items-end ${isFetching ? 'mb-4' : ''} ${isSuggestion ? 'lg:hidden' : ''}`}>
         {
           children && isFetching ?
             <span className="h-6 rounded-md w-full max-w-[240px] bg-white/5 animation-loading"></span> :
@@ -66,7 +66,7 @@ function Background({ showBackground, backgroundColor }) {
   if(!showBackground) return;
 
   return (
-    <div className="absolute top-0 left-0 z-[0] w-full h-full rounded-xl overflow-hidden bg-zinc-900 outline outline-white/5">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[0] w-full h-full rounded-xl overflow-hidden bg-zinc-900 border border-white/5">
       <span style={{ backgroundColor }} className="block absolute opacity-50 w-full max-w-[400px] h-full min-h-[320px] max-h-[400px] -top-1/2 left-1/2 -translate-x-1/2 rounded-[50%] blur-[64px]"></span>
     </div>
   )

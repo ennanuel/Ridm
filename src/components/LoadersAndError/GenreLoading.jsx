@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { generateArray } from '../../utils';
 
 const Genre = () => (
     <div className='relative overflow-clip loading-animation w-full aspect-[2] flex flex-col items-start justify-start gap-2 p-2 rounded-lg bg-white/5'>
@@ -9,17 +10,7 @@ const Genre = () => (
 )
 
 const GenreLoading = ({ num }) => {
-    const genres = useMemo(() => {
-        const isValidNumber = num && typeof (num) === 'number';
-        const values = [];
-
-        if (isValidNumber) {
-            for (let i = 0; i < num && i < 1000; i++) values.push(i);
-        }
-        
-
-        return values;
-    }, [])
+    const genres = useMemo(() => generateArray(num), [])
 
     return (
         <div className='grid grid-cols-2 md:grid-cols-3 lg:gap-6 md:gap-4 gap-2'>

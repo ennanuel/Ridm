@@ -1,15 +1,8 @@
 import { useMemo } from 'react';
+import { generateArray } from '../../utils';
 
 const TracksLoading = ({ num }) => {
-    const tracks = useMemo(() => {
-        if (!num || typeof (num) !== 'number') return [];
-        
-        const values = [];
-
-        for (let i = num; i > 0 && values.length <= num; i--) values.push(Math.ceil(Math.random() * 300));
-
-        return values;
-    }, [])
+    const tracks = useMemo(() => generateArray(num), [])
 
     return (
         <div className='m-2 md:m-4 bg-black/50 border-white/5 rounded-[20px] flex flex-col'>

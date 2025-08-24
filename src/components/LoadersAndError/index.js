@@ -1,23 +1,22 @@
-import Loader from './Loader';
-import Error from './Error';
+
 import AlbumLoading from './AlbumLoading';
-import TracksLoading from './TracksLoading';
 import ArtistLoading from './ArtistLoading';
-import SongLoading from './SongLoading';
-import LyricLoading from './LyricLoading';
-import RadioLoading from './RadioLoading';
+import Error from './Error';
 import GenreLoading from './GenreLoading';
 import HeaderLoading from './HeaderLoading';
+import LyricLoading from './LyricLoading';
+import RadioLoading from './RadioLoading';
+import SongLoading from './SongLoading';
+import TracksLoading from './TracksLoading';
 
 export {
-    Loader,
-    Error,
     AlbumLoading,
-    TracksLoading,
-    SongLoading,
     ArtistLoading,
+    Error,
+    GenreLoading,
+    HeaderLoading,
     LyricLoading,
     RadioLoading,
-    GenreLoading,
-    HeaderLoading
+    SongLoading,
+    TracksLoading,
 }
